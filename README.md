@@ -2,7 +2,7 @@
 
 Integrantes:
 
-Sara Caroline
-Matheus Caetano
-Lucas Gonçalves
-Gabriel Rodrigues
+Sara Caroline,
+Matheus Caetano,
+Lucas Gonçalves,
+Gabriel Rodrigues.
