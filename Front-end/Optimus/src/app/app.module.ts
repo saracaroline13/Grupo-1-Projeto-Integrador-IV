@@ -4,15 +4,19 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { ProdutoComponent } from './produto/produto.component';
+import { CadastrarProdutoComponent } from './cadastrar-produto/cadastrar-produto.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    ProdutoComponent
+    ProdutoComponent,
+    CadastrarProdutoComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

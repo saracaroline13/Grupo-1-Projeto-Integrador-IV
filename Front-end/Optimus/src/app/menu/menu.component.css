@@ -1,0 +1,42 @@
+.navbar {
+    background-color: #3AF0A8;
+    height: 130px;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-size: 35pt;
+    margin-left: 6%;
+}
+
+.navbar-brand:hover {
+    color: #FF764D;
+}
+
+.navbar-text {
+    margin-right: 17%;
+}
+
+.fa-cart-plus {
+    margin-right: 4%;
+}
+
+.fa-user-circle-o {
+    margin-right: 4%;
+}
+
+.link-entre {
+    margin-left: 7%;
+}
+
+.form-control {
+    margin-left: 4%;
+    height: 30%;
+    width: 30%;
+}
+
+.fa-search {
+    font-size: 125%;
+}
+
+    
