@@ -22,6 +22,11 @@ public class ProdutoController {
         return ResponseEntity.ok(repository.findAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity <Produto> getById(@PathVariable Long id) {
+        return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping
     public ResponseEntity<Produto> postProduto(@RequestBody Produto produto){
         return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(produto));

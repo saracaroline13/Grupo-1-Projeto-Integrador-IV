@@ -1,0 +1,45 @@
+
+<div class="container col-md-12 d-flex justify-content-center">
+
+    <div class="formulario col-md-7 border border-secondary">
+      <h3 class="mb-4">Alterar Produto</h3>
+      <form>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Titulo</label>
+          <input [(ngModel)]='produto.nome' name="nome" type="titulo" class="form-control" id="exampleFormControlInput1" placeholder="Titulo do livro">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Autor</label>
+          <input [(ngModel)]='produto.autor' name="autor"  type="autor" class="form-control" id="exampleFormControlInput1" placeholder="Autor do livro">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Editora</label>
+          <input [(ngModel)]='produto.editora'  name="editora"  type="editora" class="form-control" id="exampleFormControlInput1" placeholder="Editora do livro">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Descrição</label>
+          <textarea [(ngModel)]='produto.descricao' name="descricao"  class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+  
+        </div>
+  
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Valor</label>
+          <input [(ngModel)]='produto.valor' name="valor"  type="valor" class="form-control" id="exampleFormControlInput1" placeholder="0,00">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Foto</label>
+          <input [(ngModel)]='produto.imgPrincipal' name="titulo" type="titulo" class="form-control" id="exampleFormControlInput1" placeholder="Link das fotos">
+        </div>
+       
+      </form>
+  
+      <button class="btn btn-success mr-2" (click)='cadastrarProduto()'>Enviar</button>
+  
+      <a routerLink="/produto">
+        <button class="btn btn-secondary">Cancelar</button>
+      </a>
+
+      <button class="btn btn-danger ml-5" (click)="deletarProduto()">Deletar</button>
+    </div>
+  
+  </div>

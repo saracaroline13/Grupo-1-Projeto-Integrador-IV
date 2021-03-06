@@ -20,6 +20,9 @@ public class Produto {
     private String autor;
 
     @Column
+    private String editora;
+
+    @Column
     private double valor;
 
     @Column
@@ -79,6 +82,14 @@ public class Produto {
 
     public void setImgPrincipal(String imgPrincipal) {
         this.imgPrincipal = imgPrincipal;
+    }
+
+    public String getEditora() {
+        return editora;
+    }
+
+    public void setEditora(String editora) {
+        this.editora = editora;
     }
 
     public List<Imagem> getImagens() {
