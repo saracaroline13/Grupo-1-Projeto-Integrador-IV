@@ -6,7 +6,7 @@ import { AlterarProdutoComponent } from './alterar-produto/alterar-produto.compo
 
 const routes: Routes = [
 
-  // {path:'', redirectTo: 'inicio', pathMatch:'full'},
+  {path:'', redirectTo: 'produto', pathMatch:'full'},
 
   {path:'produto', component: ProdutoComponent },
   {path:'cadastrarProduto', component: CadastrarProdutoComponent },

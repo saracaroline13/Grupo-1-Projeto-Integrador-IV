@@ -10,6 +10,9 @@ import { ProdutoService } from '../service/produto.service';
 export class ProdutoComponent implements OnInit {
 
   listaProduto: Produto[]
+  htmlStr: string
+  
+  cardProduto = document.getElementById('produto')
 
   constructor(
     private produtoService: ProdutoService
@@ -21,10 +24,18 @@ export class ProdutoComponent implements OnInit {
 
   }
 
+  produtoAtivo(status: number){
+    let ok: boolean = false;
+
+    if(status == 1) {
+      ok = true;
+    }
+    return ok;
+  }
+
   findAll(){
     this.produtoService.findAll().subscribe((resp: Produto[]) => {
       this.listaProduto = resp
     })
   }
-  
 }

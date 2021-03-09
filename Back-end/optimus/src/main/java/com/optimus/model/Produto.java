@@ -20,16 +20,25 @@ public class Produto {
     private String autor;
 
     @Column
+    private int estrelas;
+
+    @Column
     private String editora;
 
     @Column
     private double valor;
 
     @Column
+    private int estoque;
+
+    @Column
     private String descricao;
 
     @Column
     private String imgPrincipal;
+
+    @Column
+    private int status;
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("produto")
@@ -58,6 +67,14 @@ public class Produto {
 
     public void setAutor(String autor) {
         this.autor = autor;
+    }
+
+    public int getEstrelas() {
+        return estrelas;
+    }
+
+    public void setEstrelas(int estrelas) {
+        this.estrelas = estrelas;
     }
 
     public double getValor() {
@@ -98,5 +115,21 @@ public class Produto {
 
     public void setImagens(List<Imagem> imagens) {
         this.imagens = imagens;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
     }
 }
