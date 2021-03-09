@@ -10,6 +10,7 @@ import { CadastrarProdutoComponent } from './cadastrar-produto/cadastrar-produto
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { AlterarProdutoComponent } from './alterar-produto/alterar-produto.component';
+import { ListaProdutoComponent } from './lista-produto/lista-produto.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AlterarProdutoComponent } from './alterar-produto/alterar-produto.compo
     MenuComponent,
     ProdutoComponent,
     CadastrarProdutoComponent,
-    AlterarProdutoComponent
+    AlterarProdutoComponent,
+    ListaProdutoComponent
   ],
   imports: [
     BrowserModule,

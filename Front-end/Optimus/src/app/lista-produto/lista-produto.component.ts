@@ -3,11 +3,11 @@ import { Produto } from '../model/Produto';
 import { ProdutoService } from '../service/produto.service';
 
 @Component({
-  selector: 'app-produto',
-  templateUrl: './produto.component.html',
-  styleUrls: ['./produto.component.css']
+  selector: 'app-lista-produto',
+  templateUrl: './lista-produto.component.html',
+  styleUrls: ['./lista-produto.component.css']
 })
-export class ProdutoComponent implements OnInit {
+export class ListaProdutoComponent implements OnInit {
 
   listaProduto: Produto[]
 
@@ -30,9 +30,19 @@ export class ProdutoComponent implements OnInit {
     return ok;
   }
 
+  produtoInativo(status:number){
+    let ok: boolean = false;
+
+    if(status == 0) {
+      ok = true;
+    }
+    return ok;
+  }
+
   findAll(){
     this.produtoService.findAll().subscribe((resp: Produto[]) => {
       this.listaProduto = resp
     })
   }
+
 }

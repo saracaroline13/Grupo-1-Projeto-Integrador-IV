@@ -20,7 +20,7 @@
       <div class="row">
         <div class="form-group col-md-10">
           <label for="exampleFormControlInput1">Titulo</label>
-          <input [(ngModel)]='nome' [(ngModel)]='produto.nome' name="titulo" type="titulo" class="form-control"
+          <input [(ngModel)]='titulo' [(ngModel)]='produto.nome' name="titulo" type="titulo" class="form-control"
             id="exampleFormControlInput1" placeholder="Titulo do livro" (keyup)="validaTitulo()">
           <div class="text-danger">{{ alertaTitulo }}</div>
         </div>
