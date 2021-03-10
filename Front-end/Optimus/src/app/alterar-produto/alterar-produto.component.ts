@@ -40,18 +40,23 @@ export class AlterarProdutoComponent implements OnInit {
 
   this.idProduto = this.route.snapshot.params['id']
   this.findById(this.idProduto)
+ 
 
   }
 
   findById(id: number) {
     this.produtoService.findById(id).subscribe((resp: Produto) => {
         this.produto = resp
-        console.log(this.produto)
+        this.status = this.produto.status
+        console.log(this.status)
     })
   }
 
   ativo(event: any){
+    
     this.status = event.target.value
+    console.log(this.status)
+    
   }
 
   estrelas(event: any) {
@@ -60,6 +65,7 @@ export class AlterarProdutoComponent implements OnInit {
 
   cadastrarProduto(){
     this.produto.estrelas = this.qntEstrelas
+    console.log(this.status)
     this.produto.status = this.status
 
     this.produtoService.postProduto(this.produto).subscribe((resp: Produto) => {
@@ -83,6 +89,7 @@ export class AlterarProdutoComponent implements OnInit {
 
     if(this.produto.status == 1) {
       ok = true;
+      
     }
     return ok;
   }
@@ -92,6 +99,7 @@ export class AlterarProdutoComponent implements OnInit {
 
     if(this.produto.status == 0) {
       ok = true;
+      
     }
     return ok;
   }

@@ -10,6 +10,7 @@ import { ProdutoService } from '../service/produto.service';
 export class ListaProdutoComponent implements OnInit {
 
   listaProduto: Produto[]
+  produto: Produto
 
   constructor(
     private produtoService: ProdutoService
@@ -38,6 +39,39 @@ export class ListaProdutoComponent implements OnInit {
     }
     return ok;
   }
+
+  desabilitarStatus(id:number) {
+    this.produtoService.findById(id).subscribe((resp: Produto)=>{
+      this.produto= resp
+      this.produto.status=0
+      alert("Produto desativado com sucesso!")
+      this.putProduto(this.produto)
+   
+    })
+
+  }
+
+habilitarStatus(id:number) {
+  this.produtoService.findById(id).subscribe((resp: Produto)=>{
+    this.produto= resp
+    this.produto.status=1
+    alert("Produto ativado com sucesso!")
+    this.putProduto(this.produto)
+ 
+  })
+}
+
+  putProduto(produto: Produto) {
+    
+    this.produtoService.putProduto(produto).subscribe((resp: Produto)=>{
+
+      this.produto= resp
+      
+      this.findAll()
+    })
+  }
+
+
 
   findAll(){
     this.produtoService.findAll().subscribe((resp: Produto[]) => {
