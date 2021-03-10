@@ -3,6 +3,13 @@
     height: 130px;
 }
 
+.nav-link{
+    color: black;
+}
+.nav-link:hover{
+    background-color: #33c88d;
+}
+
 .navbar-brand {
     color: #fff;
     font-size: 35pt;

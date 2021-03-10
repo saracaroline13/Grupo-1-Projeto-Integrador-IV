@@ -10,4 +10,5 @@ export class Produto {
     public imgPrincipal: string;
     public status: number;
     public estoque: number;
+    public imagens: string[];
 }

@@ -11,6 +11,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { AlterarProdutoComponent } from './alterar-produto/alterar-produto.component';
 import { ListaProdutoComponent } from './lista-produto/lista-produto.component';
+import { PesquisaProdutoComponent } from './pesquisa-produto/pesquisa-produto.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ListaProdutoComponent } from './lista-produto/lista-produto.component';
     ProdutoComponent,
     CadastrarProdutoComponent,
     AlterarProdutoComponent,
-    ListaProdutoComponent
+    ListaProdutoComponent,
+    PesquisaProdutoComponent
   ],
   imports: [
     BrowserModule,

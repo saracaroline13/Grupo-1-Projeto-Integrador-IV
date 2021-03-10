@@ -3,35 +3,88 @@
   <div *ngFor='let item of listaProduto'>
 
 
-  <div class="card mr-5" style="width: 18rem;"  *ngIf="produtoAtivo(item.status)">
+    <div class="card mr-5" style="width: 18rem;" *ngIf="produtoAtivo(item.status)">
 
-    <div>
-      <img class="card-img-top" src="{{ item.imgPrincipal }}" alt="Imagem de capa do card">
-      <div class="card-body">
+      <div>
+        <img class="card-img-top" src="{{ item.imgPrincipal }}" alt="Imagem de capa do card" data-toggle="modal"
+          data-target="#ModalProduto" (click)='findById(item.id)'>
+        <div class="card-body">
 
-        <div class="row d-flex justify-content-between">
-          <h5 class="card-title mb-0 ml-3"> {{ item.nome }} </h5>
-          <a [routerLink]=" ['/alterarProduto', item.id] ">
-            <i class="fa fa-pencil-square-o mr-2" aria-hidden="true"></i>
-          </a>
+          <div class="row d-flex justify-content-between">
+            <h5 class="card-title mb-0 ml-3" data-toggle="modal" data-target="#ModalProduto"
+              (click)='findById(item.id)'> {{ item.nome }} </h5>
+            <a [routerLink]=" ['/alterarProduto', item.id] ">
+              <i class="fa fa-pencil-square-o mr-2" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <p>{{ item.estrelas }} <i class="fa fa-star" aria-hidden="true"></i></p>
+
+          <p class="text-muted" data-toggle="modal" data-target="#ModalProduto" (click)='findById(item.id)'>{{
+            item.autor }}</p>
+
+          <p class="card-text" data-toggle="modal" data-target="#ModalProduto" (click)='findById(item.id)'> {{
+            item.descricao }} </p>
+          <div class="row mx-1 d-flex align-items-center justify-content-between">
+            <p class="card-text m-0"> {{ item.valor | currency: 'BRL'}} </p>
+            <div class="compraProduto">
+              <i class="fa fa-cart-plus fa-lg mr-2" aria-hidden="true"></i>
+              <button type="button" class="btn btn-warning btn-sm" width="50%" disabled>Comprar</button>
+            </div>
+
+
+          </div>
         </div>
+      </div>
 
-        <p>{{ item.estrelas }} <i class="fa fa-star" aria-hidden="true"></i></p>
-        <p class="text-muted m-0">Estoque {{ item.estoque }}</p>
+    </div>
+
+  </div>
+</div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="ModalProduto" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title ft-18" id="TituloModalCentralizado">{{ produtoModal.nome }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body mx-2">
+          <img class="card-img-top img-thumbnail mb-2" src="{{ produtoModal.imgPrincipal }}"
+            alt="Imagem de capa do card">
+          <div class="infoProduto">
+
+            <div class="imagensProduto mb-4">
+              <img class="imgSecundaria" src="{{ imagem.link1 }}" alt="Imagem Link 1" width="25%">
+              <img class="imgSecundaria" src="{{ imagem.link2 }}" alt="Imagem Link 2" width="25%">
+              <img class="imgSecundaria" src="{{ imagem.link3 }}" alt="Imagem Link 3" width="25%">
+              <img class="imgSecundaria" src="{{ imagem.link4 }}" alt="Imagem Link 4" width="25%">
+            </div>
+
+            <div class="row d-flex justify-content-between mx-2 border-top border-dark">
+              <p>{{ produtoModal.estrelas }} <i class="fa fa-star" aria-hidden="true"></i></p>
+              <p class="text-muted m-0">Estoque: {{ produtoModal.estoque }}</p>
+            </div>
 
 
+            <p class="text-muted m-0 ft-14">{{ produtoModal.autor }}</p>
+            <p class="text-muted ft-14">{{ produtoModal.editora }}</p>
 
-        <p class="text-muted m-0">{{ item.autor }}</p>
-        <p class="text-muted">{{ item.editora }}</p>
+            <p class="card-text ft-14"> {{ produtoModal.descricao }} </p>
 
-        <p class="card-text"> {{ item.descricao }} </p>
-        <p class="card-text"> {{ item.valor | currency: 'BRL'}} </p>
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-between mx-2">
+          <p class="ft-14">{{ produtoModal.valor | currency: 'BRL'}}</p>
+          <div class="btnModal">
+            <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-warning" disabled>Comprar</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  
-</div>
-
-</div>
-
-

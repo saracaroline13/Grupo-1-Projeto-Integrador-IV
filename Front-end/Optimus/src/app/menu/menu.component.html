@@ -5,8 +5,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-    <i class="fa fa-search fa-1x" aria-hidden="true" type="submit"></i>
+    <input [(ngModel)]='pesquisa' class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+    <i class="fa fa-search fa-1x" aria-hidden="true" type="submit" (click)='pesquisar()'></i>
 
 
 
@@ -31,3 +31,17 @@
     <i class="fa fa-cart-plus fa-3x" aria-hidden="true"></i>
 
   </nav>
+
+<nav class="d-flex justify-content-center mb-4" style="background-color: #3AF0A8;">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/produto">Produto</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/cadastrarProduto">Cadastrar</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/listaProdutos">Todos</a>
+    </li>
+  </ul>
+</nav>

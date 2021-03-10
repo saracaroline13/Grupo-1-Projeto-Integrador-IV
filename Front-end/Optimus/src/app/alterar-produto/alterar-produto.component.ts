@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Imagem } from '../model/Imagem';
 import { Produto } from '../model/Produto';
+import { ImagemService } from '../service/imagem.service';
 import { ProdutoService } from '../service/produto.service';
 
 @Component({
@@ -11,6 +13,9 @@ import { ProdutoService } from '../service/produto.service';
 export class AlterarProdutoComponent implements OnInit {
 
   produto: Produto = new Produto()
+  imagem: Imagem = new Imagem()
+  mostrarFoto: string
+
   idProduto: number
   qntEstrelas: number
   status: number
@@ -24,6 +29,7 @@ export class AlterarProdutoComponent implements OnInit {
   autorOk: boolean = false;
   editoraOk: boolean = false;
   describeOk: boolean = false;
+  estrelaOk: boolean = false;
 
   alertaTitulo: string;
   alertaAutor: string;
@@ -32,6 +38,7 @@ export class AlterarProdutoComponent implements OnInit {
 
   constructor(
     private produtoService: ProdutoService,
+    private imagemService: ImagemService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -40,23 +47,25 @@ export class AlterarProdutoComponent implements OnInit {
 
   this.idProduto = this.route.snapshot.params['id']
   this.findById(this.idProduto)
+  this.findByIdProjeto(this.idProduto)
  
-
   }
 
   findById(id: number) {
     this.produtoService.findById(id).subscribe((resp: Produto) => {
         this.produto = resp
         this.status = this.produto.status
-        console.log(this.status)
+    })
+  }
+
+  findByIdProjeto(id: number){
+    this.imagemService.findByIdProjeto(id).subscribe((resp: Imagem) => {
+      this.imagem = resp
     })
   }
 
   ativo(event: any){
-    
     this.status = event.target.value
-    console.log(this.status)
-    
   }
 
   estrelas(event: any) {
@@ -65,7 +74,6 @@ export class AlterarProdutoComponent implements OnInit {
 
   cadastrarProduto(){
     this.produto.estrelas = this.qntEstrelas
-    console.log(this.status)
     this.produto.status = this.status
 
     this.produtoService.postProduto(this.produto).subscribe((resp: Produto) => {
@@ -75,14 +83,34 @@ export class AlterarProdutoComponent implements OnInit {
   }
 
   deletarProduto(){
-    this.produtoService.deleteProduto(this.idProduto).subscribe(() => {
-      alert("Produto apagado com sucesso")
-      this.router.navigate(['/produto'])
+    this.produtoService.deleteProduto(this.idProduto).subscribe(()=> {})
+
+    this.imagemService.findByIdProjeto(this.idProduto).subscribe((resp: Imagem) => {
+      let idImagem = resp.idImagem
+      this.imagemService.deleteImagem(idImagem).subscribe(() => {
+        alert("Produto apagado com sucesso")
+        this.router.navigate(['/produto'])
+      })
     })
   }
 
-  
-
+  mostraImagem(id:number){
+    if(id == 1){
+      this.mostrarFoto = this.imagem.link1
+    }
+    else if(id == 2){
+      this.mostrarFoto = this.imagem.link2
+    }
+    else if(id == 3){
+      this.mostrarFoto = this.imagem.link3
+    }
+    else if(id == 4){
+      this.mostrarFoto = this.imagem.link4
+    }
+    else if(id == 0){
+      this.mostrarFoto = this.produto.imgPrincipal
+    }
+  }
 
   produtoAtivo(){
     let ok: boolean = false;

@@ -19,19 +19,18 @@
     <form>
       <div class="row">
         <div class="form-group col-md-10">
-          <label for="exampleFormControlInput1">Titulo</label>
+          <label for="exampleFormControlInput1">Titulo*</label>
           <input [(ngModel)]='titulo' [(ngModel)]='produto.nome' name="titulo" type="titulo" class="form-control"
-            id="exampleFormControlInput1" placeholder="Titulo do livro" (keyup)="validaTitulo()">
+            id="titulo" placeholder="Titulo do livro" (keyup)="validaTitulo()">
           <div class="text-danger">{{ alertaTitulo }}</div>
         </div>
 
         <div class="form-group col-md-2">
-          <label for="inputEstado">Estrelas</label>
+          <label for="inputEstado">Estrelas*</label>
           <select id="inputEstrelas" class="form-control" (change)='estrelas($event)'>
-            <option value=1>1
-            </option>
-            <option value=2>2
-            </option>
+            <option selected value=0>Estrelas</option>
+            <option value=1>1</option>
+            <option value=2>2</option>
             <option value=3>3
             </option>
             <option value=4>4
@@ -41,45 +40,76 @@
           </select>
         </div>
       </div>
-
       <div class="form-group">
-        <label for="exampleFormControlInput1">Autor</label>
+        <label for="exampleFormControlInput1">Autor*</label>
         <input [(ngModel)]='autor' [(ngModel)]='produto.autor' name="autor" type="autor" class="form-control"
-          id="exampleFormControlInput1" placeholder="Autor do livro"(keyup)="validaAutor()">
-          <div class="text-danger">{{ alertaAutor }}</div>
+          id="autor" placeholder="Autor do livro" (keyup)="validaAutor()">
+        <div class="text-danger">{{ alertaAutor }}</div>
       </div>
       <div class="form-group">
-        <label for="exampleFormControlInput1">Editora</label>
+        <label for="exampleFormControlInput1">Editora*</label>
         <input [(ngModel)]='editora' [(ngModel)]='produto.editora' name="editora" type="editora" class="form-control"
-          id="exampleFormControlInput1" placeholder="Editora do livro"(keyup)="validaEditora()">
-          <div class="text-danger">{{ alertaEditora }}</div>
+          id="editora" placeholder="Editora do livro" (keyup)="validaEditora()">
+        <div class="text-danger">{{ alertaEditora }}</div>
       </div>
       <div class="form-group">
-        <label for="exampleFormControlInput1">Descrição</label>
-        <textarea [(ngModel)]='produto.descricao' name="descricao" class="form-control" id="exampleFormControlTextarea1"
-          rows="4"(keyup)="validaDescribe()"></textarea>
-          <div class="text-danger">{{ alertaDescribe }}</div>
+        <label for="exampleFormControlInput1">Descrição*</label>
+        <textarea [(ngModel)]='describe' [(ngModel)]='produto.descricao' name="descricao" class="form-control"
+          id="describe" rows="4" (keyup)="validaDescribe()"></textarea>
+        <div class="text-danger">{{ alertaDescribe }}</div>
 
       </div>
 
       <div class="row">
         <div class="form-group col-md-6">
-          <label for="exampleFormControlInput1">Valor</label>
-          <input [(ngModel)]='produto.valor' name="valor" type="valor" class="form-control"
-            id="exampleFormControlInput1" placeholder="0,00">
+          <label for="exampleFormControlInput1">Valor*</label>
+          <input [(ngModel)]='valor' [(ngModel)]='produto.valor' name="valor" type="valor" class="form-control"
+            id="valor" placeholder="0,00" (keyup)="validaValor()">
+            <div class="text-danger">{{ alertaValor }}</div>
         </div>
 
 
         <div class="form-group  col-md-6">
-          <label for="exampleFormControlInput1">Estoque</label>
-          <input [(ngModel)]='produto.estoque' name="estoque" type="estoque" class="form-control"
-            id="exampleFormControlInput1" placeholder="0">
+          <label for="exampleFormControlInput1">Estoque*</label>
+          <input [(ngModel)]='estoque' [(ngModel)]='produto.estoque' name="estoque" type="estoque" class="form-control"
+            id="estoque" placeholder="0"  (keyup)="validaEstoque()">
+            <div class="text-danger">{{ alertaEstoque }}</div>
         </div>
       </div>
+
       <div class="form-group">
-        <label for="exampleFormControlInput1">Foto Principal</label>
-        <input [(ngModel)]='produto.imgPrincipal' name="foto" type="foto" class="form-control"
-          id="exampleFormControlInput1" placeholder="Link das fotos">
+        <label for="fotoPrincipal">Foto Principal*</label>
+        <div class="row m-0 p-0">
+        <input [(ngModel)]='foto' [(ngModel)]='produto.imgPrincipal' name="foto" type="foto" class="form-control col-md-11"
+          id="foto" placeholder="Link das fotos" (keyup)="validaFoto()">
+          <i class="fa fa-eye fa-2x ml-3" aria-hidden="true" data-toggle="modal" data-target="#ImagemProduto" (click)='mostraImagem(0)'></i>
+          <div class="text-danger">{{ alertaFoto }}</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row m-0 p-0">
+          <label for="exampleFormControlInput1">Fotos</label>
+          <p class="text-muted ml-2">(Obrigatório mínimo de duas fotos)*</p>
+        </div>
+        <div class="row m-0 p-0">
+          <input [(ngModel)]='link1' [(ngModel)]='imagem.link1' name="link" type="link" class="form-control col-md-11 mb-2" id="imagemLink1" placeholder="Links das Imagem" (keyup)="validaLink1()">
+          <i class="fa fa-eye fa-2x ml-3" aria-hidden="true" data-toggle="modal" data-target="#ImagemProduto" (click)='mostraImagem(1)'></i>
+          <div class="text-danger">{{ alertaLink1 }}</div>
+        </div>
+        <div class="row m-0 p-0">
+          <input [(ngModel)]='link2' [(ngModel)]='imagem.link2' name="link2" type="imagem" class="form-control col-md-11 mb-2" id="imagemLink2" placeholder="Links das Imagem" (keyup)="validaLink2()">
+          <i class="fa fa-eye fa-2x ml-3" aria-hidden="true" data-toggle="modal" data-target="#ImagemProduto"  (click)='mostraImagem(2)'></i>
+          <div class="text-danger">{{ alertaLink2 }}</div>
+        </div>
+        <div class="row m-0 p-0">
+          <input [(ngModel)]='imagem.link3' name="link3" type="imagem" class="form-control col-md-11 mb-2" id="imagemLink3" placeholder="Links das Imagem">
+          <i class="fa fa-eye fa-2x ml-3" aria-hidden="true" data-toggle="modal" data-target="#ImagemProduto"  (click)='mostraImagem(3)'></i>
+        </div>
+        <div class="row m-0 p-0">
+          <input [(ngModel)]='imagem.link4' name="link4" type="imagem" class="form-control col-md-11 mb-2" id="imagemLink4" placeholder="Links das Imagem">
+          <i class="fa fa-eye fa-2x ml-3" aria-hidden="true" data-toggle="modal" data-target="#ImagemProduto"  (click)='mostraImagem(4)'></i>
+        </div>       
       </div>
 
     </form>
@@ -93,4 +123,24 @@
     <button class="btn btn-danger ml-5" (click)="deletarProduto()">Deletar</button>
   </div>
 
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="ImagemProduto" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="{{ mostrarFoto }}" alt="Foto" width="100%">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
 </div>

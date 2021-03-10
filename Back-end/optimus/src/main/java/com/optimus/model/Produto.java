@@ -40,9 +40,10 @@ public class Produto {
     @Column
     private int status;
 
-    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("produto")
-    private List<Imagem> imagens;
+
+//    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
+//    @JsonIgnoreProperties("produto")
+//    private List<Imagem> imagens;
 
     // Get e Set
     public Long getId() {
@@ -107,14 +108,6 @@ public class Produto {
 
     public void setEditora(String editora) {
         this.editora = editora;
-    }
-
-    public List<Imagem> getImagens() {
-        return imagens;
-    }
-
-    public void setImagens(List<Imagem> imagens) {
-        this.imagens = imagens;
     }
 
     public int getStatus() {

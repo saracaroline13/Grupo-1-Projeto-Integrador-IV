@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Imagem } from '../model/Imagem';
 import { Produto } from '../model/Produto';
+import { ImagemService } from '../service/imagem.service';
 import { ProdutoService } from '../service/produto.service';
 
 @Component({
@@ -10,16 +12,26 @@ import { ProdutoService } from '../service/produto.service';
 export class ProdutoComponent implements OnInit {
 
   listaProduto: Produto[]
+  produtoModal: Produto = new Produto()
+  imagem: Imagem = new Imagem()
+  lista: Imagem[]
 
   constructor(
-    private produtoService: ProdutoService
+    private produtoService: ProdutoService,
+    private imagemService: ImagemService
   ) { }
 
   ngOnInit() {
-
     this.findAll()
-
+    this.find()
   }
+
+  find(){
+    this.imagemService.findAllImagem().subscribe((resp: Imagem[]) => {
+      this.lista = resp
+    })
+  }
+  
 
   produtoAtivo(status: number){
     let ok: boolean = false;
@@ -35,4 +47,18 @@ export class ProdutoComponent implements OnInit {
       this.listaProduto = resp
     })
   }
+
+  findById(id: number){
+    this.produtoService.findById(id).subscribe((resp: Produto) => {
+      this.produtoModal = resp
+      this.findByIdProjeto(id)
+    })
+  }
+
+  findByIdProjeto(id: number){
+    this.imagemService.findByIdProjeto(id).subscribe((resp: Imagem) => {
+      this.imagem = resp
+    })
+  }
+
 }
