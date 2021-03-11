@@ -1,24 +1,22 @@
-<div class="container col-md-12 d-flex justify-content-center">
+<div class="container col-md-12 d-flex justify-content-center imagemDisplay">
 
-  <div *ngFor='let item of listaProduto'>
+  <div class=" mb-4" *ngFor='let item of listaProduto'>
 
 
-    <div class="card mr-5" style="width: 18rem;" *ngIf="produtoAtivo(item.status)">
+    <div class="card mr-5 cardProduto" style="width: 18rem;" *ngIf="produtoAtivo(item.status)">
 
-      <div>
-        <img class="card-img-top" src="{{ item.imgPrincipal }}" alt="Imagem de capa do card" data-toggle="modal"
+      <div class="produtoCard">
+          <img class="card-img-top ml-4" src="{{ item.imgPrincipal }}" alt="Imagem de capa do card"  data-toggle="modal"
           data-target="#ModalProduto" (click)='findById(item.id)'>
         <div class="card-body">
-
-          <div class="row d-flex justify-content-between">
-            <h5 class="card-title mb-0 ml-3" data-toggle="modal" data-target="#ModalProduto"
-              (click)='findById(item.id)'> {{ item.nome }} </h5>
+          <h5 class="card-title mb-0 ml-3" data-toggle="modal" data-target="#ModalProduto"
+          (click)='findById(item.id)'> {{ item.nome }} </h5>
+          <div class="row d-flex justify-content-between mx-1">
+            <p>{{ item.estrelas }} <i class="fa fa-star" aria-hidden="true"></i></p>
             <a [routerLink]=" ['/alterarProduto', item.id] ">
               <i class="fa fa-pencil-square-o mr-2" aria-hidden="true"></i>
             </a>
           </div>
-
-          <p>{{ item.estrelas }} <i class="fa fa-star" aria-hidden="true"></i></p>
 
           <p class="text-muted" data-toggle="modal" data-target="#ModalProduto" (click)='findById(item.id)'>{{
             item.autor }}</p>
@@ -61,8 +59,8 @@
             <div class="imagensProduto mb-4">
               <img class="imgSecundaria" src="{{ imagem.link1 }}" alt="Imagem Link 1" width="25%">
               <img class="imgSecundaria" src="{{ imagem.link2 }}" alt="Imagem Link 2" width="25%">
-              <img class="imgSecundaria" src="{{ imagem.link3 }}" alt="Imagem Link 3" width="25%">
-              <img class="imgSecundaria" src="{{ imagem.link4 }}" alt="Imagem Link 4" width="25%">
+              <img class="imgSecundaria" src="{{ imagem.link3 }}" alt="" width="25%">
+              <img class="imgSecundaria" src="{{ imagem.link4 }}" alt="" width="25%">
             </div>
 
             <div class="row d-flex justify-content-between mx-2 border-top border-dark">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Imagem } from '../model/Imagem';
 import { Produto } from '../model/Produto';
@@ -24,17 +24,31 @@ export class AlterarProdutoComponent implements OnInit {
   autor: string;
   editora: string;
   describe: string;
+  foto: string;
+  link1: string;
+  link2: string;
+  estoque: number;
+  valor: number;
 
   tituloOk: boolean = false;
   autorOk: boolean = false;
   editoraOk: boolean = false;
   describeOk: boolean = false;
-  estrelaOk: boolean = false;
+  estoqueOk: boolean = false;
+  valorOk: boolean = false;
+  fotoOk: boolean = false;
+  link1Ok: boolean = false;
+  link2Ok: boolean = false;
 
   alertaTitulo: string;
   alertaAutor: string;
   alertaEditora: string;
   alertaDescribe: string;
+  alertaFoto: string;
+  alertaLink1: string;
+  alertaLink2: string;
+  alertaEstoque: string;
+  alertaValor: string;
 
   constructor(
     private produtoService: ProdutoService,
@@ -48,7 +62,35 @@ export class AlterarProdutoComponent implements OnInit {
   this.idProduto = this.route.snapshot.params['id']
   this.findById(this.idProduto)
   this.findByIdProjeto(this.idProduto)
- 
+
+  this.tituloOk = true;
+  this.autorOk = true;
+  this.editoraOk = true;
+  this.describeOk = true;
+  this.estoqueOk = true;
+  this.valorOk = true;
+  this.fotoOk = true;
+  this.link1Ok = true;
+  this.link2Ok = true;
+
+  }
+
+  validar(){
+    if(
+      this.autorOk == true &&
+      this.tituloOk == true &&
+      this.editoraOk == true &&
+      this.describeOk == true &&
+      this.valorOk == true &&
+      this.estoqueOk == true &&
+      this.fotoOk == true &&
+      this.link1Ok == true &&
+      this.link2Ok == true
+    ){
+      this.cadastrarProduto()
+    }else {            
+      alert('Campos inválidos por favor conferir todos!')
+    }
   }
 
   findById(id: number) {
@@ -169,6 +211,58 @@ export class AlterarProdutoComponent implements OnInit {
     } else {
       this.describeOk = true;
       this.alertaDescribe = '';
+    }
+  }
+
+  validaValor(){
+    if(this.valor < 0 || this.valor == 0) {
+      this.valorOk = false;
+      this.alertaValor = 'Valor inválido'
+    }
+    else {
+      this.valorOk = true;
+      this.alertaValor = ''
+    }
+  }
+
+  validaEstoque(){
+    if(this.estoque < 0 || this.estoque == 0) {
+      this.estoqueOk = false;
+      this.alertaEstoque = 'Estoque inválido'
+    }
+    else {
+      this.estoqueOk = true;
+      this.alertaEstoque = ''
+    }
+  }
+
+  validaFoto(){
+    if (this.foto.length < 3) {
+      this.fotoOk = false;
+      this.alertaFoto = 'Foto inválida';
+    } else {
+      this.fotoOk = true;
+      this.alertaFoto = '';
+    }
+  }
+
+  validaLink1(){
+    if (this.link1.length < 3) {
+      this.link1Ok = false;
+      this.alertaLink1 = 'Foto inválida';
+    } else {
+      this.link1Ok = true;
+      this.alertaLink1 = '';
+    }
+  }
+
+  validaLink2(){
+    if (this.link2.length < 3) {
+      this.link2Ok = false;
+      this.alertaLink2 = 'Foto inválida';
+    } else {
+      this.link2Ok = true;
+      this.alertaLink2 = '';
     }
   }
 

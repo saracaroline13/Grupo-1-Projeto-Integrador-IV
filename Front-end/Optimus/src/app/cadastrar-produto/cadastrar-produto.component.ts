@@ -44,10 +44,12 @@ export class CadastrarProdutoComponent implements OnInit {
   alertaEditora: string;
   alertaDescribe: string;
   alertaValor: string;
-  alertaEstoque: string
+  alertaEstoque: string;
   alertaFoto: string;
   alertaLink1: string;
   alertaLink2: string;
+
+  
   
 
   constructor(
@@ -58,6 +60,24 @@ export class CadastrarProdutoComponent implements OnInit {
 
   ngOnInit(){
     
+  }
+
+  validar(){
+    if(
+      this.tituloOk == true &&
+      this.autorOk == true &&
+      this.editoraOk == true &&
+      this.describeOk == true &&
+      this.valorOk == true &&
+      this.estoqueOk == true &&
+      this.fotoOk == true &&
+      this.link1Ok == true &&
+      this.link2Ok == true
+    ){
+      this.cadastrarProduto()
+    }else {
+      alert('Campos inválidos por favor conferir todos!')
+    }
   }
 
   estrelas(event: any) {

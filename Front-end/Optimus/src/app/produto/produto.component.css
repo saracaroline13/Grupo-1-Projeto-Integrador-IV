@@ -9,3 +9,11 @@
 .imgSecundaria:hover{
     transform: scale(3.5);
 }
+
+.imagemDisplay {
+    flex-flow: wrap!important;
+}
+
+.cardProduto img {
+    width: 80%;
+}
