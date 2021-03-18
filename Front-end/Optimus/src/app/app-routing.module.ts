@@ -5,13 +5,15 @@ import { CadastrarProdutoComponent } from './cadastrar-produto/cadastrar-produto
 import { AlterarProdutoComponent } from './alterar-produto/alterar-produto.component';
 import { ListaProdutoComponent } from './lista-produto/lista-produto.component';
 import { PesquisaProdutoComponent } from './pesquisa-produto/pesquisa-produto.component';
+import { ProdutoClienteComponent } from './produto-cliente/produto-cliente.component';
 
 const routes: Routes = [
 
-  {path:'', redirectTo: 'produto', pathMatch:'full'},
+  {path:'', redirectTo: 'produtoCliente', pathMatch:'full'},
 
   {path:'produto', component: ProdutoComponent },
   {path:'cadastrarProduto', component: CadastrarProdutoComponent },
+  {path:'produtoCliente', component: ProdutoClienteComponent },
   {path:'alterarProduto/:id', component: AlterarProdutoComponent },
   {path:'listaProdutos', component: ListaProdutoComponent },
   {path:'pesquisa/:nome', component: PesquisaProdutoComponent }

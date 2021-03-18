@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AlterarProdutoComponent } from './alterar-produto/alterar-produto.component';
 import { ListaProdutoComponent } from './lista-produto/lista-produto.component';
 import { PesquisaProdutoComponent } from './pesquisa-produto/pesquisa-produto.component';
+import { ProdutoClienteComponent } from './produto-cliente/produto-cliente.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PesquisaProdutoComponent } from './pesquisa-produto/pesquisa-produto.co
     CadastrarProdutoComponent,
     AlterarProdutoComponent,
     ListaProdutoComponent,
-    PesquisaProdutoComponent
+    PesquisaProdutoComponent,
+    ProdutoClienteComponent
   ],
   imports: [
     BrowserModule,
