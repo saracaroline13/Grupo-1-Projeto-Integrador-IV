@@ -1,0 +1,19 @@
+.ft-14 {
+    font-size: 14pt;
+}
+
+.ft-18 {
+    font-size: 18pt;
+}
+
+.imgSecundaria:hover{
+    transform: scale(3.5);
+}
+
+.imagemDisplay {
+    flex-flow: wrap!important;
+}
+
+.cardProduto img {
+    width: 80%;
+}
