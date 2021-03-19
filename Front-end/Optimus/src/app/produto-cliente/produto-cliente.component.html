@@ -25,7 +25,7 @@
               <p class="card-text m-0"> {{ item.valor | currency: 'BRL'}} </p>
               <div class="compraProduto">
                 <i class="fa fa-cart-plus fa-lg mr-2" aria-hidden="true"></i>
-                <button type="button" class="btn btn-warning btn-sm" width="50%" disabled>Comprar</button>
+                <button routerLink='/compra' type="button" class="btn btn-warning btn-sm" width="50%">Comprar</button>
               </div>
 
 
@@ -75,11 +75,11 @@
                       <img class="d-block w-50" src="{{ imagem.link4 }}" alt="Terceiro Slide">
                     </div>
                   </div>
-                  <a class="carousel-control-prev bg-primary" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <a class="carousel-control-prev bg-secondary" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Anterior</span>
                   </a>
-                  <a class="carousel-control-next bg-primary" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <a class="carousel-control-next bg-secondary" href="#carouselExampleIndicators" role="button" data-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Próximo</span>
                   </a>
@@ -104,7 +104,7 @@
             <p class="ft-14">{{ produtoModal.valor | currency: 'BRL'}}</p>
             <div class="btnModal">
               <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Fechar</button>
-              <button type="button" class="btn btn-warning" disabled>Comprar</button>
+              <button routerLink='/compra' type="button" class="btn btn-warning" data-dismiss="modal">Comprar</button>
             </div>
           </div>
         </div>
