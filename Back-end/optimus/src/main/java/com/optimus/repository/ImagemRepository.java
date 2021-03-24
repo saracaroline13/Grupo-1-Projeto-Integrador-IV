@@ -10,5 +10,8 @@ import java.util.Optional;
 public interface ImagemRepository extends JpaRepository<Imagem, Long> {
 
     public Imagem findAllByIdProjeto(int id);
+    // Parte do código para teste de subir imagem
+    Optional<Imagem> findByName(String name);
+
 
 }

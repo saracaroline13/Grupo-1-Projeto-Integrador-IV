@@ -21,12 +21,31 @@ public class Imagem {
     @Column
     private String link4;
 
+    //    Parte do código para teste de subir imagem
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "picByte", length = 1000)
+    private byte[] picByte;
+
+    @Column(name = "type")
+    private String type;
+
 //    @ManyToOne // Relação com a tabela Produto
 //    @JsonIgnoreProperties("imagem")
 //    private Produto produto;
 
     @Column
     private int idProjeto;
+
+    public Imagem() {
+    }
+
+    public Imagem(String name, String type, byte[] picByte) {
+        this.name = name;
+        this.type = type;
+        this.picByte = picByte;
+    }
 
     // Get e Set
     public long getIdImagem() {
@@ -75,5 +94,29 @@ public class Imagem {
 
     public void setIdProjeto(int idProjeto) {
         this.idProjeto = idProjeto;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public byte[] getPicByte() {
+        return picByte;
+    }
+
+    public void setPicByte(byte[] picByte) {
+        this.picByte = picByte;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
