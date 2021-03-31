@@ -13,7 +13,7 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue (strategy= GenerationType.IDENTITY)
-	private long id_cliente;
+	private long id_usuario;
 	
 	@Column
 	private String nome;
@@ -36,12 +36,12 @@ public class Usuario {
 	@Column
 	private String senha;
 
-	public long getId_cliente() {
-		return id_cliente;
+	public long getId_usuario() {
+		return id_usuario;
 	}
 
-	public void setId_cliente(long id_cliente) {
-		this.id_cliente = id_cliente;
+	public void setId_usuario(long id_usuario) {
+		this.id_usuario = id_usuario;
 	}
 
 	public String getNome() {

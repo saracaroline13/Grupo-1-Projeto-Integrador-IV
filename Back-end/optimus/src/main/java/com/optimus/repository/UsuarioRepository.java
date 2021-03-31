@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.optimus.model.Usuario;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<Usuario, Long> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 	public List<Usuario> findAllByEmailContainingIgnoreCase(String email);
 

@@ -1,14 +1,16 @@
 package com.optimus.controller;
 
-import com.optimus.model.Produto;
+import com.optimus.model.UserLogin;
 import com.optimus.model.Usuario;
-import com.optimus.repository.ClienteRepository;
+import com.optimus.repository.UsuarioRepository;
+import com.optimus.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuario")
@@ -16,7 +18,10 @@ import java.util.List;
 public class UsuarioController {
 
     @Autowired
-    private ClienteRepository repository;
+    private UsuarioRepository repository;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @GetMapping
     public ResponseEntity<List<Usuario>> GetAll(){
@@ -46,6 +51,19 @@ public class UsuarioController {
     @DeleteMapping("/{id}")
     public void deleteUsuario(@PathVariable Long id) {
         repository.deleteById(id);
+    }
+
+
+    @PostMapping("/logar")
+    public ResponseEntity<UserLogin> Autentication(@RequestBody Optional<UserLogin> user){
+        return usuarioService.Logar(user).map(resp -> ResponseEntity.ok(resp))
+                .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+    }
+
+    @PostMapping("/cadastrar")
+    public ResponseEntity<Usuario> Post(@RequestBody Usuario usuario) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(usuarioService.CadastrarUsuario(usuario));
     }
 
 
