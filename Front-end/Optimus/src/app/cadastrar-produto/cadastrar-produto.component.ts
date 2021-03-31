@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Imagem } from '../model/Imagem';
@@ -11,6 +12,14 @@ import { ProdutoService } from '../service/produto.service';
   styleUrls: ['./cadastrar-produto.component.css']
 })
 export class CadastrarProdutoComponent implements OnInit {
+  
+  // Variaveis para teste de subir imagem
+  selectedFile: File;
+  retrievedImage: any;
+  base64Data: any;
+  retrieveResonse: any;
+  message: string;
+  imageName: any;
 
   produto: Produto = new Produto()
   qntEstrelas: number
@@ -49,19 +58,53 @@ export class CadastrarProdutoComponent implements OnInit {
   alertaLink1: string;
   alertaLink2: string;
 
-  
-  
-
   constructor(
     private produtoService: ProdutoService,
     private imagemService: ImagemService,
-    private router: Router
+    private router: Router,
+    private httpClient: HttpClient
   ) { }
 
   ngOnInit(){
     
   }
 
+  // Parte para subir a imagem
+  onUpload() {
+    console.log(this.selectedFile);
+    
+    const uploadImageData = new FormData();
+    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+  
+    this.httpClient.post('http://localhost:8080/imagem/upload', uploadImageData, { observe: 'response' })
+      .subscribe((response) => {
+        if (response.status === 200) {
+          this.message = 'Image uploaded successfully';
+        } else {
+          this.message = 'Image not uploaded successfully';
+        }
+      }
+      );
+  }
+
+  getImage() {
+  this.httpClient.get(`http://localhost:8080/imagem/get/${this.imageName}`)
+    .subscribe(
+      res => {
+        this.retrieveResonse = res;
+        this.retrieveResonse = this.retrieveResonse.picByte
+        this.base64Data = this.retrieveResonse.picByte;
+        this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+      }
+    );
+    
+  }
+
+  public onFileChanged(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+  // Finalização da parte de implementação da imagem
+  
   validar(){
     if(
       this.tituloOk == true &&

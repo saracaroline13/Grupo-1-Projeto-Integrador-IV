@@ -73,6 +73,48 @@
         </div>
       </div>
 
+      <!-- Parte do código para subir a imagem do computador -->
+      <br><br><br>
+
+      <div class="container row">
+        <div class="col-md-12">
+            <h1>Upload Image</h1>
+        </div>
+    </div>
+    <div class="container row">
+        <div class="col-md-6">
+            <input type="file" (change)="onFileChanged($event)">
+        </div>
+        <div class="col-md-6">
+            <input type="button" (click)="onUpload()" value="upload">
+        </div>
+    </div>
+    <hr />
+    <div class="container row">
+        <div class="col-md-12">
+            <div *ngIf=message>{{message}}</div>
+        </div>
+    </div>
+    <div class="container row">
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName"
+                name="name" />
+        </div>
+        <div class="col-md-6">
+            <input type="button" (click)="getImage()" value="Get Image">
+        </div>
+    </div>
+    <div class="container row">
+        <div class="col-md-12">
+            <div *ngIf=retrievedImage>
+                <img [src]="retrievedImage">
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>
+    <!-- Finalização da parte do código de teste para subir imagem -->
+
       <div class="form-group">
         <div class="row m-0 p-0">
           <label for="fotosSecundarias">Fotos</label>
