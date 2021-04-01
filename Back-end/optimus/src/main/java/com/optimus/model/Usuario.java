@@ -22,7 +22,7 @@ public class Usuario {
 	private String sobrenome;
 	
 	@Column
-	private int cpf;
+	private String cpf;
 	
 	@Column
 	private int telefone;
@@ -38,6 +38,12 @@ public class Usuario {
 
 	@Column
 	private String tipo;
+
+	@Column
+	private String cargo;
+
+	@Column
+	private float salario;
 
 	public long getId_usuario() {
 		return id_usuario;
@@ -61,14 +67,6 @@ public class Usuario {
 
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
-	}
-
-	public int getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(int cpf) {
-		this.cpf = cpf;
 	}
 
 	public int getTelefone() {
@@ -109,5 +107,29 @@ public class Usuario {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public float getSalario() {
+		return salario;
+	}
+
+	public void setSalario(float salario) {
+		this.salario = salario;
 	}
 }

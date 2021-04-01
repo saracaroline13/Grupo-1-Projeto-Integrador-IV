@@ -8,4 +8,6 @@ export class Usuario{
   public email: string
   public senha: string
   public tipo: string
+  public cargo: string
+  public salario: string
 }
