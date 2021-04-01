@@ -7,4 +7,5 @@ export class Usuario{
   public rg: number
   public email: string
   public senha: string
+  public tipo: string
 }

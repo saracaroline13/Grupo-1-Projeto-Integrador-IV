@@ -18,6 +18,7 @@ public class UserDetailsImpl implements UserDetails {
     private String password;
     private String nome;
     private long id;
+    private String tipo;
     private List<GrantedAuthority> authorities;
 
     public UserDetailsImpl(Usuario user) {
@@ -25,6 +26,7 @@ public class UserDetailsImpl implements UserDetails {
         this.password = user.getSenha();
         this.nome = user.getNome();
         this.id = user.getId_usuario();
+        this.tipo = user.getTipo();
     }
 
     public String getNome() {
@@ -33,6 +35,14 @@ public class UserDetailsImpl implements UserDetails {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public UserDetailsImpl() {}
