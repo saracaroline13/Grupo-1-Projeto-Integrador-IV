@@ -11,6 +11,7 @@ import { EntraComponent } from './entra/entra.component';
 import { CadastraComponent } from './cadastra/cadastra.component';
 import { EntraADMComponent } from './entra-adm/entra-adm.component';
 import { CadastraADMComponent } from './cadastra-adm/cadastra-adm.component';
+import { HomeAdmComponent } from './home-adm/home-adm.component';
 
 const routes: Routes = [
 
@@ -24,8 +25,10 @@ const routes: Routes = [
   {path:'compra', component: CompraComponent },
   {path:'entrar', component: EntraComponent },
   {path:'cadastrar', component: CadastraComponent },
+
   {path:'entrar-adm', component: EntraADMComponent },
-  {path:'cadastrar-adm', component: CadastraADMComponent }
+  {path:'cadastrar-adm', component: CadastraADMComponent },
+  {path:'home-adm', component: HomeAdmComponent}
 ];
 
 @NgModule({
