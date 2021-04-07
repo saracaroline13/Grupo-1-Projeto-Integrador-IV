@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment.prod';
 import { Imagem } from '../model/Imagem';
 import { Produto } from '../model/Produto';
 import { ImagemService } from '../service/imagem.service';

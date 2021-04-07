@@ -31,6 +31,7 @@ export class EntraComponent implements OnInit {
       environment.tipo = this.userLogin.tipo
       environment.email = this.userLogin.email
 
+      
       this.router.navigate(['/produtoCliente'])
     }, erro => {
       if(erro.status == 500){
