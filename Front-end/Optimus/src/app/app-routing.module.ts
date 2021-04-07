@@ -12,6 +12,7 @@ import { CadastraComponent } from './cadastra/cadastra.component';
 import { EntraADMComponent } from './entra-adm/entra-adm.component';
 import { CadastraADMComponent } from './cadastra-adm/cadastra-adm.component';
 import { HomeAdmComponent } from './home-adm/home-adm.component';
+import { GestaoUsuarioComponent } from './gestao-usuario/gestao-usuario.component';
 
 const routes: Routes = [
 
@@ -28,7 +29,8 @@ const routes: Routes = [
 
   {path:'entrar-adm', component: EntraADMComponent },
   {path:'cadastrar-adm', component: CadastraADMComponent },
-  {path:'home-adm', component: HomeAdmComponent}
+  {path:'home-adm', component: HomeAdmComponent},
+  {path:'gestao-usuario', component: GestaoUsuarioComponent}
 ];
 
 @NgModule({

@@ -19,6 +19,7 @@ import { CadastraComponent } from './cadastra/cadastra.component';
 import { EntraADMComponent } from './entra-adm/entra-adm.component';
 import { CadastraADMComponent } from './cadastra-adm/cadastra-adm.component';
 import { HomeAdmComponent } from './home-adm/home-adm.component';
+import { GestaoUsuarioComponent } from './gestao-usuario/gestao-usuario.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HomeAdmComponent } from './home-adm/home-adm.component';
     CadastraComponent,
     EntraADMComponent,
     CadastraADMComponent,
-    HomeAdmComponent
+    HomeAdmComponent,
+    GestaoUsuarioComponent
   ],
   imports: [
     BrowserModule,
