@@ -16,7 +16,7 @@ export class GestaoUsuarioComponent implements OnInit {
     private usuarioService: UsuarioService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.findAll()
   }
 

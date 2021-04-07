@@ -32,7 +32,7 @@ export class EntraADMComponent implements OnInit {
       environment.tipo = this.userLogin.tipo
       environment.token = this.userLogin.token
 
-      if(this.userLogin.tipo = 'Cliente'){
+      if(this.userLogin.tipo == 'Cliente'){
         alert('AVISO: VOCÊ NÃO É UM ADM, POR FAVOR LOGUE COMO USUARIO!')
         environment.email = ''
         environment.id = 0

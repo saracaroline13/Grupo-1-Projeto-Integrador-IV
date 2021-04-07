@@ -25,13 +25,18 @@ export class EntraComponent implements OnInit {
     this.auth.entrar(this.userLogin).subscribe((resp:UserLogin) =>{
       this.userLogin = resp
 
-      environment.token = this.userLogin.token
-      environment.id = this.userLogin.id_usuario
-      environment.nome = this.userLogin.nome
-      environment.tipo = this.userLogin.tipo
-      environment.email = this.userLogin.email
+      if(this.userLogin.status == 0) {
+        alert("Perfil desativado por entrar em contato com administrador!")
+        this.router.navigate(['/produtoCliente'])
+      }else {
+        environment.token = this.userLogin.token
+        environment.id = this.userLogin.id_usuario
+        environment.nome = this.userLogin.nome
+        environment.tipo = this.userLogin.tipo
+        environment.email = this.userLogin.email
+        this.router.navigate(['/produtoCliente'])
+      }
 
-      this.router.navigate(['/produtoCliente'])
     }, erro => {
       if(erro.status == 500){
         alert('Usuário ou senha estão incorretos')

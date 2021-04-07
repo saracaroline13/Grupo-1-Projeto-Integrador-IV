@@ -14,6 +14,8 @@ public class UserLogin {
 
 	private String tipo;
 
+	private int status;
+
 	public long getId() {
 		return id;
 	}
@@ -60,5 +62,13 @@ public class UserLogin {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 }

@@ -56,7 +56,7 @@
         <div class="form-row">
         <div class="form-group">
           <div class="form-check ml-2">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <input class="form-check-input" type="checkbox" id="gridCheck" (click)="validaTermos($event)" name="termos">
             <label class="form-check-label" for="gridCheck">
               Concordo com os <a href="#" data-toggle="modal" data-target="#termosCondicoes">termos e condições</a> da Optimus
             </label>
@@ -65,7 +65,7 @@
         </div>
   
         <div class="mt-2 ml-2">
-          <button type="submit" class="btn btn-success bg-optimus mr-4">Cadastrar</button>
+          <button type="submit" class="btn btn-success bg-optimus mr-4" (click)="cadastrar()">Cadastrar</button>
           <button type="submit" class="btn btn-secondary" routerLink="/produtoCliente">Cancelar</button>
         </div>
       </form>

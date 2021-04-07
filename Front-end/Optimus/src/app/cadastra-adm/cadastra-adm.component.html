@@ -86,7 +86,7 @@
 
         <div class="form-group col-md-4">
             <label for="inputEstado">Estado</label>
-            <select   id="inputEstado" name="estado" class="form-control">
+            <select   id="inputEstado" name="estado" class="form-control" (change)="selectEstado($event)">
               <option selected value="NADA">Selecione o Estado</option>
               <option value="AC">Acre</option>
               <option value="AL">Alagoas</option>
@@ -144,9 +144,10 @@
 
             <div class="form-group col-md-4">
               <label for="cargo">Cargo</label>
-              <select  id="cargo" name="cargo" class="form-control">
-                <option selected value="Estoquista">Estoquista</option>
-                <option value="Administrador">Vendedor(a)</option>
+              <select  id="cargo" name="cargo" class="form-control" (change)="selectCargo($event)">
+                <option selected value="Cargo">Cargo</option>
+                <option value="Estoquista">Estoquista</option>
+                <option value="Vendedor">Vendedor(a)</option>
               </select>
             </div>
 

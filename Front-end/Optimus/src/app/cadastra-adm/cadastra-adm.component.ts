@@ -231,6 +231,7 @@ export class CadastraADMComponent implements OnInit {
     this.usuario.cargo = this.cargoUsuario
     this.usuario.tipo = this.cargoUsuario
     this.usuario.estado = this.estadoUsuario
+    this.usuario.status = 1
 
     if (this.usuario.senha != this.confirmSenha) {
       alert('As senhas estão incorretas')

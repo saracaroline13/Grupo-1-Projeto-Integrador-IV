@@ -19,6 +19,7 @@ public class UserDetailsImpl implements UserDetails {
     private String nome;
     private long id;
     private String tipo;
+    private int status;
     private List<GrantedAuthority> authorities;
 
     public UserDetailsImpl(Usuario user) {
@@ -27,6 +28,7 @@ public class UserDetailsImpl implements UserDetails {
         this.nome = user.getNome();
         this.id = user.getId_usuario();
         this.tipo = user.getTipo();
+        this.status = user.getStatus();
     }
 
     public String getNome() {
@@ -43,6 +45,14 @@ public class UserDetailsImpl implements UserDetails {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public UserDetailsImpl() {}
