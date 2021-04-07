@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 import { Usuario } from '../model/Usuario';
 import { UsuarioService } from '../service/usuario.service';
 
@@ -13,10 +15,18 @@ export class GestaoUsuarioComponent implements OnInit {
   listaUsuario: Usuario[]
 
   constructor(
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    if(environment.tipo == "Cliente") {
+      this.router.navigate(['/produtoCliente'])
+    }
+
+    if(environment.tipo == "") {
+      this.router.navigate(['/entrar-adm'])
+    }
     this.findAll()
   }
 

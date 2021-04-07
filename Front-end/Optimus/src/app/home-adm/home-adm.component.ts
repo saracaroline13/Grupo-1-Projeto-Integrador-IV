@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-home-adm',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeAdmComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    if(environment.tipo == "Cliente") {
+      this.router.navigate(['/produtoCliente'])
+    }
+
+    if(environment.tipo == "") {
+      this.router.navigate(['/entrar-adm'])
+    }
   }
 
 }

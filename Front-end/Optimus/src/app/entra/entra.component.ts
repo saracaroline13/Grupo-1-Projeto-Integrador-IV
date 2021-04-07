@@ -30,13 +30,12 @@ export class EntraComponent implements OnInit {
         this.router.navigate(['/produtoCliente'])
       }else {
         environment.token = this.userLogin.token
-        environment.id = this.userLogin.id_usuario
+        environment.id = this.userLogin.id
         environment.nome = this.userLogin.nome
         environment.tipo = this.userLogin.tipo
         environment.email = this.userLogin.email
         this.router.navigate(['/produtoCliente'])
       }
-
     }, erro => {
       if(erro.status == 500){
         alert('Usuário ou senha estão incorretos')

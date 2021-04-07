@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" routerLink="/produto">Livraria Optimus</a>
+    <a class="navbar-brand" routerLink="/produtoCliente">Livraria Optimus</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#textoNavbar" aria-controls="textoNavbar" aria-expanded="false" aria-label="Alterna navegação">
       <span class="navbar-toggler-icon"></span>
@@ -22,11 +22,21 @@
 
       <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
 
-      <span class="navbar-text">
+      <span class="navbar-text" *ngIf='!logado()'>
         Olá, seja bem vindo(a)!<br/>
         <a class="link-entre" routerLink="/entrar">Entre</a>
         ou <a class="link-cadastre" routerLink="/cadastrar">cadastre-se</a>
       </span>
+
+      <span class="navbar-text" *ngIf='logado()'>
+        Olá, 
+        <a [routerLink]="['/alterar-usuario', id]">
+          {{nome}}
+        </a> <br/>
+        <a class="link-entre" (click)='sair()'>Sair</a>
+
+      </span>
+
     </div>
 
     <i class="fa fa-cart-plus fa-3x" aria-hidden="true"></i>
@@ -36,22 +46,10 @@
 <nav class="d-flex justify-content-center" style="background-color: #3AF0A8;">
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link" routerLink="/produto">Produto Administrador</a>
-    </li>
-    <li class="nav-item">
       <a class="nav-link" routerLink="/produtoCliente">Produto Cliente</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/cadastrarProduto">Cadastrar</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/listaProdutos">Todos</a>
-    </li>
-    <li class="nav-item">
       <a class="nav-link" routerLink="/entrar-adm">Entra Adm</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/cadastrar-adm">Cadastra funcionario adm</a>
     </li>
   </ul>
 </nav>

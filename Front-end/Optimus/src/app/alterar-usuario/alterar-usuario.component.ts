@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 import { Usuario } from '../model/Usuario';
 import { AuthService } from '../service/auth.service';
 import { UsuarioService } from '../service/usuario.service';
@@ -61,6 +62,11 @@ export class AlterarUsuarioComponent implements OnInit {
     else {
       this.authService.cadastrar(this.usuario).subscribe((resp: Usuario) => {
         this.usuario = resp
+        environment.token = ''
+        environment.nome = ''
+        environment.id = 0
+        environment.email = ''
+        environment.tipo = ''
         this.router.navigate(['/entrar'])
         alert('Usuário cadastrado com sucesso')
       })

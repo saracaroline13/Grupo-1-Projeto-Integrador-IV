@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 import { Imagem } from '../model/Imagem';
 import { Produto } from '../model/Produto';
 import { ImagemService } from '../service/imagem.service';
@@ -18,10 +20,18 @@ export class ProdutoComponent implements OnInit {
 
   constructor(
     private produtoService: ProdutoService,
-    private imagemService: ImagemService
+    private imagemService: ImagemService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    if(environment.tipo == "Cliente") {
+      this.router.navigate(['/produtoCliente'])
+    }
+
+    if(environment.tipo == "") {
+      this.router.navigate(['/entrar-adm'])
+    }
     this.findAll()
     this.find()
   }

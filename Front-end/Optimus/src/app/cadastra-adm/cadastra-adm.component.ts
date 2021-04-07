@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Usuario } from '../model/Usuario';
 import { UsuarioService } from '../service/usuario.service';
 import { AuthService } from '../service/auth.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-cadastra-adm',
@@ -70,6 +71,13 @@ export class CadastraADMComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if(environment.tipo == "Cliente") {
+      this.router.navigate(['/produtoCliente'])
+    }
+
+    if(environment.tipo == "") {
+      this.router.navigate(['/entrar-adm'])
+    }
     window.scroll(0, 0)
   }
 

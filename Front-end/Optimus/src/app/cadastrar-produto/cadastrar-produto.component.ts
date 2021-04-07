@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 import { Imagem } from '../model/Imagem';
 import { Produto } from '../model/Produto';
 import { ImagemService } from '../service/imagem.service';
@@ -66,7 +67,13 @@ export class CadastrarProdutoComponent implements OnInit {
   ) { }
 
   ngOnInit(){
-    
+    if(environment.tipo == "Cliente") {
+      this.router.navigate(['/produtoCliente'])
+    }
+
+    if(environment.tipo == "") {
+      this.router.navigate(['/entrar-adm'])
+    }
   }
 
   // Parte para subir a imagem

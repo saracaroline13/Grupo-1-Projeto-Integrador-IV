@@ -56,11 +56,9 @@ export class CadastraComponent implements OnInit {
     if (this.nome.length < 3) {
       this.nomeOk = false;
       this.alertaNome = 'nome inválido';
-      console.log("entrei")
     } else {
       this.nomeOk = true;
       this.alertaNome = '';
-      console.log("sei la")
     }
   }
 
@@ -116,7 +114,6 @@ export class CadastraComponent implements OnInit {
 
   validaTermos(event: any) {
     this.termoAceito = !this.termoAceito
-    console.log(this.termoAceito)
   }
 
   cadastrar() {
