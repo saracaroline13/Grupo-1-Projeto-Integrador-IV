@@ -1,0 +1,98 @@
+<div class="container col-md-12 d-flex justify-content-center bg-img">
+
+    <div class="form-container col-md-7 mt-4 mb-4 p-4">
+      <h3 class="mb-3 border-l pl-2">Alterar</h3>
+      <form>
+  
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="nome">Nome</label>
+            <input [(ngModel)]="usuario.nome" name="nome" type="text" class="form-control" id="nome" placeholder="Digite o seu nome">
+          </div>
+  
+          <div class="form-group col-md-6">
+            <label for="sobrenome">Sobrenome</label>
+            <input [(ngModel)]="usuario.sobrenome" name="sobrenome" type="text" class="form-control" id="sobrenome" placeholder="Digite o seu sobrenome">
+          </div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="rg">RG</label>
+            <input [(ngModel)]="usuario.rg" name="rg" type="text" class="form-control" id="rg" placeholder="Digite o seu RG">
+          </div>
+  
+          <div class="form-group col-md-4">
+            <label for="cpf">CPF</label>
+            <input [(ngModel)]="usuario.cpf" name="cpf" type="text" class="form-control" id="cpf" placeholder="Digite seu CPF">
+          </div>
+  
+          <div class="form-group col-md-4">
+            <label for="telefone">Telefone</label>
+            <input [(ngModel)]="usuario.telefone" name="telefone" type="text" class="form-control" id="telefone" placeholder="(99) 9 99999-9999">
+          </div>
+  
+        </div>
+  
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="email">E-mail</label>
+            <input [(ngModel)]="usuario.email" name="email" type="email" class="form-control" id="email" placeholder="Digite seu e-mail">
+          </div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="senha">Senha</label>
+            <input (input)="confirmSenha($event)" type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+          </div>
+  
+          <div class="form-group col-md-6">
+            <label for="senhaConfirm">Confirmar Senha</label>
+            <input [(ngModel)]="usuario.senha" name="senha" type="password" class="form-control" id="senhaConfirm" placeholder="Confirme sua senha">
+          </div>
+        </div>
+  
+        <div class="form-row">
+        <div class="form-group">
+          <div class="form-check ml-2">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+              Concordo com os <a href="#" data-toggle="modal" data-target="#termosCondicoes">termos e condições</a> da Optimus
+            </label>
+          </div>
+        </div>
+        </div>
+  
+        <div class="mt-2 ml-2">
+          <button type="submit" class="btn btn-success bg-optimus mr-4">Cadastrar</button>
+          <button type="submit" class="btn btn-secondary" routerLink="/produtoCliente">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  
+    <!-- Modal -->
+  <div class="modal fade" id="termosCondicoes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Termos e Condições Livraria Optimus</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         Condordo em ser um bom leitor e ser um cliente fiel, realizando as compras dos meus livros apenas com a
+         Livraria Optimus.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Modal -->
+  
+  </div>
+  

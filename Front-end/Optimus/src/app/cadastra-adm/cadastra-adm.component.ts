@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from '../model/Usuario';
 import { UsuarioService } from '../service/usuario.service';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-cadastra-adm',
@@ -11,6 +12,9 @@ import { UsuarioService } from '../service/usuario.service';
 export class CadastraADMComponent implements OnInit {
 
   usuario: Usuario = new Usuario()
+  estadoUsuario: string
+  cargoUsuario: string
+  tipoUsuario: string
 
   confirmSenha: string;
 
@@ -61,10 +65,12 @@ export class CadastraADMComponent implements OnInit {
 
   constructor(
     private usuarioService: UsuarioService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
+    window.scroll(0, 0)
   }
 
   confirmarSenha(event: any) {
@@ -210,6 +216,32 @@ export class CadastraADMComponent implements OnInit {
     } else {
       this.salarioOk = true;
       this.alertaSalario = '';
+    }
+  }
+
+  selectEstado(event: any) {
+    this.estadoUsuario = event.target.value
+  }
+
+  selectCargo(event: any) {
+    this.cargoUsuario = event.target.value
+  }
+
+  cadastrar() {
+    this.usuario.cargo = this.cargoUsuario
+    this.usuario.tipo = this.cargoUsuario
+    this.usuario.estado = this.estadoUsuario
+
+    if (this.usuario.senha != this.confirmSenha) {
+      alert('As senhas estão incorretas')
+    }
+
+    else {
+      this.authService.cadastrar(this.usuario).subscribe((resp: Usuario) => {
+        this.usuario = resp
+        this.router.navigate(['/home-adm'])
+        alert('Funcionario cadastrado com sucesso')
+      })
     }
   }
 

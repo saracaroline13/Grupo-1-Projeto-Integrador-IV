@@ -23,18 +23,21 @@
           <label for="rg">RG</label>
           <input [(ngModel)]='rg' [(ngModel)]='usuario.rg' name="rg"  type="text" class="form-control" id="rg" placeholder="Digite o seu RG" (keyup)="validaRg()">
           <div class="text-danger">{{ alertaRg }}</div>
+
         </div>
 
         <div class="form-group col-md-4">
           <label for="cpf">CPF</label>
           <input [(ngModel)]='cpf' [(ngModel)]='usuario.cpf' name="cpf" type="text" class="form-control" id="cpf" placeholder="Digite seu CPF" (keyup)="validaCpf()">
           <div class="text-danger">{{ alertaCpf }}</div>
+
         </div>
 
         <div class="form-group col-md-4">
           <label for="telefone">Telefone</label>
           <input [(ngModel)]='telefone' [(ngModel)]='usuario.telefone' name="telefone"  type="text" class="form-control" id="telefone" placeholder="(99) 9 99999-9999" (keyup)="validaTelefone()">
           <div class="text-danger">{{ alertaTelefone }}</div>
+
         </div>
 
       </div>
@@ -42,27 +45,30 @@
       <div class="form-row">
         <div class="form-group col-md-12">
           <label for="email">E-mail</label>
+
           <input [(ngModel)]='email' [(ngModel)]='usuario.email' name="email" type="email" class="form-control" id="email" placeholder="Digite seu e-mail" (keyup)="validaEmail()">
           <div class="text-danger">{{ alertaEmail }}</div>
+
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="senha">Senha</label>
-          <input type="password" class="form-control" id="senha" placeholder="Digite sua senha" (input)="confirmarSenha($event)">
+          <input type="password" name="confirmSenha" class="form-control" id="senha" placeholder="Digite sua senha" (input)="confirmarSenha($event)">
         </div>
 
         <div class="form-group col-md-6">
           <label for="senhaConfirm">Confirmar Senha</label>
-          <input [(ngModel)]='usuario.senha' type="password" class="form-control" id="senhaConfirm" placeholder="Confirme sua senha">
+          <input [(ngModel)]='usuario.senha' name="confirmSenha" type="password" class="form-control" id="senhaConfirm" placeholder="Confirme sua senha">
+
         </div>
       </div>
 
       <div class="form-row">
       <div class="form-group">
         <div class="form-check ml-2">
-          <input class="form-check-input" type="checkbox" id="gridCheck">
+          <input class="form-check-input" type="checkbox" id="gridCheck" (click)="validaTermos($event)" name="termos">
           <label class="form-check-label" for="gridCheck">
             Concordo com os <a href="#" data-toggle="modal" data-target="#termosCondicoes">termos e condições</a> da Optimus
           </label>
@@ -71,7 +77,7 @@
       </div>
 
       <div class="mt-2 ml-2">
-        <button type="submit" class="btn bg-optimus mr-4">Cadastrar</button>
+        <button type="submit" class="btn bg-optimus mr-4" (click)='cadastrar()'>Cadastrar</button>
         <button type="submit" class="btn btn-secondary" routerLink="/produtoCliente">Cancelar</button>
       </div>
 

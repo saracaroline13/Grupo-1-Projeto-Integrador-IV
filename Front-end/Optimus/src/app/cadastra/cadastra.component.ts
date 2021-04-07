@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../model/Usuario';
 import { UsuarioService } from '../service/usuario.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Usuario } from '../model/Usuario';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-cadastra',
@@ -12,7 +14,7 @@ export class CadastraComponent implements OnInit {
   usuario: Usuario = new Usuario();
 
   confirmSenha: string;
-  
+
   nome: string;
   sobrenome: string;
   rg: string;
@@ -33,8 +35,14 @@ export class CadastraComponent implements OnInit {
   alertaCpf: string;
   alertaTelefone: string;
   alertaEmail: string;
+
+  tipoUsuario: string = 'Cliente'
+  termoAceito: boolean = false
+  
   constructor(
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -103,6 +111,30 @@ export class CadastraComponent implements OnInit {
     } else {
       this.emailOk = true;
       this.alertaEmail = '';
+    }
+  }
+
+  validaTermos(event: any) {
+    this.termoAceito = !this.termoAceito
+    console.log(this.termoAceito)
+  }
+
+  cadastrar() {
+    this.usuario.tipo = this.tipoUsuario
+    this.usuario.status = 0
+
+    if (this.usuario.senha != this.confirmSenha) {
+      alert('As senhas estão incorretas')
+    }
+    else if (this.termoAceito == false) {
+      alert('Para se cadastrar é necessario aceitar os termos e condições')
+    }
+    else {
+      this.authService.cadastrar(this.usuario).subscribe((resp: Usuario) => {
+        this.usuario = resp
+        this.router.navigate(['/entrar'])
+        alert('Usuário cadastrado com sucesso')
+      })
     }
   }
 

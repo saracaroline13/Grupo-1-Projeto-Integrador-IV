@@ -45,6 +45,9 @@ public class Usuario {
 	@Column
 	private float salario;
 
+	@Column
+	private int status;
+
 	public long getId_usuario() {
 		return id_usuario;
 	}
@@ -131,5 +134,13 @@ public class Usuario {
 
 	public void setSalario(float salario) {
 		this.salario = salario;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 }
