@@ -7,46 +7,54 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="nome">Nome</label>
-            <input type="text" class="form-control" id="nome" placeholder="Digite o nome do funcionário">
+            <input [(ngModel)]='nome' [(ngModel)]="usuario.nome" name="nome" type="text" class="form-control" id="nome" placeholder="Digite o nome do funcionário" (keyup)="validaNome()">
+            <div class="mt-2 text-danger">{{ alertaNome }}</div>
           </div>
   
           <div class="form-group col-md-6">
             <label for="sobrenome">Sobrenome</label>
-            <input type="text" class="form-control" id="sobrenome" placeholder="Digite o sobrenome do funcionário">
+            <input [(ngModel)]='sobrenome' [(ngModel)]='usuario.sobrenome' name="sobrenome" type="text" class="form-control" id="sobrenome" placeholder="Digite o sobrenome do funcionário" (keyup)="validaSobrenome()">
+            <div class="text-danger">{{ alertaSobrenome }}</div>
           </div>
         </div>
   
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="rg">RG</label>
-            <input type="text" class="form-control" id="rg" placeholder="Digite o número do RG">
+            <input [(ngModel)]='rg' [(ngModel)]='usuario.rg' name="rg" type="text" class="form-control" id="rg" placeholder="Digite o número do RG" (keyup)="validaRg()">
+            <div class="text-danger">{{ alertaRg }}</div>
           </div>
   
           <div class="form-group col-md-4">
             <label for="cpf">CPF</label>
-            <input type="text" class="form-control" id="cpf" placeholder="Digite o número do CPF">
+            <input [(ngModel)]='cpf' [(ngModel)]='usuario.cpf' name="cpf" type="text" class="form-control" id="cpf" placeholder="Digite o número do CPF" (keyup)="validaCpf()">
+            <div class="text-danger">{{ alertaCpf }}</div>
           </div>
   
           <div class="form-group col-md-4">
             <label for="telefone">Telefone</label>
-            <input type="text" class="form-control" id="telefone" placeholder="(99) 9 99999-9999">
+            <input [(ngModel)]='telefone' [(ngModel)]='usuario.telefone' name="telefone" type="text" class="form-control" id="telefone" placeholder="(99) 9 99999-9999" (keyup)="validaTelefone()">
+            <div class="text-danger">{{ alertaTelefone }}</div>
           </div>
         </div>
 
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="rua">Rua</label>
-            <input type="text" class="form-control" id="rua" placeholder="Rua Dois">
+            <input [(ngModel)]='rua' name="rua" type="text" class="form-control" id="rua" placeholder="Rua Dois" (keyup)="validaRua()">
+            <div class="text-danger">{{ alertaRua }}</div>
         </div>
 
         <div class="form-group col-md-2">
             <label for="numero">Número</label>
-            <input type="text" class="form-control" id="numero" placeholder="321">
+            <input [(ngModel)]='numero' name="numero" type="text" class="form-control" id="numero" placeholder="321" (keyup)="validaNumero()">
+            <div class="text-danger">{{ alertaNumero }}</div>
         </div>
 
         <div class="form-group col-md-4">
             <label for="bairro">Bairro</label>
-            <input type="text" class="form-control" id="bairro" placeholder="Jardim Miranda">
+            <input [(ngModel)]='bairro' name="bairro" type="text" class="form-control" id="bairro" placeholder="Jardim Miranda" (keyup)="validaBairro()">
+            <div class="text-danger">{{ alertaBairro }}</div>
         </div>
     </div>
 
@@ -54,7 +62,8 @@
     <div class="form-row">
         <div class="form-group col-md-4">
             <label for="cep">CEP</label>
-            <input type="text" class="form-control" id="cep" placeholder="00000-000">
+            <input [(ngModel)]='cep' name="cep" type="text" class="form-control" id="cep" placeholder="00000-000" (keyup)="validaCep()">
+            <div class="text-danger">{{ alertaCep }}</div>
         </div>
 
         <div class="form-group col-md-4">
@@ -96,7 +105,8 @@
 
         <div class="form-group col-md-4">
             <label for="cidade">Cidade</label>
-            <input type="text" class="form-control" id="cidade" placeholder="São Paulo">
+            <input [(ngModel)]='cidade' name="cidade" type="text" class="form-control" id="cidade" placeholder="São Paulo" (keyup)="validaCidade()">
+            <div class="text-danger">{{ alertaCidade }}</div>
         </div>
 
     </div>
@@ -106,7 +116,8 @@
 
             <div class="form-group col-md-4">
                 <label for="nascimento">Nascimento</label>
-                <input type="text" class="form-control" id="nascimento" placeholder="dd/mm/aaaa">
+                <input [(ngModel)]='nascimento' name="nascimento" type="text" class="form-control" id="nascimento" placeholder="dd/mm/aaaa" (keyup)="validaNascimento()">
+            <div class="text-danger">{{ alertaNascimento }}</div>
               </div>
 
             <div class="form-group col-md-4">
@@ -120,7 +131,8 @@
           
             <div class="form-group col-md-4">
               <label for="salario">Salário</label>
-              <input type="text" class="form-control" id="salario" placeholder="0.000,00">
+              <input [(ngModel)]='salario' [(ngModel)]='usuario.salario' name="salario" type="text" class="form-control" id="salario" placeholder="0.000,00"  (keyup)="validaSalario()">
+              <div class="text-danger">{{ alertaSalario }}</div>
             </div>
         </div>
 
@@ -129,24 +141,26 @@
             
           <div class="form-group col-md-6">
             <label for="email">E-mail pessoal</label>
-            <input type="email" class="form-control" id="email" placeholder="Digite e-mail pessoal">
+            <input [(ngModel)]='email' [(ngModel)]='usuario.email' name="email" type="email" class="form-control" id="email" placeholder="Digite e-mail pessoal" (keyup)="validaEmail()">
+            <div class="text-danger">{{ alertaEmail }}</div>
           </div>
         
             <div class="form-group col-md-6">
               <label for="email-empresarial">E-mail empresarial</label>
-              <input type="email" class="form-control" id="email-empresarial" placeholder="Digite e-mail empresárial">
+              <input [(ngModel)]='emailEmpresarial' name="emailEmpresarial" type="email" class="form-control" id="email-empresarial" placeholder="Digite e-mail empresárial" (keyup)="validaEmailEmpresarial()">
+              <div class="text-danger">{{ alertaEmailEmpresarial }}</div>
             </div>
           </div>   
   
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="senha">Senha</label>
-            <input type="password" class="form-control" id="senha" placeholder="Digite uma senha">
+            <input type="password" class="form-control" id="senha" placeholder="Digite uma senha" (input)="confirmarSenha($event)">
           </div>
   
           <div class="form-group col-md-6">
             <label for="senhaConfirm">Confirmar Senha</label>
-            <input type="password" class="form-control" id="senhaConfirm" placeholder="Confirme a senha">
+            <input [(ngModel)]='usuario.senha' name="senha" type="password" class="form-control" id="senhaConfirm" placeholder="Confirme a senha">
           </div>
         </div>
   
