@@ -27,7 +27,7 @@ export class EntraADMComponent implements OnInit {
       this.userLogin=resp
 
       environment.email = this.userLogin.email
-      environment.id = this.userLogin.id_usuario
+      environment.id = this.userLogin.id
       environment.nome = this.userLogin.nome
       environment.tipo = this.userLogin.tipo
       environment.token = this.userLogin.token
