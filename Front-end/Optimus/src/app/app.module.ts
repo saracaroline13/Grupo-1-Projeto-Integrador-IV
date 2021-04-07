@@ -18,7 +18,12 @@ import { EntraComponent } from './entra/entra.component';
 import { CadastraComponent } from './cadastra/cadastra.component';
 import { EntraADMComponent } from './entra-adm/entra-adm.component';
 import { CadastraADMComponent } from './cadastra-adm/cadastra-adm.component';
+<<<<<<< HEAD
 import { AlterarUsuarioComponent } from './alterar-usuario/alterar-usuario.component';
+=======
+import { HomeAdmComponent } from './home-adm/home-adm.component';
+import { GestaoUsuarioComponent } from './gestao-usuario/gestao-usuario.component';
+>>>>>>> 781a35bdedf112a5581d51b96287702ad03aba87
 
 @NgModule({
   declarations: [
@@ -35,7 +40,12 @@ import { AlterarUsuarioComponent } from './alterar-usuario/alterar-usuario.compo
     CadastraComponent,
     EntraADMComponent,
     CadastraADMComponent,
+<<<<<<< HEAD
     AlterarUsuarioComponent
+=======
+    HomeAdmComponent,
+    GestaoUsuarioComponent
+>>>>>>> 781a35bdedf112a5581d51b96287702ad03aba87
   ],
   imports: [
     BrowserModule,

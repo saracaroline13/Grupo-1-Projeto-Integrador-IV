@@ -10,4 +10,13 @@ export class Usuario{
   public tipo: string
   public cargo: string
   public salario: string
+  public rua: string
+  public numero: string
+  public bairro: string
+  public cep: string
+  public estado: string
+  public cidade: string
+  public datanasc: string
+  public emailPessoal: string
+
 }

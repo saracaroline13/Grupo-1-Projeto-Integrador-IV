@@ -1,0 +1,46 @@
+<h3 class="text-center background text-black py-2">Usuários Ativos</h3>
+
+<div class="mb-2 d-flex justify-content-center"  *ngFor="let usuario of listaUsuario">
+<div class="col-sm-4">
+    <div class="card">
+      <div class="card-body p-3">
+        <h5 class="card-title m-0">{{usuario.nome}} {{usuario.sobrenome}}</h5> <!-- NOME + SOBRENOME -->
+        <p class="m-0">{{usuario.cargo}}</p> <!-- CARGO -->
+      <br>
+          <p class="text-muted">{{usuario.telefone}}</p> <!-- TELEFONE -->
+          <p class="text-muted">{{usuario.nascimento}}</p> <!-- NASCIMENTO -->
+          <p class="text-muted">{{usuario.salario | currency: 'BRL'}}</p> <!-- SALARIO -->
+          <p class="text-muted">{{usuario.email}}</p> <!-- EMAIL EMPRESARIAL -->
+
+          <button type="button" class="btn btn-danger btn-sm">Desabilitar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <br>
+  <br>
+  <br>
+  <p class="card-text border-top border-dark pt-2"></p>
+
+<h3 class="mt-5 mb-0 text-center background text-black py-2">Usuários Inativos</h3>
+
+
+    <div class="mb-2 d-flex justify-content-center"  *ngFor="let usuario of listaUsuario">
+        <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <h5 class="card-title m-0">{{usuario.nome}} {{usuario.sobrenome}}</h5> <!-- NOME + SOBRENOME -->
+                <p class="m-0">{{usuario.cargo}}</p> <!-- CARGO -->
+              <br>
+                  <p class="text-muted">{{usuario.telefone}}</p> <!-- TELEFONE -->
+                  <p class="text-muted">{{usuario.nascimento}}</p> <!-- NASCIMENTO -->
+                  <p class="text-muted">{{usuario.salario | currency: 'BRL'}}</p> <!-- SALARIO -->
+                  <p class="text-muted">{{usuario.email}}</p> <!-- EMAIL EMPRESARIAL -->
+        
+                  <button type="button" class="btn btn-danger btn-sm">Desabilitar</button>
+              </div>
+            </div>
+          </div>
+</div>
+  
