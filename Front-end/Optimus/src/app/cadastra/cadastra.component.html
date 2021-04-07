@@ -7,29 +7,29 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="nome">Nome</label>
-          <input type="text" class="form-control" id="nome" placeholder="Digite o seu nome">
+          <input [(ngModel)]="user.nome" name="nome" type="text" class="form-control" id="nome" placeholder="Digite o seu nome">
         </div>
 
         <div class="form-group col-md-6">
           <label for="sobrenome">Sobrenome</label>
-          <input type="text" class="form-control" id="sobrenome" placeholder="Digite o seu sobrenome">
+          <input [(ngModel)]="user.sobrenome" name="sobrenome" type="text" class="form-control" id="sobrenome" placeholder="Digite o seu sobrenome">
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="rg">RG</label>
-          <input type="text" class="form-control" id="rg" placeholder="Digite o seu RG">
+          <input [(ngModel)]="user.rg" name="rg" type="text" class="form-control" id="rg" placeholder="Digite o seu RG">
         </div>
 
         <div class="form-group col-md-4">
           <label for="cpf">CPF</label>
-          <input type="text" class="form-control" id="cpf" placeholder="Digite seu CPF">
+          <input [(ngModel)]="user.cpf" name="cpf" type="text" class="form-control" id="cpf" placeholder="Digite seu CPF">
         </div>
 
         <div class="form-group col-md-4">
           <label for="telefone">Telefone</label>
-          <input type="text" class="form-control" id="telefone" placeholder="(99) 9 99999-9999">
+          <input [(ngModel)]="user.telefone" name="telefone" type="text" class="form-control" id="telefone" placeholder="(99) 9 99999-9999">
         </div>
 
       </div>
@@ -37,26 +37,26 @@
       <div class="form-row">
         <div class="form-group col-md-12">
           <label for="email">E-mail</label>
-          <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail">
+          <input [(ngModel)]="user.email"name="email"  type="email" class="form-control" id="email" placeholder="Digite seu e-mail">
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="senha">Senha</label>
-          <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+          <input (input)='confirmSenha($event)' name="senha" type="password" class="form-control" id="senha" placeholder="Digite sua senha">
         </div>
 
         <div class="form-group col-md-6">
-          <label for="senhaConfirm">Confirmar Senha</label>
-          <input type="password" class="form-control" id="senhaConfirm" placeholder="Confirme sua senha">
+          <label for="confirmSenha">Confirmar Senha</label>
+          <input [(ngModel)]="user.senha" name="confirmSenha"  type="password" class="form-control" id="confirmSenha" placeholder="Confirme sua senha">
         </div>
       </div>
 
       <div class="form-row">
       <div class="form-group">
         <div class="form-check ml-2">
-          <input class="form-check-input" type="checkbox" id="gridCheck">
+          <input class="form-check-input" type="checkbox" id="gridCheck" (click)="validaTermos($event)" name="termos">
           <label class="form-check-label" for="gridCheck">
             Concordo com os <a href="#" data-toggle="modal" data-target="#termosCondicoes">termos e condições</a> da Optimus
           </label>
@@ -65,7 +65,7 @@
       </div>
 
       <div class="mt-2 ml-2">
-        <button type="submit" class="btn bg-optimus mr-4">Cadastrar</button>
+        <button type="submit" class="btn bg-optimus mr-4" (click)='cadastrar()'>Cadastrar</button>
         <button type="submit" class="btn btn-secondary" routerLink="/produtoCliente">Cancelar</button>
       </div>
 
