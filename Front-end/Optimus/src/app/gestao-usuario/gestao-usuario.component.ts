@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from '../model/Usuario';
+import { UsuarioService } from '../service/usuario.service';
 
 @Component({
   selector: 'app-gestao-usuario',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GestaoUsuarioComponent implements OnInit {
 
-  constructor() { }
+  listaUsuario:Usuario[]
+
+  constructor(
+    private usuarioService:UsuarioService
+  ) { }
 
   ngOnInit(): void {
+    this.findAll()
   }
 
+findAll() {
+  this.usuarioService.getAll().subscribe((resp:Usuario[])=>{
+    this.listaUsuario = resp
+  })
+
+}
 }
