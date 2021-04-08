@@ -161,7 +161,7 @@ public class Usuario {
 		this.salario = salario;
 	}
 
-<<<<<<< HEAD
+
 	public int getStatus() {
 		return status;
 	}
@@ -169,7 +169,7 @@ public class Usuario {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-=======
+
 	public String getRua() {
 		return rua;
 	}
@@ -235,5 +235,5 @@ public class Usuario {
 	}
 	
 	
->>>>>>> 4703b0a1b7bae7b189d77a13262adfde44ee8a03
+
 }

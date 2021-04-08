@@ -14,13 +14,15 @@ export class CadastraComponent implements OnInit {
   usuario: Usuario = new Usuario();
 
   confirmSenha: string;
+  listaUsuario: Usuario[];
 
   nome: string;
   sobrenome: string;
   rg: string;
-  cpf: string;
+  cpf: any;
   telefone: string;
   email: string;
+  numCPF: number;
 
   nomeOk: boolean = false;
   sobrenomeOk: boolean = false;
@@ -46,6 +48,13 @@ export class CadastraComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.listaCliente();
+  }
+
+  listaCliente () {
+    this.usuarioService.getAll().subscribe((resp: Usuario[])=>{
+      this.listaUsuario = resp;
+    })
   }
 
   confirmarSenha(event: any) {
@@ -83,13 +92,65 @@ export class CadastraComponent implements OnInit {
   }
 
   validaCpf() {
+
     if (this.cpf.length < 11 || this.cpf.length > 11) {
       this.cpfOk = false;
       this.alertaCpf = 'CPF inválido';
     } else {
       this.cpfOk = true;
       this.alertaCpf = '';
+
+      if (this.cpf.length == 11) {
+     
+        var v1 = 0;
+        var v2 = 0;
+        var aux = false;
+        
+        for (let i = 1; this.cpf.length > i; i++) {
+            if (this.cpf[i - 1] != this.cpf[i]) {
+                aux = true;   
+            }
+        } 
+        
+        if (aux == false) {
+          this.alertaCpf = 'CPF inválido';
+            return false; 
+        } 
+        
+        for (let i = 0, p = 10; (this.cpf.length - 2) > i; i++, p--) {
+            v1 = v1 + this.cpf[i] * p; 
+        } 
+        
+        v1 = ((v1 * 10) % 11);
+        
+        if (v1 == 10) {
+            v1 = 0; 
+        }
+        
+        if (v1 != this.cpf[9]) {
+          this.alertaCpf = 'CPF inválido';
+            return false; 
+        } 
+        
+        for (var i = 0, p = 11; (this.cpf.length - 1) > i; i++, p--) {
+            v2 += this.cpf[i] * p; 
+        } 
+        
+        v2 = ((v2 * 10) % 11);
+        
+        if (v2 == 10) {
+            v2 = 0; 
+        }
+        
+        if (v2 != this.cpf[10]) {
+          this.alertaCpf = 'CPF inválido';
+            return false; 
+        } else { 
+            return true; 
+        }
     }
+  }
+
   }
 
   validaTelefone() {
@@ -116,7 +177,24 @@ export class CadastraComponent implements OnInit {
     this.termoAceito = !this.termoAceito
   }
 
+  cpfExistente(cpf:any) {
+    for (let usuario of this.listaUsuario){
+      if (usuario.cpf == this.usuario.cpf) {
+        alert('Usuário já existe')
+        this.router.navigate(['/entrar'])
+        this.cpfOk = false;
+
+      } 
+    }
+
+  }
+
+
   cadastrar() {
+    this.cpfExistente(this.cpf)
+    if(this.cpfOk == true){
+
+    
     this.usuario.tipo = this.tipoUsuario
     this.usuario.status = 1
 
@@ -134,5 +212,6 @@ export class CadastraComponent implements OnInit {
       })
     }
   }
+}
 
 }
