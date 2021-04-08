@@ -16,11 +16,11 @@ import { AlterarUsuarioComponent } from './alterar-usuario/alterar-usuario.compo
 
 import { HomeAdmComponent } from './home-adm/home-adm.component';
 import { GestaoUsuarioComponent } from './gestao-usuario/gestao-usuario.component';
+import { environment } from 'src/environments/environment.prod';
 
 const routes: Routes = [
 
-  {path:'', redirectTo: 'produto', pathMatch:'full'},
-
+  {path:'', redirectTo: 'produtoCliente', pathMatch:'full'},
   {path:'produto', component: ProdutoComponent },
   {path:'cadastrarProduto', component: CadastrarProdutoComponent },
   {path:'produtoCliente', component: ProdutoClienteComponent },
@@ -29,12 +29,9 @@ const routes: Routes = [
   {path:'compra', component: CompraComponent },
   {path:'entrar', component: EntraComponent },
   {path:'cadastrar', component: CadastraComponent },
-
   {path:'entrar-adm', component: EntraADMComponent },
   {path:'cadastrar-adm', component: CadastraADMComponent },
-
   {path:'alterar-usuario/:id', component: AlterarUsuarioComponent },
-
   {path:'home-adm', component: HomeAdmComponent},
   {path:'gestao-usuario', component: GestaoUsuarioComponent}
 ];

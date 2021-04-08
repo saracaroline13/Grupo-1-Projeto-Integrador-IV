@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -9,16 +11,44 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit {
 
   pesquisa: string
+  nome: string
+  id: number
 
   constructor(
+    public auth: AuthService,
     private router: Router
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.logado()
   }
 
-  pesquisar(){
+  pesquisar() {
     this.router.navigate(['pesquisa', this.pesquisa])
+  }
+
+  sair() {
+
+    this.router.navigate(['/entrar'])
+
+    environment.token = ''
+    environment.nome = ''
+    environment.id = 0
+    environment.email = ''
+    environment.tipo = ''
+  }
+
+
+  logado() {
+    let ok: boolean = false
+    if (environment.token != "") {
+      ok = true
+      this.nome = environment.nome
+      this.id = environment.id
+      
+    }
+
+    return ok
   }
 
 }

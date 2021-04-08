@@ -25,7 +25,7 @@ public class Usuario {
 	private String cpf;
 	
 	@Column
-	private int telefone;
+	private String telefone;
 	
 	@Column
 	private int rg;
@@ -44,6 +44,33 @@ public class Usuario {
 
 	@Column
 	private float salario;
+	
+	@Column
+	private String rua;
+	
+	@Column
+	private String numero;
+	
+	@Column
+	private String bairro;
+	
+	@Column
+	private String cep;
+	
+	@Column
+	private String estado;
+	
+	@Column
+	private String cidade;
+	
+	@Column
+	private String datanasc;
+	
+	@Column
+	private String emailPessoal;
+
+	@Column
+	private int status;
 
 	public long getId_usuario() {
 		return id_usuario;
@@ -69,11 +96,11 @@ public class Usuario {
 		this.sobrenome = sobrenome;
 	}
 
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
@@ -132,4 +159,77 @@ public class Usuario {
 	public void setSalario(float salario) {
 		this.salario = salario;
 	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public String getRua() {
+		return rua;
+	}
+
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getDatanasc() {
+		return datanasc;
+	}
+
+	public void setDatanasc(String datanasc) {
+		this.datanasc = datanasc;
+	}
+
+	public String getEmailPessoal() {
+		return emailPessoal;
+	}
+
+	public void setEmailPessoal(String emailPessoal) {
+		this.emailPessoal = emailPessoal;
+	}
+
 }

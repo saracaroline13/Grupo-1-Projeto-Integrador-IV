@@ -18,5 +18,6 @@ export class Usuario{
   public cidade: string
   public datanasc: string
   public emailPessoal: string
+  public status: number
 
 }

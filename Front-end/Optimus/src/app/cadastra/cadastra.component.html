@@ -7,31 +7,50 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="nome">Nome</label>
+<<<<<<< HEAD
           <input [(ngModel)]="user.nome" name="nome" type="text" class="form-control" id="nome"
             placeholder="Digite o seu nome">
+=======
+          <input [(ngModel)]='nome' [(ngModel)]='usuario.nome' name="nome" type="text" class="form-control" id="nome" placeholder="Digite o seu nome" (keyup)="validaNome()">
+          <div class="text-danger">{{ alertaNome }}</div>
+>>>>>>> 138407212fbe4b0506803ba907669b2594d8a01b
         </div>
 
         <div class="form-group col-md-6">
           <label for="sobrenome">Sobrenome</label>
+<<<<<<< HEAD
           <input [(ngModel)]="user.sobrenome" name="sobrenome" type="text" class="form-control" id="sobrenome"
             placeholder="Digite o seu sobrenome">
+=======
+          <input [(ngModel)]='sobrenome' [(ngModel)]='usuario.sobrenome'name="sobrenome"  type="text" class="form-control" id="sobrenome" placeholder="Digite o seu sobrenome" (keyup)="validaSobrenome()">
+          <div class="text-danger">{{ alertaSobrenome }}</div>
+>>>>>>> 138407212fbe4b0506803ba907669b2594d8a01b
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="rg">RG</label>
-          <input [(ngModel)]="user.rg" name="rg" type="text" class="form-control" id="rg" placeholder="Digite o seu RG">
+          <input [(ngModel)]='rg' [(ngModel)]='usuario.rg' name="rg"  type="text" class="form-control" id="rg" placeholder="Digite o seu RG" (keyup)="validaRg()">
+          <div class="text-danger">{{ alertaRg }}</div>
+
         </div>
 
         <div class="form-group col-md-4">
           <label for="cpf">CPF</label>
+<<<<<<< HEAD
           <input [(ngModel)]="user.cpf" name="cpf" type="text" class="form-control" id="cpf"
             placeholder="Digite seu CPF">
+=======
+          <input [(ngModel)]='cpf' [(ngModel)]='usuario.cpf' name="cpf" type="text" class="form-control" id="cpf" placeholder="Digite seu CPF" (keyup)="validaCpf()">
+          <div class="text-danger">{{ alertaCpf }}</div>
+
+>>>>>>> 138407212fbe4b0506803ba907669b2594d8a01b
         </div>
 
         <div class="form-group col-md-4">
           <label for="telefone">Telefone</label>
+<<<<<<< HEAD
           <input [(ngModel)]="user.telefone" name="telefone" type="text" class="form-control" id="telefone"
             placeholder="(99) 9 99999-9999">
         </div>
@@ -101,6 +120,11 @@
         <div class="form-group col-md-4">
           <label for="cidade">Cidade</label>
           <input type="text" name="cidade" class="form-control" id="cidade" placeholder="São Paulo">
+=======
+          <input [(ngModel)]='telefone' [(ngModel)]='usuario.telefone' name="telefone"  type="text" class="form-control" id="telefone" placeholder="(99) 9 99999-9999" (keyup)="validaTelefone()">
+          <div class="text-danger">{{ alertaTelefone }}</div>
+
+>>>>>>> 138407212fbe4b0506803ba907669b2594d8a01b
         </div>
 
       </div>
@@ -108,14 +132,22 @@
       <div class="form-row">
         <div class="form-group col-md-12">
           <label for="email">E-mail</label>
+<<<<<<< HEAD
           <input [(ngModel)]="user.email" name="email" type="email" class="form-control" id="email"
             placeholder="Digite seu e-mail">
+=======
+
+          <input [(ngModel)]='email' [(ngModel)]='usuario.email' name="email" type="email" class="form-control" id="email" placeholder="Digite seu e-mail" (keyup)="validaEmail()">
+          <div class="text-danger">{{ alertaEmail }}</div>
+
+>>>>>>> 138407212fbe4b0506803ba907669b2594d8a01b
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="senha">Senha</label>
+<<<<<<< HEAD
           <input (input)='confirmSenha($event)' name="senha" type="password" class="form-control" id="senha"
             placeholder="Digite sua senha">
         </div>
@@ -124,6 +156,15 @@
           <label for="confirmSenha">Confirmar Senha</label>
           <input [(ngModel)]="user.senha" name="confirmSenha" type="password" class="form-control" id="confirmSenha"
             placeholder="Confirme sua senha">
+=======
+          <input type="password" name="confirmSenha" class="form-control" id="senha" placeholder="Digite sua senha" (input)="confirmarSenha($event)">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="senhaConfirm">Confirmar Senha</label>
+          <input [(ngModel)]='usuario.senha' name="confirmSenha" type="password" class="form-control" id="senhaConfirm" placeholder="Confirme sua senha">
+
+>>>>>>> 138407212fbe4b0506803ba907669b2594d8a01b
         </div>
       </div>
 

@@ -1,22 +1,25 @@
 <h3 class="text-center background text-black py-2">Usuários Ativos</h3>
 
 <div class="mb-2 d-flex justify-content-center" *ngFor="let usuario of listaUsuario">
-  <div class="col-sm-4">
-    <a [routerLink]="['/alterar-usuario', usuario.id]">
+  <div class="col-sm-4"  *ngIf="usuarioAtivo(usuario.status)">
       <div class="card">
         <div class="card-body p-3">
-          <h5 class="card-title m-0">{{usuario.nome}} {{usuario.sobrenome}}</h5> <!-- NOME + SOBRENOME -->
-          <p class="m-0">{{usuario.cargo}}</p> <!-- CARGO -->
+          <a [routerLink]="['/alterar-usuario', usuario.id_usuario]">
+            <h5 class="card-title m-0">{{usuario.nome}} {{usuario.sobrenome}}</h5> <!-- NOME + SOBRENOME -->
+          </a>
+          <a [routerLink]="['/alterar-usuario', usuario.id_usuario]">
+            <p class="m-0">{{usuario.cargo}}</p> <!-- CARGO -->
+          </a>
           <br>
           <p class="text-muted">{{usuario.telefone}}</p> <!-- TELEFONE -->
           <p class="text-muted">{{usuario.nascimento}}</p> <!-- NASCIMENTO -->
           <p class="text-muted">{{usuario.salario | currency: 'BRL'}}</p> <!-- SALARIO -->
           <p class="text-muted">{{usuario.email}}</p> <!-- EMAIL EMPRESARIAL -->
 
-          <button type="button" class="btn btn-danger btn-sm">Desabilitar</button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="desabilitarStatus(usuario.id_usuario)">Desabilitar</button>
         </div>
       </div>
-    </a>
+    
   </div>
 </div>
 
@@ -29,18 +32,22 @@
 
 
 <div class="mb-2 d-flex justify-content-center" *ngFor="let usuario of listaUsuario">
-  <div class="col-sm-4">
+  <div class="col-sm-4" *ngIf="usuarioInativo(usuario.status)">
     <div class="card">
       <div class="card-body p-3">
-        <h5 class="card-title m-0">{{usuario.nome}} {{usuario.sobrenome}}</h5> <!-- NOME + SOBRENOME -->
-        <p class="m-0">{{usuario.cargo}}</p> <!-- CARGO -->
+        <a [routerLink]="['/alterar-usuario', usuario.id_usuario]">
+          <h5 class="card-title m-0">{{usuario.nome}} {{usuario.sobrenome}}</h5> <!-- NOME + SOBRENOME -->
+        </a>
+        <a [routerLink]="['/alterar-usuario', usuario.id_usuario]">
+          <p class="m-0">{{usuario.cargo}}</p> <!-- CARGO -->
+        </a>
         <br>
         <p class="text-muted">{{usuario.telefone}}</p> <!-- TELEFONE -->
         <p class="text-muted">{{usuario.nascimento}}</p> <!-- NASCIMENTO -->
         <p class="text-muted">{{usuario.salario | currency: 'BRL'}}</p> <!-- SALARIO -->
         <p class="text-muted">{{usuario.email}}</p> <!-- EMAIL EMPRESARIAL -->
 
-        <button type="button" class="btn btn-danger btn-sm">Desabilitar</button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="habilitarStatus(usuario.id_usuario)">Habilitar</button>
       </div>
     </div>
   </div>
