@@ -68,7 +68,6 @@ public class Usuario {
 	
 	@Column
 	private String emailPessoal;
-	
 
 	@Column
 	private int status;
@@ -161,7 +160,10 @@ public class Usuario {
 		this.salario = salario;
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 138407212fbe4b0506803ba907669b2594d8a01b
 	public int getStatus() {
 		return status;
 	}
@@ -233,7 +235,10 @@ public class Usuario {
 	public void setEmailPessoal(String emailPessoal) {
 		this.emailPessoal = emailPessoal;
 	}
+<<<<<<< HEAD
 	
 	
+=======
+>>>>>>> 138407212fbe4b0506803ba907669b2594d8a01b
 
 }

@@ -52,7 +52,7 @@
         <div class="form-group col-md-6">
             <label for="rua">Rua</label>
 
-            <input [(ngModel)]='rua' name="rua" type="text" class="form-control" id="rua" placeholder="Rua Dois" (keyup)="validaRua()">
+            <input [(ngModel)]='rua' [(ngModel)]='usuario.rua' name="rua" type="text" class="form-control" id="rua" placeholder="Rua Dois" (keyup)="validaRua()">
             <div class="text-danger">{{ alertaRua }}</div>
 
         </div>
@@ -60,7 +60,7 @@
         <div class="form-group col-md-2">
             <label for="numero">Número</label>
 
-            <input [(ngModel)]='numero' name="numero" type="text" class="form-control" id="numero" placeholder="321" (keyup)="validaNumero()">
+            <input [(ngModel)]='numero' [(ngModel)]='usuario.numero'  name="numero" type="text" class="form-control" id="numero" placeholder="321" (keyup)="validaNumero()">
             <div class="text-danger">{{ alertaNumero }}</div>
 
         </div>
@@ -68,7 +68,7 @@
         <div class="form-group col-md-4">
             <label for="bairro">Bairro</label>
 
-            <input [(ngModel)]='bairro' name="bairro" type="text" class="form-control" id="bairro" placeholder="Jardim Miranda" (keyup)="validaBairro()">
+            <input [(ngModel)]='bairro' [(ngModel)]='usuario.bairro' name="bairro" type="text" class="form-control" id="bairro" placeholder="Jardim Miranda" (keyup)="validaBairro()">
             <div class="text-danger">{{ alertaBairro }}</div>
 
         </div>
@@ -79,7 +79,7 @@
         <div class="form-group col-md-4">
             <label for="cep">CEP</label>
 
-            <input [(ngModel)]='cep' name="cep" type="text" class="form-control" id="cep" placeholder="00000-000" (keyup)="validaCep()">
+            <input [(ngModel)]='cep' [(ngModel)]='usuario.cep' name="cep" type="text" class="form-control" id="cep" placeholder="00000-000" (keyup)="validaCep()">
             <div class="text-danger">{{ alertaCep }}</div>
 
         </div>
@@ -124,7 +124,7 @@
         <div class="form-group col-md-4">
             <label for="cidade">Cidade</label>
 
-            <input [(ngModel)]='cidade' name="cidade" type="text" class="form-control" id="cidade" placeholder="São Paulo" (keyup)="validaCidade()">
+            <input [(ngModel)]='cidade' [(ngModel)]='usuario.cidade' name="cidade" type="text" class="form-control" id="cidade" placeholder="São Paulo" (keyup)="validaCidade()">
             <div class="text-danger">{{ alertaCidade }}</div>
 
         </div>
@@ -137,7 +137,7 @@
             <div class="form-group col-md-4">
                 <label for="nascimento">Nascimento</label>
 
-                <input [(ngModel)]='nascimento' name="nascimento" type="text" class="form-control" id="nascimento" placeholder="dd/mm/aaaa" (keyup)="validaNascimento()">
+                <input [(ngModel)]='nascimento' [(ngModel)]='usuario.datanasc' name="nascimento" type="text" class="form-control" id="nascimento" placeholder="dd/mm/aaaa" (keyup)="validaNascimento()">
             <div class="text-danger">{{ alertaNascimento }}</div>
 
               </div>
@@ -167,7 +167,7 @@
           <div class="form-group col-md-6">
             <label for="email">E-mail pessoal</label>
 
-            <input [(ngModel)]='email' [(ngModel)]='usuario.email' name="email" type="email" class="form-control" id="email" placeholder="Digite e-mail pessoal" (keyup)="validaEmail()">
+            <input [(ngModel)]='email' [(ngModel)]='usuario.emailPessoal' name="email" type="email" class="form-control" id="email" placeholder="Digite e-mail pessoal" (keyup)="validaEmail()">
             <div class="text-danger">{{ alertaEmail }}</div>
 
           </div>
@@ -175,7 +175,7 @@
             <div class="form-group col-md-6">
               <label for="email-empresarial">E-mail empresarial</label>
 
-              <input [(ngModel)]='emailEmpresarial' name="emailEmpresarial" type="email" class="form-control" id="email-empresarial" placeholder="Digite e-mail empresárial" (keyup)="validaEmailEmpresarial()">
+              <input [(ngModel)]='emailEmpresarial' [(ngModel)]='usuario.email' name="emailEmpresarial" type="email" class="form-control" id="email-empresarial" placeholder="Digite e-mail empresárial" (keyup)="validaEmailEmpresarial()">
               <div class="text-danger">{{ alertaEmailEmpresarial }}</div>
 
             </div>
