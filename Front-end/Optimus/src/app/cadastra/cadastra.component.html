@@ -7,69 +7,79 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="nome">Nome</label>
-<<<<<<< HEAD
-          <input [(ngModel)]="user.nome" name="nome" type="text" class="form-control" id="nome"
-            placeholder="Digite o seu nome">
-=======
-          <input [(ngModel)]='nome' [(ngModel)]='usuario.nome' name="nome" type="text" class="form-control" id="nome" placeholder="Digite o seu nome" (keyup)="validaNome()">
-          <div class="text-danger">{{ alertaNome }}</div>
->>>>>>> 138407212fbe4b0506803ba907669b2594d8a01b
+
+          <input [(ngModel)]='nome' [(ngModel)]="usuario.nome" name="nome" type="text" class="form-control" id="nome"
+            placeholder="Digite o nome do funcionário" (keyup)="validaNome()">
+          <div class="mt-2 text-danger">{{ alertaNome }}</div>
+
         </div>
 
         <div class="form-group col-md-6">
           <label for="sobrenome">Sobrenome</label>
-<<<<<<< HEAD
-          <input [(ngModel)]="user.sobrenome" name="sobrenome" type="text" class="form-control" id="sobrenome"
-            placeholder="Digite o seu sobrenome">
-=======
-          <input [(ngModel)]='sobrenome' [(ngModel)]='usuario.sobrenome'name="sobrenome"  type="text" class="form-control" id="sobrenome" placeholder="Digite o seu sobrenome" (keyup)="validaSobrenome()">
+
+          <input [(ngModel)]='sobrenome' [(ngModel)]='usuario.sobrenome' name="sobrenome" type="text"
+            class="form-control" id="sobrenome" placeholder="Digite o sobrenome do funcionário"
+            (keyup)="validaSobrenome()">
           <div class="text-danger">{{ alertaSobrenome }}</div>
->>>>>>> 138407212fbe4b0506803ba907669b2594d8a01b
+
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="rg">RG</label>
-          <input [(ngModel)]='rg' [(ngModel)]='usuario.rg' name="rg"  type="text" class="form-control" id="rg" placeholder="Digite o seu RG" (keyup)="validaRg()">
+
+          <input [(ngModel)]='rg' [(ngModel)]='usuario.rg' name="rg" type="text" class="form-control" id="rg"
+            placeholder="Digite o número do RG" (keyup)="validaRg()">
           <div class="text-danger">{{ alertaRg }}</div>
 
         </div>
 
         <div class="form-group col-md-4">
           <label for="cpf">CPF</label>
-<<<<<<< HEAD
-          <input [(ngModel)]="user.cpf" name="cpf" type="text" class="form-control" id="cpf"
-            placeholder="Digite seu CPF">
-=======
-          <input [(ngModel)]='cpf' [(ngModel)]='usuario.cpf' name="cpf" type="text" class="form-control" id="cpf" placeholder="Digite seu CPF" (keyup)="validaCpf()">
+
+          <input [(ngModel)]='cpf' [(ngModel)]='usuario.cpf' name="cpf" type="text" class="form-control" id="cpf"
+            placeholder="Digite o número do CPF" (keyup)="validaCpf()">
           <div class="text-danger">{{ alertaCpf }}</div>
 
->>>>>>> 138407212fbe4b0506803ba907669b2594d8a01b
         </div>
 
         <div class="form-group col-md-4">
           <label for="telefone">Telefone</label>
-<<<<<<< HEAD
-          <input [(ngModel)]="user.telefone" name="telefone" type="text" class="form-control" id="telefone"
-            placeholder="(99) 9 99999-9999">
+
+          <input [(ngModel)]='telefone' [(ngModel)]='usuario.telefone' name="telefone" type="text" class="form-control"
+            id="telefone" placeholder="(99) 9 99999-9999" (keyup)="validaTelefone()">
+          <div class="text-danger">{{ alertaTelefone }}</div>
+
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="rua">Rua</label>
-          <input type="text" name="rua" class="form-control" id="rua" placeholder="Rua Dois">
+
+          <input [(ngModel)]='rua' [(ngModel)]='usuario.rua' name="rua" type="text" class="form-control" id="rua"
+            placeholder="Rua Dois" (keyup)="validaRua()">
+          <div class="text-danger">{{ alertaRua }}</div>
+
         </div>
 
         <div class="form-group col-md-2">
           <label for="numero">Número</label>
-          <input type="text" name="numero" class="form-control" id="numero" placeholder="321">
+
+          <input [(ngModel)]='numero' [(ngModel)]='usuario.numero' name="numero" type="text" class="form-control"
+            id="numero" placeholder="321" (keyup)="validaNumero()">
+          <div class="text-danger">{{ alertaNumero }}</div>
+
         </div>
 
         <div class="form-group col-md-4">
           <label for="bairro">Bairro</label>
-          <input type="text" name="bairro" class="form-control" id="bairro" placeholder="Jardim Miranda">
+
+          <input [(ngModel)]='bairro' [(ngModel)]='usuario.bairro' name="bairro" type="text" class="form-control"
+            id="bairro" placeholder="Jardim Miranda" (keyup)="validaBairro()">
+          <div class="text-danger">{{ alertaBairro }}</div>
+
         </div>
       </div>
 
@@ -77,12 +87,16 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="cep">CEP</label>
-          <input type="text" name="cep" class="form-control" id="cep" placeholder="00000-000">
+
+          <input [(ngModel)]='cep' [(ngModel)]='usuario.cep' name="cep" type="text" class="form-control" id="cep"
+            placeholder="00000-000" (keyup)="validaCep()">
+          <div class="text-danger">{{ alertaCep }}</div>
+
         </div>
 
         <div class="form-group col-md-4">
           <label for="inputEstado">Estado</label>
-          <select id="inputEstado" name="estado" class="form-control">
+          <select id="inputEstado" name="estado" class="form-control" (change)="selectEstado($event)">
             <option selected value="NADA">Selecione o Estado</option>
             <option value="AC">Acre</option>
             <option value="AL">Alagoas</option>
@@ -119,52 +133,60 @@
 
         <div class="form-group col-md-4">
           <label for="cidade">Cidade</label>
-          <input type="text" name="cidade" class="form-control" id="cidade" placeholder="São Paulo">
-=======
-          <input [(ngModel)]='telefone' [(ngModel)]='usuario.telefone' name="telefone"  type="text" class="form-control" id="telefone" placeholder="(99) 9 99999-9999" (keyup)="validaTelefone()">
-          <div class="text-danger">{{ alertaTelefone }}</div>
 
->>>>>>> 138407212fbe4b0506803ba907669b2594d8a01b
+          <input [(ngModel)]='cidade' [(ngModel)]='usuario.cidade' name="cidade" type="text" class="form-control"
+            id="cidade" placeholder="São Paulo" (keyup)="validaCidade()">
+          <div class="text-danger">{{ alertaCidade }}</div>
+
         </div>
 
       </div>
 
-      <div class="form-row">
-        <div class="form-group col-md-12">
-          <label for="email">E-mail</label>
-<<<<<<< HEAD
-          <input [(ngModel)]="user.email" name="email" type="email" class="form-control" id="email"
-            placeholder="Digite seu e-mail">
-=======
 
-          <input [(ngModel)]='email' [(ngModel)]='usuario.email' name="email" type="email" class="form-control" id="email" placeholder="Digite seu e-mail" (keyup)="validaEmail()">
+      <div class="form-row">
+
+        <div class="form-group col-md-4">
+          <label for="nascimento">Nascimento</label>
+
+          <input [(ngModel)]='nascimento' [(ngModel)]='usuario.datanasc' name="nascimento" type="text"
+            class="form-control" id="nascimento" placeholder="dd/mm/aaaa" (keyup)="validaNascimento()">
+          <div class="text-danger">{{ alertaNascimento }}</div>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="form-row">
+
+        <div class="form-group col-md-6">
+          <label for="email">E-mail pessoal</label>
+
+          <input [(ngModel)]='email' [(ngModel)]='usuario.emailPessoal' name="email" type="email" class="form-control"
+            id="email" placeholder="Digite e-mail pessoal" (keyup)="validaEmail()">
           <div class="text-danger">{{ alertaEmail }}</div>
 
->>>>>>> 138407212fbe4b0506803ba907669b2594d8a01b
         </div>
+
+
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="senha">Senha</label>
-<<<<<<< HEAD
-          <input (input)='confirmSenha($event)' name="senha" type="password" class="form-control" id="senha"
-            placeholder="Digite sua senha">
-        </div>
 
-        <div class="form-group col-md-6">
-          <label for="confirmSenha">Confirmar Senha</label>
-          <input [(ngModel)]="user.senha" name="confirmSenha" type="password" class="form-control" id="confirmSenha"
-            placeholder="Confirme sua senha">
-=======
-          <input type="password" name="confirmSenha" class="form-control" id="senha" placeholder="Digite sua senha" (input)="confirmarSenha($event)">
+          <input type="password" class="form-control" id="senha" placeholder="Digite uma senha"
+            (input)="confirmarSenha($event)">
+
         </div>
 
         <div class="form-group col-md-6">
           <label for="senhaConfirm">Confirmar Senha</label>
-          <input [(ngModel)]='usuario.senha' name="confirmSenha" type="password" class="form-control" id="senhaConfirm" placeholder="Confirme sua senha">
 
->>>>>>> 138407212fbe4b0506803ba907669b2594d8a01b
+          <input [(ngModel)]='usuario.senha' name="senha" type="password" class="form-control" id="senhaConfirm"
+            placeholder="Confirme a senha">
+
         </div>
       </div>
 
@@ -185,32 +207,34 @@
         <button type="submit" class="btn btn-secondary" routerLink="/produtoCliente">Cancelar</button>
       </div>
 
+
     </form>
 
   </div>
+</div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="termosCondicoes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Termos e Condições Livraria Optimus</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Condordo em ser um bom leitor e ser um cliente fiel, realizando as compras dos meus livros apenas com a
-          Livraria Optimus.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 
-        </div>
+
+<!-- Modal -->
+<div class="modal fade" id="termosCondicoes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Termos e Condições Livraria Optimus</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Condordo em ser um bom leitor e ser um cliente fiel, realizando as compras dos meus livros apenas com a
+        Livraria Optimus.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
       </div>
     </div>
   </div>
-  <!-- /Modal -->
-
 </div>
+<!-- /Modal -->
