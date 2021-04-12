@@ -25,7 +25,6 @@ export class ProdutoClienteComponent implements OnInit {
   ngOnInit() {
     this.findAll()
     this.find()
-    console.log(environment.nome)
   }
 
   find() {

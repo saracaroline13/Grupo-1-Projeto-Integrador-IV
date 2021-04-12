@@ -237,8 +237,8 @@ export class CadastraComponent implements OnInit {
       this.emailOk = false;
       this.alertaEmail = 'email inválido';
     } else {
-      this.emailOk = true;
       this.alertaEmail = '';
+      this.emailExistente(this.email);
     }
   }
 
@@ -275,7 +275,7 @@ export class CadastraComponent implements OnInit {
 
   emailExistente(email: any) {
     for (let usuario of this.listaUsuario) {
-      if (usuario.email == this.usuario.email) {
+      if (usuario.email == email) {
         alert('Usuário já existe')
         this.router.navigate(['/entrar'])
         this.emailOk = false;
@@ -288,7 +288,7 @@ export class CadastraComponent implements OnInit {
 
   cadastrar() {
     this.cpfExistente(this.cpf)
-    this.emailExistente(this.email)
+    this.validaEmail();
     if (this.emailOk == true) {
 
 
