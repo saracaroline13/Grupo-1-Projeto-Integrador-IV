@@ -48,6 +48,7 @@ export class CadastraADMComponent implements OnInit {
   emailOk: boolean = false;
   emailEmpresarialOk: boolean = false;
   nascimentoOk: boolean = false;
+  listaCamposInvalidos:any = []
 
   alertaNome: string;
   alertaSobrenome: string;
@@ -71,13 +72,13 @@ export class CadastraADMComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(environment.tipo == "Cliente") {
-      this.router.navigate(['/produtoCliente'])
-    }
+    // if(environment.tipo == "Cliente") {
+    //   this.router.navigate(['/produtoCliente'])
+    // }
 
-    if(environment.tipo == "") {
-      this.router.navigate(['/entrar-adm'])
-    }
+    // if(environment.tipo == "") {
+    //   this.router.navigate(['/entrar-adm'])
+    // }
     window.scroll(0, 0)
   }
 
@@ -233,11 +234,101 @@ export class CadastraADMComponent implements OnInit {
     this.cargoUsuario = event.target.value
   }
 
+  validaVariaveisOk(){
+    this.validaCpf()
+    this.validaEmail()
+    this.validaNome()
+    this.validaRg()
+    this.validaTelefone()
+    this.validaSobrenome()
+    this.validaRua()
+    this.validaNumero()
+    this.validaBairro()
+    this.validaCep()
+    this.validaCidade()
+    this.validaEmailEmpresarial()
+    this.validaNascimento()
+    this.validaSalario()
+
+  if(this.nomeOk==false){
+      this.listaCamposInvalidos.push('Nome')
+  }
+  if(this.sobrenomeOk==false){
+      this.listaCamposInvalidos.push('Sobrenome')
+  }
+  if(this.rgOk==false){
+    this.listaCamposInvalidos.push('RG')
+  }
+  if(this.cpfOk==false){
+    this.listaCamposInvalidos.push('CPF')
+  }
+  if(this.telefoneOk==false){
+    this.listaCamposInvalidos.push('Telefone')
+  }
+  if(this.emailOk==false){
+    this.listaCamposInvalidos.push('E-mail')
+  }
+  if(this.emailOk==false){
+    this.listaCamposInvalidos.push('E-mail')
+  }
+  if(this.ruaOk==false){
+    this.listaCamposInvalidos.push('Rua')
+  }
+  if(this.numeroOk==false){
+    this.listaCamposInvalidos.push('Número')
+  }
+  if(this.bairroOk==false){
+    this.listaCamposInvalidos.push('Bairro')
+  }
+  if(this.cepOk==false){
+    this.listaCamposInvalidos.push('CEP')
+  }
+  if(this.cidadeOk==false){
+    this.listaCamposInvalidos.push('Cidade')
+  }
+  if(this.emailEmpresarialOk==false){
+    this.listaCamposInvalidos.push('E-mail Empresarial')
+  }
+  if(this.nascimentoOk==false){
+    this.listaCamposInvalidos.push('Data de nascimento')
+  }
+  if(this.salarioOk==false){
+    this.listaCamposInvalidos.push('Salario')
+  }
+  }
+
+  resetValidação(){
+    this.nomeOk=false
+    this.sobrenomeOk=false
+    this.rgOk=false
+    this.cpfOk=false
+    this.telefoneOk=false
+    this.emailOk=false
+    this.ruaOk=false
+    this.numeroOk=false
+    this.bairroOk=false
+    this.cepOk=false
+    this.cidadeOk=false
+    this.emailEmpresarialOk=false
+    this.nascimentoOk=false
+    this.salarioOk=false
+   this.listaCamposInvalidos=[];
+  }
+
   cadastrar() {
     this.usuario.cargo = this.cargoUsuario
     this.usuario.tipo = this.cargoUsuario
     this.usuario.estado = this.estadoUsuario
     this.usuario.status = 1
+
+    this.validaVariaveisOk()
+
+    if(this.listaCamposInvalidos.length>0){
+      alert('Por gentileza, preencher os seguintes campos corretamente:\n'
+      +this.listaCamposInvalidos)
+
+      this.resetValidação()
+    }
 
     if (this.usuario.senha != this.confirmSenha) {
       alert('As senhas estão incorretas')
