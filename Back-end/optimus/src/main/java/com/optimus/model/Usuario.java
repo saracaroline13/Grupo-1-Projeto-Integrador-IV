@@ -96,6 +96,14 @@ public class Usuario {
 		this.sobrenome = sobrenome;
 	}
 
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
 	public String getTelefone() {
 		return telefone;
 	}
@@ -136,14 +144,6 @@ public class Usuario {
 		this.tipo = tipo;
 	}
 
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
 	public String getCargo() {
 		return cargo;
 	}
@@ -158,14 +158,6 @@ public class Usuario {
 
 	public void setSalario(float salario) {
 		this.salario = salario;
-	}
-
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
 	}
 
 	public String getRua() {
@@ -232,4 +224,11 @@ public class Usuario {
 		this.emailPessoal = emailPessoal;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 }
