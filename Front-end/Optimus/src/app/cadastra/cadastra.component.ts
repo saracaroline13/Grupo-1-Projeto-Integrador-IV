@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from '../model/Usuario';
 import { AuthService } from '../service/auth.service';
 
+
 @Component({
   selector: 'app-cadastra',
   templateUrl: './cadastra.component.html',
@@ -35,10 +36,11 @@ export class CadastraComponent implements OnInit {
   alertaCpf: string;
   alertaTelefone: string;
   alertaEmail: string;
+  listaCamposInvalidos:any = []
 
   tipoUsuario: string = 'Cliente'
   termoAceito: boolean = false
-  
+
   constructor(
     private usuarioService: UsuarioService,
     private authService: AuthService,
@@ -116,11 +118,58 @@ export class CadastraComponent implements OnInit {
     this.termoAceito = !this.termoAceito
   }
 
+  validaVariaveisOk(){
+    this.validaCpf()
+    this.validaEmail()
+    this.validaNome()
+    this.validaRg()
+    this.validaTelefone()
+    this.validaSobrenome()
+
+  if(this.nomeOk==false){
+      this.listaCamposInvalidos.push('Nome')
+  }
+  if(this.sobrenomeOk==false){
+      this.listaCamposInvalidos.push('Sobrenome')
+  }
+  if(this.rgOk==false){
+    this.listaCamposInvalidos.push('RG')
+  }
+  if(this.cpfOk==false){
+    this.listaCamposInvalidos.push('CPF')
+  }
+  if(this.telefoneOk==false){
+    this.listaCamposInvalidos.push('Telefone')
+  }
+  if(this.emailOk==false){
+    this.listaCamposInvalidos.push('E-mail')
+  }
+  }
+
+  resetValidação(){
+    this.nomeOk=false
+    this.sobrenomeOk=false
+    this.rgOk=false
+    this.cpfOk=false
+    this.telefoneOk=false
+    this.emailOk=false
+   this.listaCamposInvalidos=[];
+  }
+
   cadastrar() {
+
     this.usuario.tipo = this.tipoUsuario
     this.usuario.status = 1
 
-    if (this.usuario.senha != this.confirmSenha) {
+    this.validaVariaveisOk()
+
+    if(this.listaCamposInvalidos.length>0){
+      alert('Por gentileza, preencher os seguintes campos corretamente:\n'
+      +this.listaCamposInvalidos)
+
+      this.resetValidação()
+    }
+    else if (this.usuario.senha != this.confirmSenha) {
       alert('As senhas estão incorretas')
     }
     else if (this.termoAceito == false) {
