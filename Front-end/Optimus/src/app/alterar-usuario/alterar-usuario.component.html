@@ -52,7 +52,11 @@
             <input [(ngModel)]="usuario.senha" name="senha" type="password" class="form-control" id="senhaConfirm" placeholder="Confirme sua senha">
           </div>
         </div>
-  
+
+        <a [routerLink]="['/endereco-adicional', idUser]">
+        <button type="submit" class="btn btn-info">Endereço</button>
+        </a>
+        
         <div class="form-row">
         <div class="form-group">
           <div class="form-check ml-2">

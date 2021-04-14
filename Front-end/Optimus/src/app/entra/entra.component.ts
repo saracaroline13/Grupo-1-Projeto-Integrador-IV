@@ -26,7 +26,7 @@ export class EntraComponent implements OnInit {
       this.userLogin = resp
 
       if(this.userLogin.status == 0) {
-        alert("Perfil desativado por entrar em contato com administrador!")
+        alert("Perfil desativado por favor entrar em contato com o administrador!")
         this.router.navigate(['/produtoCliente'])
       }else {
         environment.token = this.userLogin.token

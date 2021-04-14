@@ -17,6 +17,7 @@ import { AlterarUsuarioComponent } from './alterar-usuario/alterar-usuario.compo
 import { HomeAdmComponent } from './home-adm/home-adm.component';
 import { GestaoUsuarioComponent } from './gestao-usuario/gestao-usuario.component';
 import { environment } from 'src/environments/environment.prod';
+import { EnderecoAdicionalComponent } from './endereco-adicional/endereco-adicional.component';
 
 const routes: Routes = [
 
@@ -33,7 +34,8 @@ const routes: Routes = [
   {path:'cadastrar-adm', component: CadastraADMComponent },
   {path:'alterar-usuario/:id', component: AlterarUsuarioComponent },
   {path:'home-adm', component: HomeAdmComponent},
-  {path:'gestao-usuario', component: GestaoUsuarioComponent}
+  {path:'gestao-usuario', component: GestaoUsuarioComponent},
+  {path:'endereco-adicional/:id', component: EnderecoAdicionalComponent}
 ];
 
 @NgModule({

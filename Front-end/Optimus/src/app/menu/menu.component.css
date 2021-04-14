@@ -1,6 +1,6 @@
 .navbar {
     background-color: #3AF0A8;
-    height: 130px;
+    height: 120px;
 }
 
 .nav-link{
@@ -18,7 +18,7 @@
 }
 
 .navbar-brand:hover {
-    color: #FF764D;
+    color: #ebe017;
 }
 
 .navbar-text {
