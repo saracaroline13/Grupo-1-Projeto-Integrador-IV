@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Endereco } from '../model/Endereco';
 import { Usuario } from '../model/Usuario';
+import { EnderecoService } from '../service/endereco.service';
 
 @Component({
   selector: 'app-endereco-adicional',
@@ -9,55 +12,39 @@ import { Usuario } from '../model/Usuario';
 export class EnderecoAdicionalComponent implements OnInit {
   usuario: Usuario = new Usuario();
   estadoUsuario: string
-  
-  nome: string;
-  sobrenome: string;
-  rg: string;
-  cpf: any;
-  telefone: string;
-  email: string;
+  endereco: Endereco = new Endereco();
+  idUser: number;
+
   rua: string;
   numero: string;
   bairro: string;
   cep: string;
   cidade: string;
-  numCPF: number;
-  nascimento: string;
 
-  nomeOk: boolean = false;
-  sobrenomeOk: boolean = false;
-  rgOk: boolean = false;
-  cpfOk: boolean = false;
-  telefoneOk: boolean = false;
-  emailOk: boolean = false;
   ruaOk: boolean = false;
   numeroOk: boolean = false;
   bairroOk: boolean = false;
   cepOk: boolean = false;
   cidadeOk: boolean = false;
-  nascimentoOk: boolean = false;
 
-  alertaNome: string;
-  alertaSobrenome: string;
-  alertaRg: string;
-  alertaCpf: string;
-  alertaTelefone: string;
-  alertaEmail: string;
 
-  listaCamposInvalidos:any = []
+  listaCamposInvalidos: any = []
   alertaRua: string;
   alertaNumero: string;
   alertaBairro: string;
   alertaCep: string;
   alertaCidade: string;
-  alertaNascimento: string;
 
 
 
-  constructor() { }
+  constructor(
+    private router: ActivatedRoute,
+    private enderecoService: EnderecoService,
+    private route: Router
+  ) { }
 
   ngOnInit() {
-
+    this.idUser = this.router.snapshot.params['id']
   }
 
   validaRua() {
@@ -114,4 +101,26 @@ export class EnderecoAdicionalComponent implements OnInit {
     this.estadoUsuario = event.target.value
   }
 
+  validar() {
+    if (
+      this.ruaOk == true &&
+      this.numeroOk == true &&
+      this.bairroOk == true &&
+      this.cepOk == true &&
+      this.cidadeOk == true
+    ) {
+      this.cadastrar()
+    } else {
+      alert('Campos inválidos por favor conferir todos!')
+    }
+  }
+
+  cadastrar() {
+    this.endereco.estado = this.estadoUsuario;
+    this.endereco.id_cliente = this.idUser;
+    this.enderecoService.postEndereco(this.endereco).subscribe((resp: Endereco) => {
+      alert('Endereço adicional cadastrado com sucesso')
+      this.route.navigate(['/alterar-usuario', this.idUser])
+    })
+  }
 }

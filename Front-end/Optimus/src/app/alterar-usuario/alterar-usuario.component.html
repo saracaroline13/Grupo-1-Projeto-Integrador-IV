@@ -24,7 +24,7 @@
   
           <div class="form-group col-md-4">
             <label for="cpf">CPF</label>
-            <input [(ngModel)]="usuario.cpf" name="cpf" type="text" class="form-control" id="cpf" placeholder="Digite seu CPF">
+            <input [(ngModel)]="usuario.cpf" name="cpf" type="text" class="form-control" id="cpf" placeholder="Digite seu CPF" readonly>
           </div>
   
           <div class="form-group col-md-4">
@@ -37,7 +37,7 @@
         <div class="form-row">
           <div class="form-group col-md-12">
             <label for="email">E-mail</label>
-            <input [(ngModel)]="usuario.email" name="email" type="email" class="form-control" id="email" placeholder="Digite seu e-mail">
+            <input [(ngModel)]="usuario.email" name="email" type="email" class="form-control" id="email" placeholder="Digite seu e-mail" readonly>
           </div>
         </div>
   
@@ -54,9 +54,18 @@
         </div>
 
         <a [routerLink]="['/endereco-adicional', idUser]">
-        <button type="submit" class="btn btn-info">Endereço</button>
+        <button type="submit" class="btn btn-info">Adicionar outro endereço</button>
         </a>
         
+        <!-- <div class="row" *ngFor='let endereco of listaEnderecos'>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{ endereco.rua }},{{ endereco.numero }} - {{ endereco.cidade}} </h5>
+              <a href="#" class="btn btn-danger" (click)="deletarEndereco(endereco.id_endereco)">Deletar</a>
+            </div>
+          </div>
+        </div> -->
+
         <div class="form-row">
         <div class="form-group">
           <div class="form-check ml-2">

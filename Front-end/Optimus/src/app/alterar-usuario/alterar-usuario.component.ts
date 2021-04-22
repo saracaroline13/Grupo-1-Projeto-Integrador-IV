@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
+import { Endereco } from '../model/Endereco';
 import { Usuario } from '../model/Usuario';
 import { AuthService } from '../service/auth.service';
+import { EnderecoService } from '../service/endereco.service';
 import { UsuarioService } from '../service/usuario.service';
 
 @Component({
@@ -13,6 +15,8 @@ import { UsuarioService } from '../service/usuario.service';
 export class AlterarUsuarioComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
+  endereco: Endereco = new Endereco();
+  listaEnderecos:Endereco
 
   confirmarSenha: String;
   idUser:number;
@@ -24,7 +28,8 @@ export class AlterarUsuarioComponent implements OnInit {
     private usuarioService: UsuarioService,
     private route:ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private enderecoService: EnderecoService
   ) { }
 
 
@@ -72,4 +77,11 @@ export class AlterarUsuarioComponent implements OnInit {
       })
     }
   }
+
+  deletarEndereco(id:number){
+    this.enderecoService.deleteEndereco(id).subscribe((resp:Endereco)=>{
+      alert('Endereço deletado com sucesso')
+    })
+  }
+
 }

@@ -7,7 +7,7 @@
             <div class="form-group col-md-6">
               <label for="rua">Rua</label>
       
-              <input [(ngModel)]='rua' [(ngModel)]='usuario.rua' name="rua" type="text" class="form-control" id="rua"
+              <input [(ngModel)]='rua' [(ngModel)]='endereco.rua' name="rua" type="text" class="form-control" id="rua"
                 placeholder="Rua Dois" (keyup)="validaRua()">
               <div class="text-danger">{{ alertaRua }}</div>
       
@@ -16,7 +16,7 @@
             <div class="form-group col-md-2">
               <label for="numero">Número</label>
       
-              <input [(ngModel)]='numero' [(ngModel)]='usuario.numero' name="numero" type="text" class="form-control"
+              <input [(ngModel)]='numero' [(ngModel)]='endereco.numero' name="numero" type="text" class="form-control"
                 id="numero" placeholder="321" (keyup)="validaNumero()">
               <div class="text-danger">{{ alertaNumero }}</div>
       
@@ -25,7 +25,7 @@
             <div class="form-group col-md-4">
               <label for="bairro">Bairro</label>
       
-              <input [(ngModel)]='bairro' [(ngModel)]='usuario.bairro' name="bairro" type="text" class="form-control"
+              <input [(ngModel)]='bairro' [(ngModel)]='endereco.bairro' name="bairro" type="text" class="form-control"
                 id="bairro" placeholder="Jardim Miranda" (keyup)="validaBairro()">
               <div class="text-danger">{{ alertaBairro }}</div>
       
@@ -37,7 +37,7 @@
             <div class="form-group col-md-4">
               <label for="cep">CEP</label>
       
-              <input [(ngModel)]='cep' [(ngModel)]='usuario.cep' name="cep" type="text" class="form-control" id="cep"
+              <input [(ngModel)]='cep' [(ngModel)]='endereco.cep' name="cep" type="text" class="form-control" id="cep"
                 placeholder="00000-000" (keyup)="validaCep()">
               <div class="text-danger">{{ alertaCep }}</div>
       
@@ -83,7 +83,7 @@
             <div class="form-group col-md-4">
               <label for="cidade">Cidade</label>
       
-              <input [(ngModel)]='cidade' [(ngModel)]='usuario.cidade' name="cidade" type="text" class="form-control"
+              <input [(ngModel)]='cidade' [(ngModel)]='endereco.cidade' name="cidade" type="text" class="form-control"
                 id="cidade" placeholder="São Paulo" (keyup)="validaCidade()">
               <div class="text-danger">{{ alertaCidade }}</div>
       
@@ -92,8 +92,8 @@
         
       
       
-              <button type="submit" class="btn bg-optimus mr-4">Cadastrar endereço</button>
-              <button type="submit" class="btn btn-secondary">Cancelar</button>
+              <button type="submit" class="btn btn-success mr-4" (click)="validar()">Cadastrar endereço</button>
+              <button type="submit" class="btn btn-secondary" [routerLink]="['/alterar-usuario', id]">Cancelar</button>
             </div>
       
       
@@ -107,5 +107,3 @@
     </div>
 
 </div>
-
-
