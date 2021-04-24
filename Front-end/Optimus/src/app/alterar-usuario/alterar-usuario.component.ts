@@ -21,6 +21,23 @@ export class AlterarUsuarioComponent implements OnInit {
   confirmarSenha: String;
   idUser:number;
 
+  nome: string;
+  sobrenome: string;
+  rg: string;
+  telefone: string;
+
+  nomeOk: boolean = false;
+  sobrenomeOk: boolean = false;
+  rgOk: boolean = false;
+  telefoneOk: boolean = false;
+
+  listaCamposInvalidos:any = []
+  alertaNome: string;
+  alertaSobrenome: string;
+  alertaRg: string;
+  alertaTelefone: string;
+
+
   termoAceito: boolean = false
   tipoUsuario: string = 'Cliente'
 
@@ -54,10 +71,101 @@ export class AlterarUsuarioComponent implements OnInit {
     console.log(this.termoAceito)
   }
 
-  cadastrar() {
+  validaNome() {
+    if (typeof this.nome === 'undefined') {
+      this.nomeOk = false;
+      this.alertaNome = 'nome inválido';
+  }
+    else if (this.nome.length < 3) {
+      this.nomeOk = false;
+      this.alertaNome = 'nome inválido';
+    } else {
+      this.nomeOk = true;
+      this.alertaNome = '';
+    }
+  }
+
+  validaSobrenome() {
+    if (typeof this.sobrenome === 'undefined') {
+      this.sobrenomeOk = false;
+      this.alertaNome = 'sobrenome inválido';
+  }
+    else if (this.sobrenome.length < 3) {
+      this.sobrenomeOk = false;
+      this.alertaSobrenome = 'sobrenome inválido';
+    } else {
+      this.sobrenomeOk = true;
+      this.alertaSobrenome = '';
+    }
+  }
+
+  validaRg() {
+    if(typeof this.rg === 'undefined'){
+      this.rgOk = false;
+      this.alertaRg = 'rg inválido';
+    }
+    else if (this.rg.length < 9 || this.rg.length > 9) {
+      this.rgOk = false;
+      this.alertaRg = 'rg inválido';
+    } else {
+      this.rgOk = true;
+      this.alertaRg = '';
+    }
+  }
+
+  validaTelefone() {
+    if (this.telefone.length < 11 || this.telefone.length > 11) {
+      this.telefoneOk = false;
+      this.alertaTelefone = 'telefone inválido';
+    } else {
+      this.telefoneOk = true;
+      this.alertaTelefone = '';
+    }
+  }
+
+  validaVariaveisOk(){
+
+    this.validaNome()
+    this.validaRg()
+    this.validaTelefone()
+    this.validaSobrenome()
+
+
+  if(this.nomeOk==false){
+      this.listaCamposInvalidos.push('Nome')
+  }
+  if(this.sobrenomeOk==false){
+      this.listaCamposInvalidos.push('Sobrenome')
+  }
+  if(this.rgOk==false){
+    this.listaCamposInvalidos.push('RG')
+  }
+
+  if(this.telefoneOk==false){
+    this.listaCamposInvalidos.push('Telefone')
+  }
+  }
+
+  resetValidação(){
+    this.nomeOk=false
+    this.sobrenomeOk=false
+    this.rgOk=false
+    this.telefoneOk=false
+    this.listaCamposInvalidos=[];
+  }
+
+  atualizar() {
     this.usuario.tipo = this.tipoUsuario
     this.usuario.status = 1
 
+    this.validaVariaveisOk()
+
+    if(this.listaCamposInvalidos.length>0){
+      alert('Por gentileza, preencher os seguintes campos corretamente:\n'
+      +this.listaCamposInvalidos)
+
+      this.resetValidação()
+    }
     if (this.usuario.senha != this.confirmarSenha) {
       alert('As senhas estão incorretas')
     }
@@ -73,7 +181,7 @@ export class AlterarUsuarioComponent implements OnInit {
         environment.email = ''
         environment.tipo = ''
         this.router.navigate(['/entrar'])
-        alert('Usuário cadastrado com sucesso')
+        alert('Usuário atualizado com sucesso com sucesso')
       })
     }
   }

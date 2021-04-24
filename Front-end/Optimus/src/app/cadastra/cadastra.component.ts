@@ -381,10 +381,9 @@ export class CadastraComponent implements OnInit {
     this.validaEmail();
     this.usuario.tipo = this.tipoUsuario
     this.usuario.status = 1
-    console.log(this.nome)
+
     this.validaVariaveisOk()
 
-    console.log(this.nome)
     if(this.listaCamposInvalidos.length>0){
       alert('Por gentileza, preencher os seguintes campos corretamente:\n'
       +this.listaCamposInvalidos)

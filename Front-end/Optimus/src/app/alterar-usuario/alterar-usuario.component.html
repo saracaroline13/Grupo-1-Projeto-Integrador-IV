@@ -3,50 +3,54 @@
     <div class="form-container col-md-7 mt-4 mb-4 p-4">
       <h3 class="mb-3 border-l pl-2">Alterar</h3>
       <form>
-  
+
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="nome">Nome</label>
-            <input [(ngModel)]="usuario.nome" name="nome" type="text" class="form-control" id="nome" placeholder="Digite o seu nome">
+            <input [(ngModel)]="usuario.nome" name="nome" type="text" class="form-control" id="nome" placeholder="Digite o seu nome" (keyup)="validaNome()">
+            <div class="mt-2 text-danger">{{ alertaNome }}</div>
           </div>
-  
+
           <div class="form-group col-md-6">
             <label for="sobrenome">Sobrenome</label>
-            <input [(ngModel)]="usuario.sobrenome" name="sobrenome" type="text" class="form-control" id="sobrenome" placeholder="Digite o seu sobrenome">
+            <input [(ngModel)]="usuario.sobrenome" name="sobrenome" type="text" class="form-control" id="sobrenome" placeholder="Digite o seu sobrenome" (keyup)="validaSobrenome()">
+            <div class="mt-2 text-danger">{{ alertaSobrenome }}</div>
           </div>
         </div>
-  
+
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="rg">RG</label>
-            <input [(ngModel)]="usuario.rg" name="rg" type="text" class="form-control" id="rg" placeholder="Digite o seu RG">
+            <input [(ngModel)]="usuario.rg" name="rg" type="text" class="form-control" id="rg" placeholder="Digite o seu RG" (keyup)="validaRg()">
+            <div class="text-danger">{{ alertaRg }}</div>
           </div>
-  
+
           <div class="form-group col-md-4">
             <label for="cpf">CPF</label>
             <input [(ngModel)]="usuario.cpf" name="cpf" type="text" class="form-control" id="cpf" placeholder="Digite seu CPF" readonly>
           </div>
-  
+
           <div class="form-group col-md-4">
             <label for="telefone">Telefone</label>
-            <input [(ngModel)]="usuario.telefone" name="telefone" type="text" class="form-control" id="telefone" placeholder="(99) 9 99999-9999">
+            <input [(ngModel)]="usuario.telefone" name="telefone" type="text" class="form-control" id="telefone" placeholder="(99) 9 99999-9999" (keyup)="validaTelefone()">
+            <div class="text-danger">{{ alertaTelefone }}</div>
           </div>
-  
+
         </div>
-  
+
         <div class="form-row">
           <div class="form-group col-md-12">
             <label for="email">E-mail</label>
             <input [(ngModel)]="usuario.email" name="email" type="email" class="form-control" id="email" placeholder="Digite seu e-mail" readonly>
           </div>
         </div>
-  
+
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="senha">Senha</label>
             <input (input)="confirmSenha($event)" type="password" class="form-control" id="senha" placeholder="Digite sua senha">
           </div>
-  
+
           <div class="form-group col-md-6">
             <label for="senhaConfirm">Confirmar Senha</label>
             <input [(ngModel)]="usuario.senha" name="senha" type="password" class="form-control" id="senhaConfirm" placeholder="Confirme sua senha">
@@ -56,7 +60,7 @@
         <a [routerLink]="['/endereco-adicional', idUser]">
         <button type="submit" class="btn btn-info">Adicionar outro endereço</button>
         </a>
-        
+
         <!-- <div class="row" *ngFor='let endereco of listaEnderecos'>
           <div class="card" style="width: 18rem;">
             <div class="card-body">
@@ -76,14 +80,14 @@
           </div>
         </div>
         </div>
-  
+
         <div class="mt-2 ml-2">
-          <button type="submit" class="btn btn-success bg-optimus mr-4" (click)="cadastrar()">Cadastrar</button>
+          <button type="submit" class="btn btn-success bg-optimus mr-4" (click)="atualizar()">Atualizar</button>
           <button type="submit" class="btn btn-secondary" routerLink="/produtoCliente">Cancelar</button>
         </div>
       </form>
     </div>
-  
+
     <!-- Modal -->
   <div class="modal fade" id="termosCondicoes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -100,12 +104,11 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-  
+
         </div>
       </div>
     </div>
   </div>
   <!-- /Modal -->
-  
+
   </div>
-  
