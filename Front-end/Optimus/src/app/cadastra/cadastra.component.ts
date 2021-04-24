@@ -84,7 +84,11 @@ export class CadastraComponent implements OnInit {
   }
 
   validaNome() {
-    if (this.nome.length < 3) {
+    if (typeof this.nome === 'undefined') {
+      this.nomeOk = false;
+      this.alertaNome = 'nome inválido';
+  }
+    else if (this.nome.length < 3) {
       this.nomeOk = false;
       this.alertaNome = 'nome inválido';
     } else {
@@ -94,7 +98,11 @@ export class CadastraComponent implements OnInit {
   }
 
   validaSobrenome() {
-    if (this.sobrenome.length < 3) {
+    if (typeof this.sobrenome === 'undefined') {
+      this.sobrenomeOk = false;
+      this.alertaNome = 'sobrenome inválido';
+  }
+    else if (this.sobrenome.length < 3) {
       this.sobrenomeOk = false;
       this.alertaSobrenome = 'sobrenome inválido';
     } else {
@@ -104,7 +112,11 @@ export class CadastraComponent implements OnInit {
   }
 
   validaRg() {
-    if (this.rg.length < 9 || this.rg.length > 9) {
+    if(typeof this.rg === 'undefined'){
+      this.rgOk = false;
+      this.alertaRg = 'rg inválido';
+    }
+    else if (this.rg.length < 9 || this.rg.length > 9) {
       this.rgOk = false;
       this.alertaRg = 'rg inválido';
     } else {
@@ -114,8 +126,11 @@ export class CadastraComponent implements OnInit {
   }
 
   validaCpf() {
-
-    if (this.cpf.length < 11 || this.cpf.length > 11) {
+    if(typeof this.cpf === 'undefined'){
+      this.cpfOk = false;
+      this.alertaCpf = 'cpf inválido';
+    }
+    else if (this.cpf.length < 11 || this.cpf.length > 11) {
       this.cpfOk = false;
       this.alertaCpf = 'CPF inválido';
     } else {
@@ -266,6 +281,12 @@ export class CadastraComponent implements OnInit {
     this.validaRg()
     this.validaTelefone()
     this.validaSobrenome()
+    this.validaRua()
+    this.validaNumero()
+    this.validaBairro()
+    this.validaCep()
+    this.validaCidade()
+    this.validaNascimento()
 
   if(this.nomeOk==false){
       this.listaCamposInvalidos.push('Nome')
@@ -279,12 +300,32 @@ export class CadastraComponent implements OnInit {
   if(this.cpfOk==false){
     this.listaCamposInvalidos.push('CPF')
   }
+  if(this.nascimentoOk==false){
+    this.listaCamposInvalidos.push('Nascimento')
+  }
   if(this.telefoneOk==false){
     this.listaCamposInvalidos.push('Telefone')
   }
   if(this.emailOk==false){
     this.listaCamposInvalidos.push('E-mail')
   }
+  if(this.ruaOk==false){
+    this.listaCamposInvalidos.push('Rua')
+  }
+  if(this.numeroOk==false){
+    this.listaCamposInvalidos.push('Número')
+  }
+  if(this.bairroOk==false){
+    this.listaCamposInvalidos.push('Bairro')
+  }
+  if(this.cepOk==false){
+    this.listaCamposInvalidos.push('CEP')
+  }
+
+  if(this.cidadeOk==false){
+    this.listaCamposInvalidos.push('Cidade')
+  }
+
   }
 
   resetValidação(){
@@ -294,7 +335,13 @@ export class CadastraComponent implements OnInit {
     this.cpfOk=false
     this.telefoneOk=false
     this.emailOk=false
-   this.listaCamposInvalidos=[];
+    this.ruaOk = false;
+    this.numeroOk = false;
+    this.bairroOk = false;
+    this.cepOk = false;
+    this.cidadeOk = false;
+    this.nascimentoOk = false;
+    this.listaCamposInvalidos=[];
   }
 
 
@@ -334,10 +381,10 @@ export class CadastraComponent implements OnInit {
     this.validaEmail();
     this.usuario.tipo = this.tipoUsuario
     this.usuario.status = 1
-
+    console.log(this.nome)
     this.validaVariaveisOk()
 
-
+    console.log(this.nome)
     if(this.listaCamposInvalidos.length>0){
       alert('Por gentileza, preencher os seguintes campos corretamente:\n'
       +this.listaCamposInvalidos)
