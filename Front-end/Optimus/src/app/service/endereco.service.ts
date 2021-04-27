@@ -16,6 +16,10 @@ export class EnderecoService {
     return this.http.get<Endereco[]>('http://localhost:8080/endereco')
   }
 
+  endereco(cep: string){
+    return this.http.get(`https://viacep.com.br/ws/${cep}/json/`)
+  }
+
   findById(id: number): Observable<Endereco> {
     return this.http.get<Endereco>(`http://localhost:8080/endereco/${id}`)
   }

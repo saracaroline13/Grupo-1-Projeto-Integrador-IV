@@ -16,7 +16,9 @@ export class AlterarUsuarioComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
   endereco: Endereco = new Endereco();
-  listaEnderecos:Endereco
+  listaEnderecos: Endereco[]
+  listaCliente: Endereco
+  estadoUsuario: string
 
   confirmarSenha: String;
   idUser:number;
@@ -25,18 +27,38 @@ export class AlterarUsuarioComponent implements OnInit {
   sobrenome: string;
   rg: string;
   telefone: string;
+  nascimento: string;
+  cidade: string;
+  cpf: any;
+  rua: string;
+  numero: string;
+  bairro: string;
+  cep: string;
 
   nomeOk: boolean = false;
   sobrenomeOk: boolean = false;
   rgOk: boolean = false;
   telefoneOk: boolean = false;
+  nascimentoOk: boolean = false;
+  cidadeOk: boolean = false;
+  cpfOk: boolean = false;
+  ruaOk: boolean = false;
+  numeroOk: boolean = false;
+  bairroOk: boolean = false;
+  cepOk: boolean = false;
 
   listaCamposInvalidos:any = []
   alertaNome: string;
   alertaSobrenome: string;
   alertaRg: string;
   alertaTelefone: string;
-
+  alertaNascimento: string;
+  alertaCidade: string;
+  alertaCpf: string;
+  alertaRua: string;
+  alertaNumero: string;
+  alertaBairro: string;
+  alertaCep: string;
 
   termoAceito: boolean = false
   tipoUsuario: string = 'Cliente'
@@ -52,13 +74,28 @@ export class AlterarUsuarioComponent implements OnInit {
 
   ngOnInit() {
     this.idUser=this.route.snapshot.params['id'];
+    this.findAllEnderecos(this.idUser)
     this.findById(this.idUser)
+  }
+
+  findAllEnderecos(id:number) {
+    this.enderecoService.findAll().subscribe((resp: Endereco[]) => {
+      this.listaEnderecos = resp
+      console.log(resp)
+    })
+  }
+
+  enderecoAdicional(cliente: number){
+    let ok: boolean = false
+    if(cliente == this.idUser ){
+      ok = true
+    }
+    return ok
   }
 
   findById(id:number){
     this.usuarioService.getById(id).subscribe((resp:Usuario)=>{
       this.usuario=resp;
-      console.log(this.usuario)
     })
   }
 
@@ -69,6 +106,101 @@ export class AlterarUsuarioComponent implements OnInit {
   validaTermos(event: any) {
     this.termoAceito = !this.termoAceito
     console.log(this.termoAceito)
+  }
+
+  validaNumero() {
+    if (this.numero.length < 1 || this.numero.length > 4) {
+      this.numeroOk = false;
+      this.alertaNumero = 'numero inválido';
+    } else {
+      this.numeroOk = true;
+      this.alertaNumero = '';
+    }
+  }
+
+  validaBairro() {
+    if (this.bairro.length < 3) {
+      this.bairroOk = false;
+      this.alertaBairro = 'bairro inválido';
+    } else {
+      this.bairroOk = true;
+      this.alertaBairro = '';
+    }
+  }
+
+  validaCep() {
+    if (this.cep.length < 8 || this.cep.length > 8) {
+      this.cepOk = false;
+      this.alertaCep = 'cep inválido';
+    } else {
+      this.cepOk = true;
+      this.alertaCep = '';
+    }
+  }
+
+  validaCpf() {
+    if(typeof this.cpf === 'undefined'){
+      this.cpfOk = false;
+      this.alertaCpf = 'cpf inválido';
+    }
+    else if (this.cpf.length < 11 || this.cpf.length > 11) {
+      this.cpfOk = false;
+      this.alertaCpf = 'CPF inválido';
+    } else {
+      this.cpfOk = true;
+      this.alertaCpf = '';
+
+      if (this.cpf.length == 11) {
+
+        var v1 = 0;
+        var v2 = 0;
+        var aux = false;
+
+        for (let i = 1; this.cpf.length > i; i++) {
+          if (this.cpf[i - 1] != this.cpf[i]) {
+            aux = true;
+          }
+        }
+
+        if (aux == false) {
+          this.alertaCpf = 'CPF inválido';
+          return false;
+        }
+
+        for (let i = 0, p = 10; (this.cpf.length - 2) > i; i++, p--) {
+          v1 = v1 + this.cpf[i] * p;
+        }
+
+        v1 = ((v1 * 10) % 11);
+
+        if (v1 == 10) {
+          v1 = 0;
+        }
+
+        if (v1 != this.cpf[9]) {
+          this.alertaCpf = 'CPF inválido';
+          return false;
+        }
+
+        for (var i = 0, p = 11; (this.cpf.length - 1) > i; i++, p--) {
+          v2 += this.cpf[i] * p;
+        }
+
+        v2 = ((v2 * 10) % 11);
+
+        if (v2 == 10) {
+          v2 = 0;
+        }
+
+        if (v2 != this.cpf[10]) {
+          this.alertaCpf = 'CPF inválido';
+          return false;
+        } else {
+          return true;
+        }
+      }
+    }
+
   }
 
   validaNome() {
@@ -82,6 +214,16 @@ export class AlterarUsuarioComponent implements OnInit {
     } else {
       this.nomeOk = true;
       this.alertaNome = '';
+    }
+  }
+
+  validaNascimento() {
+    if (this.nascimento.length < 8 || this.nascimento.length > 8) {
+      this.nascimentoOk = false;
+      this.alertaNascimento = 'nascimento inválido';
+    } else {
+      this.nascimentoOk = true;
+      this.alertaNascimento = '';
     }
   }
 
@@ -113,6 +255,16 @@ export class AlterarUsuarioComponent implements OnInit {
     }
   }
 
+  validaCidade() {
+    if (this.cidade.length < 3) {
+      this.cidadeOk = false;
+      this.alertaCidade = 'cidade inválido';
+    } else {
+      this.cidadeOk = true;
+      this.alertaCidade = '';
+    }
+  }
+
   validaTelefone() {
     if (this.telefone.length < 11 || this.telefone.length > 11) {
       this.telefoneOk = false;
@@ -120,6 +272,16 @@ export class AlterarUsuarioComponent implements OnInit {
     } else {
       this.telefoneOk = true;
       this.alertaTelefone = '';
+    }
+  }
+
+  validaRua() {
+    if (this.rua.length < 3) {
+      this.ruaOk = false;
+      this.alertaRua = 'rua inválido';
+    } else {
+      this.ruaOk = true;
+      this.alertaRua = '';
     }
   }
 
@@ -144,6 +306,10 @@ export class AlterarUsuarioComponent implements OnInit {
   if(this.telefoneOk==false){
     this.listaCamposInvalidos.push('Telefone')
   }
+  }
+
+  selectEstado(event: any) {
+    this.estadoUsuario = event.target.value
   }
 
   resetValidação(){
@@ -187,8 +353,10 @@ export class AlterarUsuarioComponent implements OnInit {
   }
 
   deletarEndereco(id:number){
-    this.enderecoService.deleteEndereco(id).subscribe((resp:Endereco)=>{
+    console.log(id)
+    this.enderecoService.deleteEndereco(id).subscribe(()=>{
       alert('Endereço deletado com sucesso')
+      this.findAllEnderecos(this.idUser);
     })
   }
 

@@ -18,8 +18,7 @@
           <label for="sobrenome">Sobrenome</label>
 
           <input [(ngModel)]='sobrenome' [(ngModel)]='usuario.sobrenome' name="sobrenome" type="text"
-            class="form-control" id="sobrenome" placeholder="Digite seu sobrenome"
-            (keyup)="validaSobrenome()">
+            class="form-control" id="sobrenome" placeholder="Digite seu sobrenome" (keyup)="validaSobrenome()">
           <div class="text-danger">{{ alertaSobrenome }}</div>
 
         </div>
@@ -74,7 +73,7 @@
           <div class="text-danger">{{ alertaEmail }}</div>
 
 
-      </div>
+        </div>
 
 
 
@@ -110,127 +109,128 @@
   </div>
 
 
-   <div class="form-container col-md-5 mt-4 mb-4 p-4">
-  <h3 class="mb-3 border-l pl-2">Endereço</h3>
-  <form style="height: 100%">
+  <div class="form-container col-md-5 mt-4 mb-4 p-4">
+    <h3 class="mb-3 border-l pl-2">Endereço</h3>
+    <form style="height: 100%">
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="rua">Rua</label>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="cep">CEP</label>
 
-        <input [(ngModel)]='rua' [(ngModel)]='usuario.rua' name="rua" type="text" class="form-control" id="rua"
-          placeholder="Rua Dois" (keyup)="validaRua()">
-        <div class="text-danger">{{ alertaRua }}</div>
+          <input [(ngModel)]='cep' [(ngModel)]='usuario.cep' name="cep" type="text" class="form-control" id="cep"
+            placeholder="00000-000" (keyup)="validaCep()">
+          <div class="text-danger">{{ alertaCep }}</div>
 
-      </div>
+        </div>
 
-      <div class="form-group col-md-2">
-        <label for="numero">Número</label>
-
-        <input [(ngModel)]='numero' [(ngModel)]='usuario.numero' name="numero" type="text" class="form-control"
-          id="numero" placeholder="321" (keyup)="validaNumero()">
-        <div class="text-danger">{{ alertaNumero }}</div>
-
-      </div>
-
-      <div class="form-group col-md-4">
-        <label for="bairro">Bairro</label>
-
-        <input [(ngModel)]='bairro' [(ngModel)]='usuario.bairro' name="bairro" type="text" class="form-control"
-          id="bairro" placeholder="Jardim Miranda" (keyup)="validaBairro()">
-        <div class="text-danger">{{ alertaBairro }}</div>
-
-      </div>
-    </div>
-
-
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <label for="cep">CEP</label>
-
-        <input [(ngModel)]='cep' [(ngModel)]='usuario.cep' name="cep" type="text" class="form-control" id="cep"
-          placeholder="00000-000" (keyup)="validaCep()">
-        <div class="text-danger">{{ alertaCep }}</div>
-
-      </div>
-
-      <div class="form-group col-md-4">
-        <label for="inputEstado">Estado</label>
-        <select id="inputEstado" name="estado" class="form-control" (change)="selectEstado($event)">
-          <option selected value="NADA">Selecione o Estado</option>
-          <option value="AC">Acre</option>
-          <option value="AL">Alagoas</option>
-          <option value="AP">Amapá</option>
-          <option value="AM">Amazonas</option>
-          <option value="BA">Bahia</option>
-          <option value="CE">Ceará</option>
-          <option value="DF">Distrito Federal</option>
-          <option value="ES">Espírito Santo</option>
-          <option value="GO">Goiás</option>
-          <option value="MA">Maranhão</option>
-          <option value="MT">Mato Grosso</option>
-          <option value="MS">Mato Grosso do Sul</option>
-          <option value="MG">Minas Gerais</option>
-          <option value="PA">Pará</option>
-          <option value="PB">Paraíba</option>
-          <option value="PR">Paraná</option>
-          <option value="PE">Pernambuco</option>
-          <option value="PI">Piauí</option>
-          <option value="RJ">Rio de Janeiro</option>
-          <option value="RN">Rio Grande do Norte</option>
-          <option value="RS">Rio Grande do Sul</option>
-          <option value="RO">Rondônia</option>
-          <option value="RR">Roraima</option>
-          <option value="SC">Santa Catarina</option>
-          <option value="SP">São Paulo</option>
-          <option value="SE">Sergipe</option>
-          <option value="TO">Tocantins</option>
-          <option value="EX">Estrangeiro</option>
-        </select>
-      </div>
-
-
-
-      <div class="form-group col-md-4">
-        <label for="cidade">Cidade</label>
-
-        <input [(ngModel)]='cidade' [(ngModel)]='usuario.cidade' name="cidade" type="text" class="form-control"
-          id="cidade" placeholder="São Paulo" (keyup)="validaCidade()">
-        <div class="text-danger">{{ alertaCidade }}</div>
-
-      </div>
-
-
-
-
-      <div class="mt-5 ml-2">
-        <div class="form-row mt-5">
-          <div class="form-group">
-            <div class="form-check ml-2">
-              <input class="form-check-input" type="checkbox" id="gridCheck" (click)="validaTermos($event)" name="termos">
-              <label class="form-check-label" for="gridCheck">
-                Concordo com os <a href="#" data-toggle="modal" data-target="#termosCondicoes">termos e condições</a> da
-                Optimus
-              </label>
-            </div>
-          </div>
+        <div class="form-group col-md-4">
+          <label for="inputEstado">Estado</label>
+          <select id="inputEstado" name="estado" class="form-control" (change)="selectEstado($event)">
+            <option selected value="NADA">Selecione o Estado</option>
+            <option value="AC">Acre</option>
+            <option value="AL">Alagoas</option>
+            <option value="AP">Amapá</option>
+            <option value="AM">Amazonas</option>
+            <option value="BA">Bahia</option>
+            <option value="CE">Ceará</option>
+            <option value="DF">Distrito Federal</option>
+            <option value="ES">Espírito Santo</option>
+            <option value="GO">Goiás</option>
+            <option value="MA">Maranhão</option>
+            <option value="MT">Mato Grosso</option>
+            <option value="MS">Mato Grosso do Sul</option>
+            <option value="MG">Minas Gerais</option>
+            <option value="PA">Pará</option>
+            <option value="PB">Paraíba</option>
+            <option value="PR">Paraná</option>
+            <option value="PE">Pernambuco</option>
+            <option value="PI">Piauí</option>
+            <option value="RJ">Rio de Janeiro</option>
+            <option value="RN">Rio Grande do Norte</option>
+            <option value="RS">Rio Grande do Sul</option>
+            <option value="RO">Rondônia</option>
+            <option value="RR">Roraima</option>
+            <option value="SC">Santa Catarina</option>
+            <option value="SP">São Paulo</option>
+            <option value="SE">Sergipe</option>
+            <option value="TO">Tocantins</option>
+            <option value="EX">Estrangeiro</option>
+          </select>
         </div>
 
 
-        <button type="submit" class="btn bg-optimus mr-4" (click)='cadastrar()'>Cadastrar</button>
-        <button type="submit" class="btn btn-secondary" routerLink="/produtoCliente">Cancelar</button>
+
+        <div class="form-group col-md-4">
+          <label for="cidade">Cidade</label>
+
+          <input [(ngModel)]='cidade' [(ngModel)]='usuario.cidade' name="cidade" type="text" class="form-control"
+            id="cidade" placeholder="São Paulo" (keyup)="validaCidade()">
+          <div class="text-danger">{{ alertaCidade }}</div>
+
+        </div>
+      </div>
+
+
+      <div class="form-row">
+        
+
+        <div class="form-group col-md-6">
+          <label for="rua">Rua</label>
+
+          <input [(ngModel)]='rua' [(ngModel)]='usuario.rua' name="rua" type="text" class="form-control" id="rua"
+            placeholder="Rua Dois" (keyup)="validaRua()">
+          <div class="text-danger">{{ alertaRua }}</div>
+
+        </div>
+
+        <div class="form-group col-md-2">
+          <label for="numero">Número</label>
+
+          <input [(ngModel)]='numero' [(ngModel)]='usuario.numero' name="numero" type="text" class="form-control"
+            id="numero" placeholder="321" (keyup)="validaNumero()">
+          <div class="text-danger">{{ alertaNumero }}</div>
+
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="bairro">Bairro</label>
+
+          <input [(ngModel)]='bairro' [(ngModel)]='usuario.bairro' name="bairro" type="text" class="form-control"
+            id="bairro" placeholder="Jardim Miranda" (keyup)="validaBairro()">
+          <div class="text-danger">{{ alertaBairro }}</div>
+
+        </div>
+        
+        <div class="mt-5 ml-2">
+          <div class="form-row mt-5">
+            <div class="form-group">
+              <div class="form-check ml-2">
+                <input class="form-check-input" type="checkbox" id="gridCheck" (click)="validaTermos($event)"
+                  name="termos">
+                <label class="form-check-label" for="gridCheck">
+                  Concordo com os <a href="#" data-toggle="modal" data-target="#termosCondicoes">termos e condições</a>
+                  da
+                  Optimus
+                </label>
+              </div>
+            </div>
+          </div>
+
+
+          <button type="submit" class="btn bg-optimus mr-4" (click)='cadastrar()'>Cadastrar</button>
+          <button type="submit" class="btn btn-secondary" routerLink="/produtoCliente">Cancelar</button>
+        </div>
+
+
+
       </div>
 
 
 
-    </div>
 
 
-
-
-
-  </form>
-    </div>
+    </form>
+  </div>
 </div>
 
 

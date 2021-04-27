@@ -3,6 +3,7 @@ import { UsuarioService } from '../service/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from '../model/Usuario';
 import { AuthService } from '../service/auth.service';
+import { EnderecoService } from '../service/endereco.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { AuthService } from '../service/auth.service';
 export class CadastraComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
-  estadoUsuario: string
+  estadoUsuario: string;
   confirmSenha: string;
   listaUsuario: Usuario[];
 
@@ -30,6 +31,7 @@ export class CadastraComponent implements OnInit {
   cidade: string;
   numCPF: number;
   nascimento: string;
+  estado: string;
 
   nomeOk: boolean = false;
   sobrenomeOk: boolean = false;
@@ -59,6 +61,7 @@ export class CadastraComponent implements OnInit {
   alertaCidade: string;
   alertaNascimento: string;
 
+  teste: any
 
   tipoUsuario: string = 'Cliente'
   termoAceito: boolean = false
@@ -66,7 +69,8 @@ export class CadastraComponent implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private enderecoService: EnderecoService
   ) { }
 
   ngOnInit() {
@@ -235,9 +239,24 @@ export class CadastraComponent implements OnInit {
       this.cepOk = false;
       this.alertaCep = 'cep inválido';
     } else {
-      this.cepOk = true;
       this.alertaCep = '';
+      this.pesquisarCep(this.cep);
     }
+  }
+
+  pesquisarCep(cep: string){
+    this.enderecoService.endereco(cep).subscribe((resp: any) => {
+      if(resp == ""){
+        alert('CEP não encontrado!')
+      } else {
+        this.rua = resp.logradouro
+        this.cidade = resp.localidade
+        this.estadoUsuario = resp.uf
+        this.bairro = resp.bairro
+        this.cepOk = true;
+      }
+    })
+
   }
 
   validaCidade() {
@@ -405,5 +424,4 @@ export class CadastraComponent implements OnInit {
       }
 
   }
-
 }

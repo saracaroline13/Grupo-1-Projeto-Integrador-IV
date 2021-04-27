@@ -31,6 +31,14 @@ public class Endereco {
     @Column
     private String cidade;
 
+    public Long getId_endereco() {
+        return id_endereco;
+    }
+
+    public void setId_endereco(Long id_endereco) {
+        this.id_endereco = id_endereco;
+    }
+
     public int getId_cliente() {
         return id_cliente;
     }
