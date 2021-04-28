@@ -18,9 +18,6 @@
 
             <p class="text-muted" data-toggle="modal" data-target="#ModalProduto" (click)='findById(item.id)'>{{
               item.autor }}</p>
-
-            <p class="card-text" data-toggle="modal" data-target="#ModalProduto" (click)='findById(item.id)'> {{
-              item.descricao }} </p>
             <div class="row mx-1 d-flex align-items-center justify-content-between">
               <p class="card-text m-0"> {{ item.valor | currency: 'BRL'}} </p>
               <div class="compraProduto">

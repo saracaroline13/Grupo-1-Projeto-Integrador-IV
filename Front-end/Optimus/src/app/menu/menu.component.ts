@@ -29,8 +29,7 @@ export class MenuComponent implements OnInit {
 
   sair() {
     alert('Sessão Encerrada')
-    this.router.navigate(['/entrar'])
-
+    this.router.navigate(['/produtoCliente'])
     environment.token = ''
     environment.nome = ''
     environment.id = 0

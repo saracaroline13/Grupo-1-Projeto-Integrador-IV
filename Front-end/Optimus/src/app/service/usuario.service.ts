@@ -20,7 +20,7 @@ export class UsuarioService {
   }
 
   getById(id:number):Observable<Usuario> {
-    return this.http.get<Usuario>(`http://localhost:8080/usuario/${id}`,this.token)
+    return this.http.get<Usuario>(`http://localhost:8080/usuario/${id}`)
   }
 
   getByEmail(email:string):Observable<Usuario> {

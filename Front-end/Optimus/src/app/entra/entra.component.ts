@@ -24,10 +24,6 @@ export class EntraComponent implements OnInit {
   entrar(){
     this.auth.entrar(this.userLogin).subscribe((resp:UserLogin) =>{
       this.userLogin = resp
-
-      console.log(this.userLogin.email)
-      console.log(this.userLogin.id)
-      console.log(this.userLogin.nome)
       if(this.userLogin.status == 0) {
         alert("Perfil desativado por favor entrar em contato com o administrador!")
         this.router.navigate(['/produtoCliente'])

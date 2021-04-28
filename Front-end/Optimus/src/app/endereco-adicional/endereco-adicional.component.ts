@@ -47,6 +47,37 @@ export class EnderecoAdicionalComponent implements OnInit {
     this.idUser = this.router.snapshot.params['id']
   }
 
+  validaCep() {
+    if (this.cep.length < 8 || this.cep.length > 8) {
+      this.cepOk = false;
+      this.alertaCep = 'cep inválido';
+    } else {
+      this.alertaCep = '';
+      this.pesquisarCep(this.cep);
+    }
+  }
+
+  pesquisarCep(cep: string){
+    this.enderecoService.endereco(cep).subscribe((resp: any) => {
+      if(resp == ""){
+        alert('CEP não encontrado!')
+      } else {
+        this.rua = resp.logradouro
+        this.endereco.rua = this.rua
+        this.cidade = resp.localidade
+        this.endereco.cidade = this.cidade
+        this.estadoUsuario = resp.uf
+        this.endereco.estado = this.estadoUsuario
+        this.bairro = resp.bairro
+        this.endereco.bairro = this.bairro
+        this.cepOk = true;
+        this.ruaOk = true;
+        this.bairroOk = true;
+        this.cidadeOk = true;
+      }
+    })
+  }
+
   validaRua() {
     if (this.rua.length < 3) {
       this.ruaOk = false;
@@ -77,16 +108,6 @@ export class EnderecoAdicionalComponent implements OnInit {
     }
   }
 
-  validaCep() {
-    if (this.cep.length < 8 || this.cep.length > 8) {
-      this.cepOk = false;
-      this.alertaCep = 'cep inválido';
-    } else {
-      this.cepOk = true;
-      this.alertaCep = '';
-    }
-  }
-
   validaCidade() {
     if (this.cidade.length < 3) {
       this.cidadeOk = false;
@@ -108,6 +129,7 @@ export class EnderecoAdicionalComponent implements OnInit {
       this.bairroOk == true &&
       this.cepOk == true &&
       this.cidadeOk == true
+      
     ) {
       this.cadastrar()
     } else {

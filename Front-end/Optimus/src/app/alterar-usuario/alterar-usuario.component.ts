@@ -81,7 +81,6 @@ export class AlterarUsuarioComponent implements OnInit {
   findAllEnderecos(id:number) {
     this.enderecoService.findAll().subscribe((resp: Endereco[]) => {
       this.listaEnderecos = resp
-      console.log(resp)
     })
   }
 
@@ -105,7 +104,6 @@ export class AlterarUsuarioComponent implements OnInit {
 
   validaTermos(event: any) {
     this.termoAceito = !this.termoAceito
-    console.log(this.termoAceito)
   }
 
   validaNumero() {
@@ -133,9 +131,27 @@ export class AlterarUsuarioComponent implements OnInit {
       this.cepOk = false;
       this.alertaCep = 'cep inválido';
     } else {
-      this.cepOk = true;
       this.alertaCep = '';
+      this.pesquisarCep(this.cep);
     }
+  }
+
+  pesquisarCep(cep: string){
+    this.enderecoService.endereco(cep).subscribe((resp: any) => {
+      if(resp == ""){
+        alert('CEP não encontrado!')
+      } else {
+        this.rua = resp.logradouro
+        this.usuario.rua = this.rua
+        this.cidade = resp.localidade
+        this.usuario.cidade = this.cidade
+        this.estadoUsuario = resp.uf
+        this.usuario.estado = this.estadoUsuario
+        this.bairro = resp.bairro
+        this.usuario.bairro = this.bairro
+        this.cepOk = true;
+      }
+    })
   }
 
   validaCpf() {
@@ -353,7 +369,6 @@ export class AlterarUsuarioComponent implements OnInit {
   }
 
   deletarEndereco(id:number){
-    console.log(id)
     this.enderecoService.deleteEndereco(id).subscribe(()=>{
       alert('Endereço deletado com sucesso')
       this.findAllEnderecos(this.idUser);

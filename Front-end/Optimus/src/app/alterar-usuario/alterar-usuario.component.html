@@ -38,8 +38,7 @@
           <label for="cpf">CPF</label>
 
           <input [(ngModel)]='cpf' [(ngModel)]='usuario.cpf' name="cpf" type="text" class="form-control" id="cpf"
-            placeholder="Digite seu CPF" (keyup)="validaCpf()" readonly>
-          <div class="text-danger">{{ alertaCpf }}</div>
+            placeholder="Digite seu CPF" readonly>
 
         </div>
 
@@ -116,36 +115,7 @@
     <form style="height: 100%">
 
       <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="rua">Rua</label>
-
-          <input [(ngModel)]='rua' [(ngModel)]='usuario.rua' name="rua" type="text" class="form-control" id="rua"
-            placeholder="Rua Dois" (keyup)="validaRua()">
-          <div class="text-danger">{{ alertaRua }}</div>
-
-        </div>
-
-        <div class="form-group col-md-2">
-          <label for="numero">Número</label>
-
-          <input [(ngModel)]='numero' [(ngModel)]='usuario.numero' name="numero" type="text" class="form-control"
-            id="numero" placeholder="321" (keyup)="validaNumero()">
-          <div class="text-danger">{{ alertaNumero }}</div>
-
-        </div>
-
-        <div class="form-group col-md-4">
-          <label for="bairro">Bairro</label>
-
-          <input [(ngModel)]='bairro' [(ngModel)]='usuario.bairro' name="bairro" type="text" class="form-control"
-            id="bairro" placeholder="Jardim Miranda" (keyup)="validaBairro()">
-          <div class="text-danger">{{ alertaBairro }}</div>
-
-        </div>
-      </div>
-
-
-      <div class="form-row">
+        
         <div class="form-group col-md-4">
           <label for="cep">CEP</label>
 
@@ -163,6 +133,36 @@
           <div class="text-danger">{{ alertaCidade }}</div>
 
         </div>
+        <div class="form-group col-md-4">
+          <label for="bairro">Bairro</label>
+
+          <input [(ngModel)]='bairro' [(ngModel)]='usuario.bairro' name="bairro" type="text" class="form-control"
+            id="bairro" placeholder="Jardim Miranda" (keyup)="validaBairro()">
+          <div class="text-danger">{{ alertaBairro }}</div>
+
+        </div>
+      </div>
+
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="rua">Rua</label>
+
+          <input [(ngModel)]='rua' [(ngModel)]='usuario.rua' name="rua" type="text" class="form-control" id="rua"
+            placeholder="Rua Dois" (keyup)="validaRua()">
+          <div class="text-danger">{{ alertaRua }}</div>
+
+        </div>
+
+        <div class="form-group col-md-2">
+          <label for="numero">Número</label>
+
+          <input [(ngModel)]='numero' [(ngModel)]='usuario.numero' name="numero" type="text" class="form-control"
+            id="numero" placeholder="321" (keyup)="validaNumero()">
+          <div class="text-danger">{{ alertaNumero }}</div>
+
+        </div>
+        
         <div class="row w-100 mb-4 ml-1">
           <a [routerLink]="['/endereco-adicional', idUser]">
             <button type="submit" class="btn btn-info">Adicionar outro endereço</button>

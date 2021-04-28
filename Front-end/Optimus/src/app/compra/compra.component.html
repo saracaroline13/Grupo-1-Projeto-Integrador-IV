@@ -1,5 +1,51 @@
 <h1 class="text-center">Página ainda em desenvolvimento</h1>
 <div class="container">
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="rua">Rua</label>
+      <input [(ngModel)]='rua' name="rua" type="text" class="form-control" id="rua"
+        placeholder="Rua Dois" readonly>
+
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="numero">Número</label>
+      <input [(ngModel)]='numero' name="numero" type="text" class="form-control"
+        id="numero" placeholder="321" readonly>
+
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="bairro">Bairro</label>
+      <input [(ngModel)]='bairro' name="bairro" type="text" class="form-control"
+        id="bairro" placeholder="Jardim Miranda" readonly>
+
+    </div>
+  </div>
+
+  <div class="row col-md-7 mb-3 ml-1">
+  <div class="mr-3">
+    <div class="card">
+      <div class="card-body ">
+        <h5 class="card-title">{{ usuario.rua }},{{ usuario.numero }}</h5>
+        <button type="submit" class="btn btn-primary" (click)="selecEndereco()">Selecionar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="row col-md-7 mb-3 ml-1">
+    <div class="mr-3" *ngFor='let endereco of listaEnderecos'>
+      <div class="card" *ngIf="enderecoAdicional(endereco.id_cliente)">
+        <div class="card-body ">
+          <h5 class="card-title">{{ endereco.rua }},{{ endereco.numero }}</h5>
+          <button type="submit" class="btn btn-primary" (click)="selecionarEndereco(endereco.id_endereco)">Selecionar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="row  d-flex justify-content-center">
     <div class="col-md-3">
       <button routerLink='/produtoCliente' class="btn btn-primary btn-lg btn-block ">Voltar</button>

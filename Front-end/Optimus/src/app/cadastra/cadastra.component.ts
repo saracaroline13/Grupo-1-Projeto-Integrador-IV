@@ -104,7 +104,7 @@ export class CadastraComponent implements OnInit {
   validaSobrenome() {
     if (typeof this.sobrenome === 'undefined') {
       this.sobrenomeOk = false;
-      this.alertaNome = 'sobrenome inválido';
+      this.alertaSobrenome = 'sobrenome inválido';
   }
     else if (this.sobrenome.length < 3) {
       this.sobrenomeOk = false;
@@ -140,6 +140,7 @@ export class CadastraComponent implements OnInit {
     } else {
       this.cpfOk = true;
       this.alertaCpf = '';
+      this.cpfExistente()
 
       if (this.cpf.length == 11) {
 
@@ -194,7 +195,6 @@ export class CadastraComponent implements OnInit {
         }
       }
     }
-
   }
 
   validaTelefone() {
@@ -253,13 +253,16 @@ export class CadastraComponent implements OnInit {
         alert('CEP não encontrado!')
       } else {
         this.rua = resp.logradouro
+        this.usuario.rua = this.rua
         this.cidade = resp.localidade
+        this.usuario.cidade = this.cidade
         this.estadoUsuario = resp.uf
+        this.usuario.estado = this.estadoUsuario
         this.bairro = resp.bairro
+        this.usuario.bairro = this.bairro
         this.cepOk = true;
       }
     })
-
   }
 
   validaCidade() {
@@ -372,30 +375,26 @@ export class CadastraComponent implements OnInit {
   }
 
 
-  cpfExistente(cpf: any) {
+  cpfExistente() {
+    console.log("oi")
     for (let usuario of this.listaUsuario) {
       if (usuario.cpf == this.usuario.cpf) {
-        alert('Usuário já existe')
-        this.router.navigate(['/entrar'])
+        this.alertaCpf = 'cpf já existente';
         this.cpfOk = false;
-
       }
-
     }
-
   }
 
   emailExistente(email: any) {
     let cont = 0;
     for (let usuario of this.listaUsuario) {
-      if (usuario.email == email) {
+      if (usuario.emailPessoal == email) {
         cont++;
       }
     }
 
     if(cont>0){
-      alert('Usuário já existe')
-      this.router.navigate(['/entrar'])
+      this.alertaEmail = 'email já existente';
       this.emailOk = false;
     }
     else{
@@ -405,7 +404,6 @@ export class CadastraComponent implements OnInit {
 
 
   cadastrar() {
-    this.cpfExistente(this.cpf)
     this.usuario.tipo = this.tipoUsuario
     this.usuario.status = 1
 
