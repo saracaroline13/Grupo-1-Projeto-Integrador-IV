@@ -155,6 +155,7 @@ export class CadastraComponent implements OnInit {
 
         if (aux == false) {
           this.alertaCpf = 'CPF inválido';
+          this.cpfOk = false;
           return false;
         }
 
@@ -170,6 +171,7 @@ export class CadastraComponent implements OnInit {
 
         if (v1 != this.cpf[9]) {
           this.alertaCpf = 'CPF inválido';
+          this.cpfOk = false;
           return false;
         }
 
@@ -185,6 +187,7 @@ export class CadastraComponent implements OnInit {
 
         if (v2 != this.cpf[10]) {
           this.alertaCpf = 'CPF inválido';
+          this.cpfOk = false;
           return false;
         } else {
           return true;
