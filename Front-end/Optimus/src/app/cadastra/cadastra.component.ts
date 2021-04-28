@@ -383,21 +383,26 @@ export class CadastraComponent implements OnInit {
   }
 
   emailExistente(email: any) {
+    let cont = 0;
     for (let usuario of this.listaUsuario) {
       if (usuario.email == email) {
-        alert('Usuário já existe')
-        this.router.navigate(['/entrar'])
-        this.emailOk = false;
-
+        cont++;
       }
     }
 
+    if(cont>0){
+      alert('Usuário já existe')
+      this.router.navigate(['/entrar'])
+      this.emailOk = false;
+    }
+    else{
+      this.emailOk = true;
+    }
   }
 
 
   cadastrar() {
     this.cpfExistente(this.cpf)
-    this.validaEmail();
     this.usuario.tipo = this.tipoUsuario
     this.usuario.status = 1
 
@@ -409,7 +414,7 @@ export class CadastraComponent implements OnInit {
 
       this.resetValidação()
     }
-    if (this.usuario.senha != this.confirmSenha) {
+    else if (this.usuario.senha != this.confirmSenha) {
         alert('As senhas estão incorretas')
       }
       else if (this.termoAceito == false) {
