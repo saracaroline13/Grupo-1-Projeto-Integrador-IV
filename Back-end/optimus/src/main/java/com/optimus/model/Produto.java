@@ -1,5 +1,6 @@
 package com.optimus.model;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -39,6 +40,18 @@ public class Produto {
 
     @Column
     private int status;
+    
+    public List<Itens> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<Itens> itens) {
+		this.itens = itens;
+	}
+
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("produto")
+	private List<Itens> itens;
 
 
 //    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
