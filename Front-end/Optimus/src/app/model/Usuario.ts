@@ -1,3 +1,5 @@
+import { Pedido } from "./Pedido"
+
 export class Usuario{
   public id_usuario: number
   public nome: string
@@ -19,5 +21,5 @@ export class Usuario{
   public datanasc: string
   public emailPessoal: string
   public status: number
-
+  public pedidos: Pedido[]
 }
