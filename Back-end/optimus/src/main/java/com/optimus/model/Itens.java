@@ -1,6 +1,7 @@
 package com.optimus.model;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,6 +28,15 @@ public class Itens {
 	
 	@Column
 	private int quantidade;
+
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Pedido getPedido() {
 		return pedido;

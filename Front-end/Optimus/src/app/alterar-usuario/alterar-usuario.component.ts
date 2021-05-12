@@ -20,13 +20,12 @@ export class AlterarUsuarioComponent implements OnInit {
   listaCliente: Endereco
   estadoUsuario: string
 
-  confirmarSenha: String;
   idUser:number;
 
   nome: string;
   sobrenome: string;
   rg: string;
-  telefone: string;
+  telefone: any;
   nascimento: string;
   cidade: string;
   cpf: any;
@@ -34,6 +33,7 @@ export class AlterarUsuarioComponent implements OnInit {
   numero: string;
   bairro: string;
   cep: string;
+  email:string;
 
   nomeOk: boolean = false;
   sobrenomeOk: boolean = false;
@@ -60,7 +60,6 @@ export class AlterarUsuarioComponent implements OnInit {
   alertaBairro: string;
   alertaCep: string;
 
-  termoAceito: boolean = false
   tipoUsuario: string = 'Cliente'
 
   constructor(
@@ -74,6 +73,10 @@ export class AlterarUsuarioComponent implements OnInit {
 
   ngOnInit() {
     this.idUser=this.route.snapshot.params['id'];
+    this.telefoneOk = true
+    this.nomeOk = true
+    this.sobrenomeOk = true
+    this.telefoneOk = true
     this.findAllEnderecos(this.idUser)
     this.findById(this.idUser)
   }
@@ -95,16 +98,16 @@ export class AlterarUsuarioComponent implements OnInit {
   findById(id:number){
     this.usuarioService.getById(id).subscribe((resp:Usuario)=>{
       this.usuario=resp;
+
+      this.nome = this.usuario.nome
+      this.sobrenome = this.usuario.sobrenome
+      this.rg = this.usuario.rg
+      this.telefone = this.usuario.telefone
+      this.cpf = this.usuario.cpf
+      this.email =this.usuario.email
     })
   }
 
-  confirmSenha(event: any) {
-    this.confirmarSenha = event.target.value;
-  }
-
-  validaTermos(event: any) {
-    this.termoAceito = !this.termoAceito
-  }
 
   validaNumero() {
     if (this.numero.length < 1 || this.numero.length > 4) {
@@ -246,7 +249,7 @@ export class AlterarUsuarioComponent implements OnInit {
   validaSobrenome() {
     if (typeof this.sobrenome === 'undefined') {
       this.sobrenomeOk = false;
-      this.alertaNome = 'sobrenome inválido';
+      this.alertaSobrenome = 'sobrenome inválido';
   }
     else if (this.sobrenome.length < 3) {
       this.sobrenomeOk = false;
@@ -347,12 +350,6 @@ export class AlterarUsuarioComponent implements OnInit {
       +this.listaCamposInvalidos)
 
       this.resetValidação()
-    }
-    if (this.usuario.senha != this.confirmarSenha) {
-      alert('As senhas estão incorretas')
-    }
-    else if (this.termoAceito == false) {
-      alert('Para se cadastrar é necessario aceitar os termos e condições')
     }
     else {
       this.authService.cadastrar(this.usuario).subscribe((resp: Usuario) => {

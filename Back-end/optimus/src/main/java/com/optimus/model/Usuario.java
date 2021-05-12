@@ -34,7 +34,7 @@ public class Usuario {
 	private String telefone;
 	
 	@Column
-	private int rg;
+	private String rg;
 	
 	@Column
 	private String email;
@@ -131,11 +131,11 @@ public class Usuario {
 		this.telefone = telefone;
 	}
 
-	public int getRg() {
+	public String getRg() {
 		return rg;
 	}
 
-	public void setRg(int rg) {
+	public void setRg(String rg) {
 		this.rg = rg;
 	}
 

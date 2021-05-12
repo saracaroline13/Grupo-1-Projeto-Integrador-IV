@@ -27,13 +27,13 @@ export class PedidoService {
   }
 
   post(pedido: Pedido): Observable<Pedido> {
-    return this.http.post<Pedido>("http://localhost:8080/pedidos", pedido, this.token)
+    return this.http.post<Pedido>("http://localhost:8080/pedidos", pedido)
   }
   put(pedido: Pedido): Observable<Pedido> {
-    return this.http.put<Pedido>("http://localhost:8080/pedidos", pedido, this.token)
+    return this.http.put<Pedido>("http://localhost:8080/pedidos", pedido)
   }
 
   delete(id: number) {
-    return this.http.delete(`http://localhost:8080/pedidos/${id}`, this.token)
+    return this.http.delete(`http://localhost:8080/pedidos/${id}`)
   }
 }

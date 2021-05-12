@@ -4,14 +4,14 @@ export class Usuario{
   public id_usuario: number
   public nome: string
   public sobrenome: string
-  public cpf: number
-  public telefone: number
-  public rg: number
+  public cpf: string
+  public telefone: string
+  public rg: string
   public email: string
   public senha: string
   public tipo: string
   public cargo: string
-  public salario: string
+  public salario: number
   public rua: string
   public numero: string
   public bairro: string

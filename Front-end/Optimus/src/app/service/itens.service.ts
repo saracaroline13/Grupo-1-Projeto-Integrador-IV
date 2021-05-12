@@ -22,10 +22,10 @@ export class ItensService {
   }
 
   post(item: Itens): Observable<Itens> {
-    return this.http.post<Itens>("http://localhost:8080/itens", item, this.token)
+    return this.http.post<Itens>('http://localhost:8080/itens', item)
   }
 
   delete(id: number) {
-    return this.http.delete(`http://localhost:8080/itens/${id}`, this.token)
+    return this.http.delete(`http://localhost:8080/itens/${id}`)
   }
 }

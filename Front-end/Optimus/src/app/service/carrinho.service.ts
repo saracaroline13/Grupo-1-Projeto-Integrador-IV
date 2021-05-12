@@ -58,6 +58,7 @@ export class CarrinhoService {
     return quantidade
   }
 
+
   apagarItem(produto: Produto) {
     console.log(this.contadorProduto(produto))
     const index: number = this.produto.indexOf(produto)

@@ -7,5 +7,10 @@ export class Pedido{
     public date: Date
     public status: string
     public valor: number
+    public rua: string ;
+    public numero: string;
+    public bairro: string;
+    public cep: string;
+    public cidade: string;
     public itens: Itens[]
   }

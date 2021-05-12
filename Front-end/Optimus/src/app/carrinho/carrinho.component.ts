@@ -4,9 +4,13 @@ import { CarrinhoService } from 'src/app/service/carrinho.service';
 import { ProdutoService } from 'src/app/service/produto.service';
 import { environment } from 'src/environments/environment.prod';
 import { Endereco } from '../model/Endereco';
+import { Itens } from '../model/Itens';
+import { Pedido } from '../model/Pedido';
 import { Produto } from '../model/Produto';
 import { Usuario } from '../model/Usuario';
 import { EnderecoService } from '../service/endereco.service';
+import { ItensService } from '../service/itens.service';
+import { PedidoService } from '../service/pedido.service';
 import { UsuarioService } from '../service/usuario.service';
 
 
@@ -22,6 +26,7 @@ export class CarrinhoComponent implements OnInit {
   listaEnderecos: Endereco[]
 
   rua: string;
+  cidade: string
   numero: string;
   bairro: string;
   cep: string;
@@ -29,21 +34,26 @@ export class CarrinhoComponent implements OnInit {
   nomeDestinatario: string;
   qnt: number;
 
-  numeroCartao: string = "1234 5678 9101 1121"
-  nomeCartao: string = "SENHOR GREEN STYLE"
-  cvv: string = "011"
-  validade: string = "03/25"
-  cpf: string = "401.593.682-46"
+  numeroCartao: string
+  nomeCartao: string
+  cvv: string
+  validade: string
+  cpf: string
 
   idUser: number;
 
   produto = this.carrinhoService.getProdutos()
   total = this.carrinhoService.calculaTotal()
 
+  pedido: Pedido = new Pedido();
+  item: Itens = new Itens();
+
   constructor(
     private carrinhoService: CarrinhoService,
     private enderecoService: EnderecoService,
     private usuarioService: UsuarioService,
+    private pedidoService: PedidoService,
+    private itensService: ItensService,
     private router: Router
   ) { }
 
@@ -57,7 +67,7 @@ export class CarrinhoComponent implements OnInit {
   addToCarrinho(produto: Produto) {
     this.carrinhoService.addToCarrinho(produto)
     this.produto = this.carrinhoService.getProdutos()
-  
+
   }
 
   apagarItem(produto: Produto) {
@@ -79,14 +89,14 @@ export class CarrinhoComponent implements OnInit {
       this.telefone = this.usuario.telefone
       this.nomeDestinatario = this.usuario.nome
       this.cep = this.usuario.cep
-
+      this.cidade = this.usuario.cidade
     })
   }
 
   logado(){
     let ok: boolean = false
-    if(this.idUser == 0 ){
-      ok = false
+    if(this.idUser != 0 ){
+      ok = true
     }
     return ok
   }
@@ -114,6 +124,7 @@ export class CarrinhoComponent implements OnInit {
       this.cep = this.endereco.cep
       this.nomeDestinatario = this.usuario.nome
       this.telefone = this.usuario.telefone
+      this.cidade = this.usuario.cidade
     })
   }
 
@@ -121,6 +132,7 @@ export class CarrinhoComponent implements OnInit {
     this.rua = this.usuario.rua
     this.numero = this.usuario.numero
     this.bairro = this.usuario.bairro
+    this.cidade = this.usuario.cidade
   }
 
   finalizarCompra() {
@@ -128,55 +140,57 @@ export class CarrinhoComponent implements OnInit {
     if (environment.token == "")
     {
       alert("Logue para finalizar a compra")
+      this.router.navigate(["/entrar"])
     }
-    else {
-      if (this.produto.length <= 0) {
+    else if (this.produto.length <= 0){
         alert("Você não possui itens no carrinho!")
       }
-      else {
-        if (this.rua == null && this.numero == null && this.bairro == null && this.cep == null && this.telefone == null && this.nomeDestinatario == null) {
+    else if (this.numeroCartao == null || this.nomeCartao == null || this.cvv == null || this.validade == null || this.cpf == null) {
 
-          alert("Por favor, preencha corretamente os dados de entrega")
-        }
-        else {
-
-          if (this.numeroCartao == null && this.nomeCartao == null && this.cvv == null && this.validade == null && this.cpf == null) {
             alert("Por favor, preencha corretamente os dados do cartão")
-          }
-          // else {
-          //   this.produto.forEach(element => {
-          //     element.disponivel = false
-          //     this.produtoService.putProduto(element).subscribe((resp: Produto) => { element = resp })
-          //   });
-          // }
-        }
 
+      }
+      else{
         alert("Compra finalizada com sucesso! Você receberá uma confirmação por email assim que o pagamento for aprovado")
-        this.carrinhoService.limparCarrinho()
-        this.router.navigate(['/home'])
+        this.pedido.usuario = this.usuario
+        this.pedido.status = "Pedido Realizado com sucesso"
+        this.pedido.valor = this.calculaTotal()
+        this.pedido.rua = this.rua
+        this.pedido.numero = this.numero
+        this.pedido.bairro = this.bairro
+        this.pedido.cidade = this.cidade
+        this.pedido.cep = this.cep
+
+        this.pedidoService.post(this.pedido).subscribe((resp:Pedido)=>{
+          this.pedido=resp
+          for(let i =0; i<this.produto.length; i++){
+            this.item.pedido=this.pedido
+            this.item.produto = this.produto[i]
+            this.item.quantidade = this.contadorProduto(this.produto[i])
+
+            this.itensService.post(this.item).subscribe((resp:Itens)=>{
+              this.item=resp
+            })
+            console.log(this.item)
+            this.item = new Itens()
+
+          }
+          this.limparCarrinho()
+        })
+
+        console.log(this.pedido)
+
+        this.router.navigate(['/produtoCliente'])
+        this.item = new Itens()
+        this.pedido = new Pedido()
+
+
       }
     }
-  }
 
-  finalizarCompraBoleto()
-  {
-    if (environment.token == "")
-    {
-      alert("Logue para finalizar a compra")
+    limparCarrinho(){
+      this.carrinhoService.limparCarrinho()
     }
-    else {
-      if (this.produto.length <= 0) {
-        alert("Você não possui itens no carrinho!")
-      }
-      else {
-        alert("O boleto foi gerado e enviado para o email cadastrado")
-        this.carrinhoService.limparCarrinho()
-        this.router.navigate(['/home'])
-      }
-    }
-  }
-
-
 
   calculaTotal() {
     return this.carrinhoService.calculaTotal()
