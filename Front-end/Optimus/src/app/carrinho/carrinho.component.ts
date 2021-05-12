@@ -30,9 +30,10 @@ export class CarrinhoComponent implements OnInit {
   numero: string;
   bairro: string;
   cep: string;
-  telefone: number;
+  telefone: string;
   nomeDestinatario: string;
   qnt: number;
+  valorFrete: number = 0.0;
 
   numeroCartao: string
   nomeCartao: string
@@ -62,7 +63,10 @@ export class CarrinhoComponent implements OnInit {
     this.idUser = environment.id
     this.UsuarioPeloId()
     this.findAllEnderecos()
+    this.valorFrete = 15.99
   }
+
+  
 
   addToCarrinho(produto: Produto) {
     this.carrinhoService.addToCarrinho(produto)
@@ -151,7 +155,7 @@ export class CarrinhoComponent implements OnInit {
 
       }
       else{
-        alert("Compra finalizada com sucesso! Você receberá uma confirmação por email assim que o pagamento for aprovado")
+        alert("Compra finalizada com sucesso! Para acompanhar vá até a tela de gestão de perfil!")
         this.pedido.usuario = this.usuario
         this.pedido.status = "Pedido Realizado com sucesso"
         this.pedido.valor = this.calculaTotal()
@@ -194,6 +198,53 @@ export class CarrinhoComponent implements OnInit {
 
   calculaTotal() {
     return this.carrinhoService.calculaTotal()
+  }
+
+  finalizarCompraBoleto()
+  {
+    if (environment.token == "") 
+    {
+      alert("Logue para finalizar a compra")
+    }
+    else {
+      if (this.produto.length <= 0) {
+        alert("Você não possui itens no carrinho!")
+      }
+      else {
+        alert("Compra finalizada com sucesso! Para acompanhar vá até a tela de gestão de perfil! o boleto será mandado para o email cadastrado!")
+        this.pedido.usuario = this.usuario
+        this.pedido.status = "Pedido Realizado com sucesso"
+        this.pedido.valor = this.calculaTotal()
+        this.pedido.rua = this.rua
+        this.pedido.numero = this.numero
+        this.pedido.bairro = this.bairro
+        this.pedido.cidade = this.cidade
+        this.pedido.cep = this.cep
+
+        this.pedidoService.post(this.pedido).subscribe((resp:Pedido)=>{
+          this.pedido=resp
+          for(let i =0; i<this.produto.length; i++){
+            this.item.pedido=this.pedido
+            this.item.produto = this.produto[i]
+            this.item.quantidade = this.contadorProduto(this.produto[i])
+
+            this.itensService.post(this.item).subscribe((resp:Itens)=>{
+              this.item=resp
+            })
+            console.log(this.item)
+            this.item = new Itens()
+
+          }
+          this.limparCarrinho()
+        })
+
+        console.log(this.pedido)
+
+        this.router.navigate(['/produtoCliente'])
+        this.item = new Itens()
+        this.pedido = new Pedido()
+      }
+    }
   }
 
 }

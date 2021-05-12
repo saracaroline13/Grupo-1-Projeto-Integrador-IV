@@ -23,6 +23,7 @@ import { HomeAdmComponent } from './home-adm/home-adm.component';
 import { GestaoUsuarioComponent } from './gestao-usuario/gestao-usuario.component';
 import { EnderecoAdicionalComponent } from './endereco-adicional/endereco-adicional.component';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CarrinhoComponent } from './carrinho/carrinho.component';
     HomeAdmComponent,
     GestaoUsuarioComponent,
     EnderecoAdicionalComponent,
-    CarrinhoComponent
+    CarrinhoComponent,
+    PedidosComponent
   ],
   imports: [
     BrowserModule,

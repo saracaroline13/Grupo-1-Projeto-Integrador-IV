@@ -428,6 +428,5 @@ export class CadastraComponent implements OnInit {
           alert('Usuário cadastrado com sucesso')
         })
       }
-
   }
 }

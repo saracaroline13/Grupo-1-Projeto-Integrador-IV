@@ -10,7 +10,10 @@ export class CarrinhoService {
 
   produto: Produto[] = []
   listaPrint: Produto[] = []
-  total: number = 0
+  total: number = 15.99
+  valorFrete: number = 0.0;
+  contador: number = 0;
+  cont: number = 0
 
   private messageSource = new BehaviorSubject<number>(0);
   currentMessage = this.messageSource.asObservable();
@@ -58,7 +61,6 @@ export class CarrinhoService {
     return quantidade
   }
 
-
   apagarItem(produto: Produto) {
     console.log(this.contadorProduto(produto))
     const index: number = this.produto.indexOf(produto)
@@ -92,8 +94,9 @@ export class CarrinhoService {
   }
 
   limparCarrinho() {
+    this.listaPrint = []
     this.produto = []
-    this.total = 0
+    this.total = 15.99
     this.messageSource.next(this.produto.length)
     return this.produto
   }

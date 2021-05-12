@@ -4,7 +4,7 @@ import { Itens } from "./Itens"
 export class Pedido{
     public id: number
     public usuario: Usuario
-    public date: Date
+    public data: Date
     public status: string
     public valor: number
     public rua: string ;

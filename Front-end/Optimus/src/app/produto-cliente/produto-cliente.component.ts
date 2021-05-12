@@ -40,6 +40,10 @@ export class ProdutoClienteComponent implements OnInit {
     alert("Item adicionado com sucesso")
   }
 
+  compraProduto(produto: Produto) {
+    this.carrinhoService.addToCarrinho(produto)
+  }
+
 
   findAll() {
     this.produtoService.findAll().subscribe((resp: Produto[]) => {

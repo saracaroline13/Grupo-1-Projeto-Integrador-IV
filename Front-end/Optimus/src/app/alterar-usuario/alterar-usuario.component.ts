@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { Endereco } from '../model/Endereco';
+import { Pedido } from '../model/Pedido';
 import { Usuario } from '../model/Usuario';
 import { AuthService } from '../service/auth.service';
 import { EnderecoService } from '../service/endereco.service';
+import { ItensService } from '../service/itens.service';
+import { PedidoService } from '../service/pedido.service';
 import { UsuarioService } from '../service/usuario.service';
 
 @Component({
@@ -19,13 +22,14 @@ export class AlterarUsuarioComponent implements OnInit {
   listaEnderecos: Endereco[]
   listaCliente: Endereco
   estadoUsuario: string
+  confirmSenha: string;
 
   idUser:number;
 
   nome: string;
   sobrenome: string;
   rg: string;
-  telefone: any;
+  telefone: string;
   nascimento: string;
   cidade: string;
   cpf: any;
@@ -62,23 +66,24 @@ export class AlterarUsuarioComponent implements OnInit {
 
   tipoUsuario: string = 'Cliente'
 
+
   constructor(
     private usuarioService: UsuarioService,
     private route:ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private enderecoService: EnderecoService
+    private enderecoService: EnderecoService,
   ) { }
 
 
   ngOnInit() {
     this.idUser=this.route.snapshot.params['id'];
+    this.findById(this.idUser)
     this.telefoneOk = true
     this.nomeOk = true
     this.sobrenomeOk = true
     this.telefoneOk = true
     this.findAllEnderecos(this.idUser)
-    this.findById(this.idUser)
   }
 
   findAllEnderecos(id:number) {
@@ -102,7 +107,6 @@ export class AlterarUsuarioComponent implements OnInit {
       this.nome = this.usuario.nome
       this.sobrenome = this.usuario.sobrenome
       this.rg = this.usuario.rg
-      this.telefone = this.usuario.telefone
       this.cpf = this.usuario.cpf
       this.email =this.usuario.email
     })
@@ -157,69 +161,24 @@ export class AlterarUsuarioComponent implements OnInit {
     })
   }
 
-  validaCpf() {
-    if(typeof this.cpf === 'undefined'){
-      this.cpfOk = false;
-      this.alertaCpf = 'cpf inválido';
-    }
-    else if (this.cpf.length < 11 || this.cpf.length > 11) {
-      this.cpfOk = false;
-      this.alertaCpf = 'CPF inválido';
+  validaCidade() {
+    if (this.cidade.length < 3) {
+      this.cidadeOk = false;
+      this.alertaCidade = 'cidade inválido';
     } else {
-      this.cpfOk = true;
-      this.alertaCpf = '';
-
-      if (this.cpf.length == 11) {
-
-        var v1 = 0;
-        var v2 = 0;
-        var aux = false;
-
-        for (let i = 1; this.cpf.length > i; i++) {
-          if (this.cpf[i - 1] != this.cpf[i]) {
-            aux = true;
-          }
-        }
-
-        if (aux == false) {
-          this.alertaCpf = 'CPF inválido';
-          return false;
-        }
-
-        for (let i = 0, p = 10; (this.cpf.length - 2) > i; i++, p--) {
-          v1 = v1 + this.cpf[i] * p;
-        }
-
-        v1 = ((v1 * 10) % 11);
-
-        if (v1 == 10) {
-          v1 = 0;
-        }
-
-        if (v1 != this.cpf[9]) {
-          this.alertaCpf = 'CPF inválido';
-          return false;
-        }
-
-        for (var i = 0, p = 11; (this.cpf.length - 1) > i; i++, p--) {
-          v2 += this.cpf[i] * p;
-        }
-
-        v2 = ((v2 * 10) % 11);
-
-        if (v2 == 10) {
-          v2 = 0;
-        }
-
-        if (v2 != this.cpf[10]) {
-          this.alertaCpf = 'CPF inválido';
-          return false;
-        } else {
-          return true;
-        }
-      }
+      this.cidadeOk = true;
+      this.alertaCidade = '';
     }
+  }
 
+  validaRua() {
+    if (this.rua.length < 3) {
+      this.ruaOk = false;
+      this.alertaRua = 'rua inválido';
+    } else {
+      this.ruaOk = true;
+      this.alertaRua = '';
+    }
   }
 
   validaNome() {
@@ -233,16 +192,6 @@ export class AlterarUsuarioComponent implements OnInit {
     } else {
       this.nomeOk = true;
       this.alertaNome = '';
-    }
-  }
-
-  validaNascimento() {
-    if (this.nascimento.length < 8 || this.nascimento.length > 8) {
-      this.nascimentoOk = false;
-      this.alertaNascimento = 'nascimento inválido';
-    } else {
-      this.nascimentoOk = true;
-      this.alertaNascimento = '';
     }
   }
 
@@ -274,57 +223,37 @@ export class AlterarUsuarioComponent implements OnInit {
     }
   }
 
-  validaCidade() {
-    if (this.cidade.length < 3) {
-      this.cidadeOk = false;
-      this.alertaCidade = 'cidade inválido';
-    } else {
-      this.cidadeOk = true;
-      this.alertaCidade = '';
-    }
-  }
-
-  validaTelefone() {
-    if (this.telefone.length < 11 || this.telefone.length > 11) {
-      this.telefoneOk = false;
-      this.alertaTelefone = 'telefone inválido';
-    } else {
-      this.telefoneOk = true;
-      this.alertaTelefone = '';
-    }
-  }
-
-  validaRua() {
-    if (this.rua.length < 3) {
-      this.ruaOk = false;
-      this.alertaRua = 'rua inválido';
-    } else {
-      this.ruaOk = true;
-      this.alertaRua = '';
-    }
-  }
+  // validaTelefone() {
+  //   if (this.telefone.length < 11 || this.telefone.length > 11) {
+  //     this.telefoneOk = false;
+  //     this.alertaTelefone = 'telefone inválido';
+  //   } else {
+  //     this.telefoneOk = true;
+  //     this.alertaTelefone = '';
+  //   }
+  // }
 
   validaVariaveisOk(){
 
     this.validaNome()
     this.validaRg()
-    this.validaTelefone()
+    // this.validaTelefone()
     this.validaSobrenome()
 
 
-  if(this.nomeOk==false){
-      this.listaCamposInvalidos.push('Nome')
-  }
-  if(this.sobrenomeOk==false){
-      this.listaCamposInvalidos.push('Sobrenome')
-  }
-  if(this.rgOk==false){
-    this.listaCamposInvalidos.push('RG')
-  }
+    if(this.nomeOk==false){
+        this.listaCamposInvalidos.push('Nome')
+    }
+    if(this.sobrenomeOk==false){
+        this.listaCamposInvalidos.push('Sobrenome')
+    }
+    if(this.rgOk==false){
+      this.listaCamposInvalidos.push('RG')
+    }
 
-  if(this.telefoneOk==false){
-    this.listaCamposInvalidos.push('Telefone')
-  }
+    if(this.telefoneOk==false){
+      this.listaCamposInvalidos.push('Telefone')
+    }
   }
 
   selectEstado(event: any) {
@@ -339,9 +268,17 @@ export class AlterarUsuarioComponent implements OnInit {
     this.listaCamposInvalidos=[];
   }
 
+  confirmarSenha(event: any) {
+    this.confirmSenha = event.target.value;
+  }
+
   atualizar() {
     this.usuario.tipo = this.tipoUsuario
     this.usuario.status = 1
+    this.usuario.cargo = ""
+    this.usuario.email = ""
+
+    console.log(this.usuario)
 
     this.validaVariaveisOk()
 
@@ -351,18 +288,18 @@ export class AlterarUsuarioComponent implements OnInit {
 
       this.resetValidação()
     }
+    else if (this.usuario.senha != this.confirmSenha) {
+      alert('As senhas estão incorretas')
+    }
     else {
       this.authService.cadastrar(this.usuario).subscribe((resp: Usuario) => {
         this.usuario = resp
-        environment.token = ''
-        environment.nome = ''
-        environment.id = 0
-        environment.email = ''
-        environment.tipo = ''
+
         this.router.navigate(['/entrar'])
         alert('Usuário atualizado com sucesso com sucesso')
       })
     }
+    console.log(this.usuario.senha)
   }
 
   deletarEndereco(id:number){

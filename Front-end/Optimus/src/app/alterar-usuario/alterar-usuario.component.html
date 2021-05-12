@@ -71,11 +71,45 @@
         </div>
       </div>
 
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="senha">Senha</label>
+
+          <input type="password" class="form-control" id="senha" placeholder="Digite uma senha"
+            (input)="confirmarSenha($event)">
+
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="senhaConfirm">Confirmar Senha</label>
+
+          <input [(ngModel)]='usuario.senha' name="senha" type="password" class="form-control" id="senhaConfirm"
+            placeholder="Confirme a senha">
+
+        </div>
+      </div>
+
       <div class="mt-2 ml-2">
         <button type="submit" class="btn btn-success bg-optimus mr-4" (click)="atualizar()">Atualizar</button>
         <button type="submit" class="btn btn-secondary" routerLink="/produtoCliente">Cancelar</button>
       </div>
     </form>
+    <hr>
+      <h2 class="bg-secondary w-100 align-item-center">Pedidos</h2>
+      <div class="row col-md-12">
+        <div class="mr-3" *ngFor='let pedido of usuario.pedidos'>
+          <a [routerLink]="['/pedidos', pedido.id]" style="text-decoration: none; color: black;">
+          <div class="card">
+            <div class="card-body ">
+              <h5 class="card-title">Id: {{ pedido.id }}</h5>
+              <p class="text-muted m-0">Status: {{ pedido.status }}</p>
+              <p class="text-muted">Status: {{ pedido.data | date: 'dd/MM/yyyy'}}</p>
+              <p class="m-0">Valor: {{ pedido.valor  | currency:'BRL'}} </p>
+            </div>
+          </div>
+        </a>
+        </div>
+      </div>
   </div>
 
   <div class="form-container col-md-5 mt-4 mb-4 p-4">
@@ -149,11 +183,15 @@
         </div>
 
       </div>
-
     </form>
+    
   </div>
 
 
+  <!-- Pedidos -->
+  
+
+</div>
 <!-- Modal -->
 <div class="modal fade" id="termosCondicoes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
@@ -178,4 +216,4 @@
 </div>
 <!-- /Modal -->
 
-</div>
+
