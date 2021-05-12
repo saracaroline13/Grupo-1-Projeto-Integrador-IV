@@ -34,7 +34,6 @@ export class CompraComponent implements OnInit {
       this.router.navigate(['/entrar'])
     }
     this.idUser = environment.id
-    console.log(this.idUser)
     this.findAllEnderecos()
     this.UsuarioPeloId()
   }

@@ -21,7 +21,9 @@
             <div class="row mx-1 d-flex align-items-center justify-content-between">
               <p class="card-text m-0"> {{ item.valor | currency: 'BRL'}} </p>
               <div class="compraProduto">
-                <i class="fa fa-cart-plus fa-lg mr-2" aria-hidden="true"></i>
+                
+                <i class="fa fa-cart-plus fa-lg mr-2" aria-hidden="true" (click)="addToCarrinho(item)"></i>
+                
                 <button routerLink='/compra' type="button" class="btn btn-warning btn-sm" width="50%">Comprar</button>
               </div>
 

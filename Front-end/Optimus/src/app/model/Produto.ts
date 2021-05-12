@@ -5,7 +5,7 @@ export class Produto {
     public autor: string;
     public estrelas: number;    
     public editora: string;
-    public valor: string;
+    public valor: number;
     public descricao: string;
     public imgPrincipal: string;
     public status: number;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { Imagem } from '../model/Imagem';
 import { Produto } from '../model/Produto';
+import { CarrinhoService } from '../service/carrinho.service';
 import { ImagemService } from '../service/imagem.service';
 import { ProdutoService } from '../service/produto.service';
 
@@ -19,7 +20,8 @@ export class ProdutoClienteComponent implements OnInit {
 
   constructor(
     private produtoService: ProdutoService,
-    private imagemService: ImagemService
+    private imagemService: ImagemService,
+    private carrinhoService: CarrinhoService
   ) { }
 
   ngOnInit() {
@@ -33,7 +35,9 @@ export class ProdutoClienteComponent implements OnInit {
     })
   }
 
-
+  addToCarrinho(produto: Produto) {
+    this.carrinhoService.addToCarrinho(produto)
+  }
 
 
   findAll() {

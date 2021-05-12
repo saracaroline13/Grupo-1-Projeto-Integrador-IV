@@ -22,6 +22,7 @@ import { AlterarUsuarioComponent } from './alterar-usuario/alterar-usuario.compo
 import { HomeAdmComponent } from './home-adm/home-adm.component';
 import { GestaoUsuarioComponent } from './gestao-usuario/gestao-usuario.component';
 import { EnderecoAdicionalComponent } from './endereco-adicional/endereco-adicional.component';
+import { CarrinhoComponent } from './carrinho/carrinho.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { EnderecoAdicionalComponent } from './endereco-adicional/endereco-adicio
     AlterarUsuarioComponent,
     HomeAdmComponent,
     GestaoUsuarioComponent,
-    EnderecoAdicionalComponent
+    EnderecoAdicionalComponent,
+    CarrinhoComponent
   ],
   imports: [
     BrowserModule,
