@@ -57,17 +57,17 @@ export class CarrinhoComponent implements OnInit {
   addToCarrinho(produto: Produto) {
     this.carrinhoService.addToCarrinho(produto)
     this.produto = this.carrinhoService.getProdutos()
-    this.contadorProduto(produto)
+  
   }
 
   apagarItem(produto: Produto) {
     this.carrinhoService.apagarItem(produto)
     this.produto = this.carrinhoService.getProdutos()
-    this.contadorProduto(produto)
+
   }
 
   contadorProduto(produto: Produto) {
-    this.qnt = this.carrinhoService.contadorProduto(produto)
+    return this.carrinhoService.contadorProduto(produto)
   }
 
   UsuarioPeloId(){
@@ -125,7 +125,7 @@ export class CarrinhoComponent implements OnInit {
 
   finalizarCompra() {
 
-    if (environment.token == "") 
+    if (environment.token == "")
     {
       alert("Logue para finalizar a compra")
     }
@@ -160,7 +160,7 @@ export class CarrinhoComponent implements OnInit {
 
   finalizarCompraBoleto()
   {
-    if (environment.token == "") 
+    if (environment.token == "")
     {
       alert("Logue para finalizar a compra")
     }

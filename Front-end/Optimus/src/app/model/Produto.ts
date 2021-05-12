@@ -3,7 +3,7 @@ export class Produto {
     public id: number;
     public nome: string;
     public autor: string;
-    public estrelas: number;    
+    public estrelas: number;
     public editora: string;
     public valor: number;
     public descricao: string;
