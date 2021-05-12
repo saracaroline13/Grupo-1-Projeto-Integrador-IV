@@ -28,7 +28,7 @@ export class CarrinhoService {
       }
     })
     this.produto.push(produto)
-    
+
 
     for(let i=0; i < this.listaPrint.length; i++){
       if(this.listaPrint[i].id == produto.id){
@@ -40,9 +40,9 @@ export class CarrinhoService {
       this.listaPrint.push(produto)
     }
 
-    
+
     this.total = this.total + produto.valor
-    alert("Item adicionado com sucesso")
+
     this.messageSource.next(this.produto.length)
     this.getProdutos()
     this.contadorProduto(produto)
@@ -52,7 +52,7 @@ export class CarrinhoService {
     let quantidade =0
     for(let i=0; i < this.produto.length; i++){
       if(produto.id == this.produto[i].id){
-        quantidade++        
+        quantidade++
       }
     }
     return quantidade
@@ -65,10 +65,10 @@ export class CarrinhoService {
       this.produto.splice(index, 1)
     }
     this.total = this.total - produto.valor
-    alert("Item removido do carrinho")
+
     this.messageSource.next(this.produto.length)
 
-  
+
     let quantidade = this.contadorProduto(produto)
     console.log(quantidade)
 
@@ -78,9 +78,10 @@ export class CarrinhoService {
         this.listaPrint.splice(indexPrint, 1)
       }
       this.messageSource.next(this.listaPrint.length)
+      alert("Item removido do carrinho")
       console.log(this.listaPrint)
       console.log(this.produto)
-    }    
+    }
 
     this.contadorProduto(produto)
   }

@@ -16,5 +16,15 @@
 
 .mx-10{
   margin-left: 25%;
-  
+
+}
+
+.carrinho{
+  transition: all 0.2s;
+}
+
+.carrinho:hover{
+  transition: all 0.2s;
+  transform: scale(1.1);
+  color: rgb(21, 189, 201);
 }

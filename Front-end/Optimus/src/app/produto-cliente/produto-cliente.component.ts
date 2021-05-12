@@ -37,6 +37,7 @@ export class ProdutoClienteComponent implements OnInit {
 
   addToCarrinho(produto: Produto) {
     this.carrinhoService.addToCarrinho(produto)
+    alert("Item adicionado com sucesso")
   }
 
 

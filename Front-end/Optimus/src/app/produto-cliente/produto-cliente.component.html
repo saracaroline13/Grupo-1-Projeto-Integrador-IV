@@ -1,15 +1,15 @@
-<div class="container col-md-12 d-flex justify-content-center imagemDisplay">
+<div class="container col-md-12 d-flex justify-content-center  imagemDisplay mt-4">
 
-    <div class=" mb-4" *ngFor='let item of listaProduto'>
+    <div class="d-flex justify-content-center mb-4" *ngFor='let item of listaProduto'>
 
 
-      <div class="card mr-5 cardProduto" style="width: 18rem;" >
+      <div class="card mr-5 cardProduto " style="width: 18rem;" >
 
-        <div class="produtoCard">
+        <div class="produtoCard d-flex flex-column justify-content-between">
             <img class="card-img-top ml-4" src="{{ item.imgPrincipal }}" alt="Imagem de capa do card"  data-toggle="modal"
             data-target="#ModalProduto" (click)='findById(item.id)'>
           <div class="card-body">
-            <h5 class="card-title mb-0 ml-3" data-toggle="modal" data-target="#ModalProduto"
+            <h5 class="card-title mb-0 ml-3 text-center" data-toggle="modal" data-target="#ModalProduto"
             (click)='findById(item.id)'> {{ item.nome }} </h5>
             <div class="row d-flex justify-content-between mx-1">
               <p>{{ item.estrelas }} <i class="fa fa-star" aria-hidden="true"></i></p>
@@ -21,9 +21,9 @@
             <div class="row mx-1 d-flex align-items-center justify-content-between">
               <p class="card-text m-0"> {{ item.valor | currency: 'BRL'}} </p>
               <div class="compraProduto">
-                
-                <i class="fa fa-cart-plus fa-lg mr-2" aria-hidden="true" (click)="addToCarrinho(item)"></i>
-                
+
+                <i class="fa fa-cart-plus fa-lg mr-2 carrinho" aria-hidden="true" (click)="addToCarrinho(item)"></i>
+
                 <button routerLink='/compra' type="button" class="btn btn-warning btn-sm" width="50%">Comprar</button>
               </div>
 
@@ -85,7 +85,7 @@
                 </div>
 
               </div>
-              
+
               <p>{{ produtoModal.estrelas }} <i class="fa fa-star" aria-hidden="true"></i></p>
               <p class="text-muted m-0 ft-14">{{ produtoModal.autor }}</p>
               <p class="text-muted ft-14">{{ produtoModal.editora }}</p>
