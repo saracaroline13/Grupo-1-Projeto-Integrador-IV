@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { OrderModule } from 'ngx-order-pipe';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -52,7 +53,8 @@ import { PedidosComponent } from './pedidos/pedidos.component';
     FontAwesomeModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    OrderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

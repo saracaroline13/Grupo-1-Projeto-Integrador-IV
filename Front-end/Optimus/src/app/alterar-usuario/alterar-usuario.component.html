@@ -59,7 +59,7 @@
           <label for="nascimento">Nascimento</label>
 
           <input [(ngModel)]='nascimento' [(ngModel)]='usuario.datanasc' name="nascimento" type="text"
-            class="form-control" id="nascimento" placeholder="dd/mm/aaaa" (keyup)="validaNascimento()">
+            class="form-control" id="nascimento" placeholder="dd/mm/aaaa">
           <div class="text-danger">{{ alertaNascimento }}</div>
 
         </div>
@@ -97,7 +97,7 @@
     <hr>
       <h2 class="bg-secondary w-100 align-item-center">Pedidos</h2>
       <div class="row col-md-12">
-        <div class="mr-3" *ngFor='let pedido of usuario.pedidos'>
+        <div class="mr-3" *ngFor='let pedido of usuario.pedidos  | orderBy : key : reverse'>
           <a [routerLink]="['/pedidos', pedido.id]" style="text-decoration: none; color: black;">
           <div class="card">
             <div class="card-body ">

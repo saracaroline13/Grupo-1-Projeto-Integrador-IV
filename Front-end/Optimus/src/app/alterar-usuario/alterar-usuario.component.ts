@@ -17,6 +17,9 @@ import { UsuarioService } from '../service/usuario.service';
 })
 export class AlterarUsuarioComponent implements OnInit {
 
+  key = 'data'
+  reverse = true
+
   usuario: Usuario = new Usuario();
   endereco: Endereco = new Endereco();
   listaEnderecos: Endereco[]
@@ -223,21 +226,21 @@ export class AlterarUsuarioComponent implements OnInit {
     }
   }
 
-  // validaTelefone() {
-  //   if (this.telefone.length < 11 || this.telefone.length > 11) {
-  //     this.telefoneOk = false;
-  //     this.alertaTelefone = 'telefone inválido';
-  //   } else {
-  //     this.telefoneOk = true;
-  //     this.alertaTelefone = '';
-  //   }
-  // }
+  validaTelefone() {
+    if (this.telefone.length < 11 || this.telefone.length > 11) {
+      this.telefoneOk = false;
+      this.alertaTelefone = 'telefone inválido';
+    } else {
+      this.telefoneOk = true;
+      this.alertaTelefone = '';
+    }
+  }
 
   validaVariaveisOk(){
 
     this.validaNome()
     this.validaRg()
-    // this.validaTelefone()
+    this.validaTelefone()
     this.validaSobrenome()
 
 

@@ -98,7 +98,7 @@
             <p class="ft-14">{{ produtoModal.valor | currency: 'BRL'}}</p>
             <div class="btnModal">
               <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Fechar</button>
-              <button routerLink='/compra' type="button" class="btn btn-warning" data-dismiss="modal">Comprar</button>
+              <button routerLink='/carrinho' type="button" class="btn btn-warning" data-dismiss="modal" (click)="compraProduto(produtoModal)">Comprar</button>
             </div>
           </div>
         </div>

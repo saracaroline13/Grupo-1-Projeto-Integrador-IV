@@ -64,9 +64,7 @@ export class CarrinhoComponent implements OnInit {
     this.UsuarioPeloId()
     this.findAllEnderecos()
     this.valorFrete = 15.99
-  }
-
-  
+  } 
 
   addToCarrinho(produto: Produto) {
     this.carrinhoService.addToCarrinho(produto)
