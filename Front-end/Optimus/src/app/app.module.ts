@@ -25,6 +25,7 @@ import { GestaoUsuarioComponent } from './gestao-usuario/gestao-usuario.componen
 import { EnderecoAdicionalComponent } from './endereco-adicional/endereco-adicional.component';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
+import { PedidosAdmComponent } from './pedidos-adm/pedidos-adm.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { PedidosComponent } from './pedidos/pedidos.component';
     GestaoUsuarioComponent,
     EnderecoAdicionalComponent,
     CarrinhoComponent,
-    PedidosComponent
+    PedidosComponent,
+    PedidosAdmComponent
   ],
   imports: [
     BrowserModule,

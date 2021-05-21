@@ -20,6 +20,7 @@ import { environment } from 'src/environments/environment.prod';
 import { EnderecoAdicionalComponent } from './endereco-adicional/endereco-adicional.component';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
+import { PedidosAdmComponent } from './pedidos-adm/pedidos-adm.component';
 
 const routes: Routes = [
 
@@ -39,7 +40,8 @@ const routes: Routes = [
   {path:'gestao-usuario', component: GestaoUsuarioComponent},
   {path:'endereco-adicional/:id', component: EnderecoAdicionalComponent},
   {path:'carrinho', component: CarrinhoComponent},
-  {path:'pedidos/:id', component: PedidosComponent }
+  {path:'pedidos/:id', component: PedidosComponent },
+  {path:'pedidos-adm', component: PedidosAdmComponent }
 ];
 
 @NgModule({

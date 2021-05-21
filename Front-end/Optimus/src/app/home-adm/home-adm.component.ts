@@ -14,13 +14,13 @@ export class HomeAdmComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(environment.tipo == "Cliente") {
-      this.router.navigate(['/produtoCliente'])
-    }
+    // if(environment.tipo == "Cliente") {
+    //   this.router.navigate(['/produtoCliente'])
+    // }
 
-    if(environment.tipo == "") {
-      this.router.navigate(['/entrar-adm'])
-    }
+    // if(environment.tipo == "") {
+    //   this.router.navigate(['/entrar-adm'])
+    // }
   }
 
 }
