@@ -64,8 +64,18 @@ aria-hidden="true">
         <div class="form-row">
             <div class="form-group col-md-6">
     
-              <input [(ngModel)]='status' [(ngModel)]="pedido.status" name="status" type="text" class="form-control" id="status">
+              <input [(ngModel)]='status' [(ngModel)]="pedido.status" name="status" type="text" class="form-control" id="status" readonly>
               
+              <label for="inputStatus">Status</label>
+              <select name="status" id="status" class="form-control" (change)="mudaStatus($event)">
+                  <option value="nada">Selecione o status</option>
+                  <option value="aguardando pagamento">Aguardando pagamento</option>
+                  <option value="pagamento rejeitado">Pagamento rejeitado</option>
+                  <option value="pagamento com sucesso">Pagamento com sucesso</option>
+                  <option value="aguardando retirada">Aguardando retirada</option>
+                  <option value="em transito">Em trânsito</option>
+                  <option value="entregue">Entregue</option>
+              </select>
     
             </div>
         </div>

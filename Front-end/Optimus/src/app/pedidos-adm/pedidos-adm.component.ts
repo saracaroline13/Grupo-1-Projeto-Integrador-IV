@@ -56,5 +56,10 @@ export class PedidosAdmComponent implements OnInit {
   contadorProduto(produto: Produto) {
     return this.carrinhoService.contadorProduto(produto)
   }
+  
+  mudaStatus(event:any){
+    this.status=event.target.value
+  }
+
 
 }
