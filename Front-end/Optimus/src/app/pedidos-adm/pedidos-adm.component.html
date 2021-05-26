@@ -9,7 +9,7 @@
             <div class="card-body ">
               <h5 class="card-title">Id: {{ pedidos.id }}</h5>
               <p class="text-muted m-0">Status: {{ pedidos.status }}</p>
-              <p class="text-muted">Status: {{ pedidos.data | date: 'dd/MM/yyyy'}}</p>
+              <p class="text-muted">Data: {{ pedidos.data | date: 'dd/MM/yyyy'}}</p>
               <p class="m-0">Valor: {{ pedidos.valor  | currency:'BRL'}} </p>
             </div>
           </div>
@@ -59,24 +59,37 @@ aria-hidden="true">
                     </tr>
                 </tbody>
             </table>
+
+            <table class="table table-striped table-dark">
+                <tbody>
+                    <tr>
+                        <td scope="col">Total</td>
+                        <td scope="col">-</td>
+                        <td scope="col">-</td>
+                        <td scope="col">{{ pedido.valor  | currency:'BRL'}}</td>
+                    </tr>
+                    <tr>
+                        <td scope="col">Frete</td>
+                        <td scope="col">-</td>
+                        <td scope="col">-</td>
+                        <td scope="col">{{ pedido.frete  | currency:'BRL'}}</td>
+                    </tr>
+                </tbody>
+            </table>
         <h3>Status do Pedido</h3>
 
         <div class="form-row">
             <div class="form-group col-md-6">
-    
-              <input [(ngModel)]='status' [(ngModel)]="pedido.status" name="status" type="text" class="form-control" id="status" readonly>
-              
-              <label for="inputStatus">Status</label>
-              <select name="status" id="status" class="form-control" (change)="mudaStatus($event)">
+                <input [(ngModel)]='status' [(ngModel)]='pedido.status' name="status" type="text" class="form-control" id="status" readonly> 
+                <select name="status" id="status" class="form-control" (change)="mudaStatus($event)">
                   <option value="nada">Selecione o status</option>
-                  <option value="aguardando pagamento">Aguardando pagamento</option>
-                  <option value="pagamento rejeitado">Pagamento rejeitado</option>
-                  <option value="pagamento com sucesso">Pagamento com sucesso</option>
-                  <option value="aguardando retirada">Aguardando retirada</option>
-                  <option value="em transito">Em trânsito</option>
-                  <option value="entregue">Entregue</option>
-              </select>
-    
+                  <option value="Aguardando pagamento">Aguardando pagamento</option>
+                  <option value="Pagamento rejeitado">Pagamento rejeitado</option>
+                  <option value="Pagamento com sucesso">Pagamento com sucesso</option>
+                  <option value="Aguardando retirada">Aguardando retirada</option>
+                  <option value="Em transito">Em trânsito</option>
+                  <option value="Entregue">Entregue</option>
+                </select>   
             </div>
         </div>
 

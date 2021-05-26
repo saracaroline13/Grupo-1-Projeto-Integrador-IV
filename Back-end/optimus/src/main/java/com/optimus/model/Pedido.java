@@ -40,8 +40,19 @@ public class Pedido {
 	
 	@Column
     private String rua;
+	
+	@Column
+    private String frete;
 
-    public String getRua() {
+    public String getFrete() {
+		return frete;
+	}
+
+	public void setFrete(String frete) {
+		this.frete = frete;
+	}
+
+	public String getRua() {
 		return rua;
 	}
 

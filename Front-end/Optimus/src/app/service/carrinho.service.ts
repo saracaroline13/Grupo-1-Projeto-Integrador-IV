@@ -10,10 +10,11 @@ export class CarrinhoService {
 
   produto: Produto[] = []
   listaPrint: Produto[] = []
-  total: number = 15.99
+  total: number = 0
   valorFrete: number = 0.0;
   contador: number = 0;
   cont: number = 0
+  frete:number = 0
 
   private messageSource = new BehaviorSubject<number>(0);
   currentMessage = this.messageSource.asObservable();
@@ -96,7 +97,8 @@ export class CarrinhoService {
   limparCarrinho() {
     this.listaPrint = []
     this.produto = []
-    this.total = 15.99
+    this.total = 0
+    this.frete = 0
     this.messageSource.next(this.produto.length)
     return this.produto
   }
@@ -104,5 +106,31 @@ export class CarrinhoService {
   calculaTotal() {
     return this.total
   }
+
+  calculaFrete(frete: number){
+    this.total = this.total - this.frete
+    this.frete = frete
+    console.log(this.total)
+    this.total = this.total + this.frete
+    console.log(this.frete)
+    console.log(this.total)
+  }
+
+  // removerItem(produto: Produto){
+  //   this.total = this.total - (produto.valor * this.contadorProduto(produto))
+  //   console.log(this.contadorProduto(produto))
+  //   const index: number = this.produto.indexOf(produto)
+  //   if (index !== -1) {
+  //     const indexPrint: number = this.listaPrint.indexOf(produto)
+  //     this.produto.splice(index, this.contadorProduto(produto))
+  //     this.listaPrint.splice(indexPrint, this.contadorProduto(produto))
+  //     if (indexPrint !== -1) {
+  //       this.listaPrint.splice(indexPrint, this.contadorProduto(produto))
+  //     }
+  //     this.messageSource.next(this.listaPrint.length)
+  //     alert("Item removido do carrinho")
+  //   }  
+    
+  // }
 
 }

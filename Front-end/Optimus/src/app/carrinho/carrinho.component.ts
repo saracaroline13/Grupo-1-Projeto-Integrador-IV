@@ -26,6 +26,8 @@ export class CarrinhoComponent implements OnInit {
   listaEnderecos: Endereco[]
 
   rua: string;
+  valorFrete: string;
+  frete: number = 0;
   cidade: string
   numero: string;
   bairro: string;
@@ -33,7 +35,6 @@ export class CarrinhoComponent implements OnInit {
   telefone: string;
   nomeDestinatario: string;
   qnt: number;
-  valorFrete: number = 0.0;
 
   numeroCartao: string
   nomeCartao: string
@@ -63,13 +64,11 @@ export class CarrinhoComponent implements OnInit {
     this.idUser = environment.id
     this.UsuarioPeloId()
     this.findAllEnderecos()
-    this.valorFrete = 15.99
   } 
 
   addToCarrinho(produto: Produto) {
     this.carrinhoService.addToCarrinho(produto)
     this.produto = this.carrinhoService.getProdutos()
-
   }
 
   apagarItem(produto: Produto) {
@@ -130,6 +129,29 @@ export class CarrinhoComponent implements OnInit {
     })
   }
 
+  mudafrete(frete: number) {
+    if(frete == 0 || frete == undefined){
+      alert("Insira opção do frete")
+    } else {
+      this.frete = frete
+      this.carrinhoService.calculaFrete(frete)
+      if(this.frete == 10) {
+        this.valorFrete = "Valor R$ 10,00 (10 - 15 dias uteis)"
+      }
+      else if(this.frete == 15) {
+        this.valorFrete = "Valor R$ 15,00 (5 - 7 dias uteis)"
+      }
+      else {
+        this.valorFrete = "Valor R$ 30,00"
+      }
+    }    
+  }
+
+  // limparListaCarrinho(produto: Produto){
+  //   this.carrinhoService.removerItem(produto)
+  //   this.produto = this.carrinhoService.getProdutos()
+  // }
+
   selecEndereco(){
     this.rua = this.usuario.rua
     this.numero = this.usuario.numero
@@ -151,9 +173,12 @@ export class CarrinhoComponent implements OnInit {
 
             alert("Por favor, preencha corretamente os dados do cartão")
 
-      }
+    }
+    else if(this.frete == 0 || this.frete == undefined) {
+      alert("Insira opção do frete")      
+    }
       else{
-        alert("Compra finalizada com sucesso! Para acompanhar vá até a tela de gestão de perfil!")
+        this.pedido.frete = this.frete
         this.pedido.usuario = this.usuario
         this.pedido.status = "Pedido Realizado com sucesso"
         this.pedido.valor = this.calculaTotal()
@@ -173,14 +198,12 @@ export class CarrinhoComponent implements OnInit {
             this.itensService.post(this.item).subscribe((resp:Itens)=>{
               this.item=resp
             })
-            console.log(this.item)
             this.item = new Itens()
 
           }
           this.limparCarrinho()
+          alert("Compra finalizada com sucesso - " + this.pedido.id + " ! Para acompanhar vá até a tela de gestão de perfil!")
         })
-
-        console.log(this.pedido)
 
         this.router.navigate(['/produtoCliente'])
         this.item = new Itens()
@@ -229,14 +252,12 @@ export class CarrinhoComponent implements OnInit {
             this.itensService.post(this.item).subscribe((resp:Itens)=>{
               this.item=resp
             })
-            console.log(this.item)
             this.item = new Itens()
 
           }
           this.limparCarrinho()
         })
 
-        console.log(this.pedido)
 
         this.router.navigate(['/produtoCliente'])
         this.item = new Itens()

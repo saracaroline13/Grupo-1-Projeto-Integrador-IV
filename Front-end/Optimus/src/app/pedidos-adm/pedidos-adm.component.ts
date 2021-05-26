@@ -58,8 +58,7 @@ export class PedidosAdmComponent implements OnInit {
   }
   
   mudaStatus(event:any){
-    this.status=event.target.value
+    this.status = event.target.value
+    this.pedido.status = event.target.value
   }
-
-
 }

@@ -32,7 +32,7 @@ export class AlterarUsuarioComponent implements OnInit {
   nome: string;
   sobrenome: string;
   rg: string;
-  telefone: string;
+  telefone: string = this.usuario.telefone
   nascimento: string;
   cidade: string;
   cpf: any;

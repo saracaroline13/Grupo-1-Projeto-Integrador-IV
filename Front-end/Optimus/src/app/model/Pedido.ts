@@ -12,5 +12,6 @@ export class Pedido{
     public bairro: string;
     public cep: string;
     public cidade: string;
+    public frete: number;
     public itens: Itens[]
   }
