@@ -5,6 +5,7 @@
             <p class="m-0">#{{ pedido.id }}</p>
             <p class="m-0">{{ pedido.data | date: 'dd/MM/yyyy'}}</p>
             <p>{{ pedido.status }}</p>
+            <p>Forma de Pagamento: {{pedido.tipoPagamento}}</p>
         </div>
 
         <div class="columns">

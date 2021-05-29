@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 import { Endereco } from '../model/Endereco';
 import { Usuario } from '../model/Usuario';
 import { EnderecoService } from '../service/endereco.service';
@@ -11,7 +12,7 @@ import { EnderecoService } from '../service/endereco.service';
 })
 export class EnderecoAdicionalComponent implements OnInit {
   usuario: Usuario = new Usuario();
-  estadoUsuario: string
+  estado: string
   endereco: Endereco = new Endereco();
   idUser: number;
 
@@ -45,6 +46,16 @@ export class EnderecoAdicionalComponent implements OnInit {
 
   ngOnInit() {
     this.idUser = this.router.snapshot.params['id']
+    this.logado()
+  }
+
+  logado(){
+
+    if(environment.token==""){
+      this.route.navigate(['/produtoCliente'])
+      alert("Logue!")
+    }
+
   }
 
   validaCep() {
@@ -66,8 +77,8 @@ export class EnderecoAdicionalComponent implements OnInit {
         this.endereco.rua = this.rua
         this.cidade = resp.localidade
         this.endereco.cidade = this.cidade
-        this.estadoUsuario = resp.uf
-        this.endereco.estado = this.estadoUsuario
+        this.estado = resp.uf
+        this.endereco.estado = this.estado
         this.bairro = resp.bairro
         this.endereco.bairro = this.bairro
         this.cepOk = true;
@@ -119,7 +130,7 @@ export class EnderecoAdicionalComponent implements OnInit {
   }
 
   selectEstado(event: any) {
-    this.estadoUsuario = event.target.value
+    this.estado = event.target.value
   }
 
   validar() {
@@ -129,7 +140,7 @@ export class EnderecoAdicionalComponent implements OnInit {
       this.bairroOk == true &&
       this.cepOk == true &&
       this.cidadeOk == true
-      
+
     ) {
       this.cadastrar()
     } else {
@@ -138,7 +149,7 @@ export class EnderecoAdicionalComponent implements OnInit {
   }
 
   cadastrar() {
-    this.endereco.estado = this.estadoUsuario;
+    this.endereco.estado = this.estado;
     this.endereco.id_cliente = this.idUser;
     this.enderecoService.postEndereco(this.endereco).subscribe((resp: Endereco) => {
       alert('Endereço adicional cadastrado com sucesso')

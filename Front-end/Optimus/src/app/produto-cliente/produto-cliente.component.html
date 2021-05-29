@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-center mb-4" *ngFor='let item of listaProduto'>
 
 
-      <div class="card mr-5 cardProduto " style="width: 18rem;" >
+      <div class="card mr-5 cardProduto " style="width: 18rem;" *ngIf="produtoAtivo(item.status)" >
 
         <div class="produtoCard d-flex flex-column justify-content-between">
             <img class="card-img-top ml-4" src="{{ item.imgPrincipal }}" alt="Imagem de capa do card"  data-toggle="modal"

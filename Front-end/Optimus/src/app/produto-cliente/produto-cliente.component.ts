@@ -64,4 +64,13 @@ export class ProdutoClienteComponent implements OnInit {
     })
   }
 
+  produtoAtivo(status: number){
+    let ok: boolean = false;
+
+    if(status == 1) {
+      ok = true;
+    }
+    return ok;
+  }
+
 }

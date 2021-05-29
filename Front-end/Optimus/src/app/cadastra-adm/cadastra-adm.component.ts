@@ -4,6 +4,7 @@ import { Usuario } from '../model/Usuario';
 import { UsuarioService } from '../service/usuario.service';
 import { AuthService } from '../service/auth.service';
 import { environment } from 'src/environments/environment.prod';
+import { EnderecoService } from '../service/endereco.service';
 
 @Component({
   selector: 'app-cadastra-adm',
@@ -68,17 +69,18 @@ export class CadastraADMComponent implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private enderecoService: EnderecoService
   ) { }
 
   ngOnInit() {
-    // if(environment.tipo == "Cliente") {
-    //   this.router.navigate(['/produtoCliente'])
-    // }
+    if(environment.tipo == "Cliente") {
+      this.router.navigate(['/produtoCliente'])
+    }
 
-    // if(environment.tipo == "") {
-    //   this.router.navigate(['/entrar-adm'])
-    // }
+    if(environment.tipo == "") {
+      this.router.navigate(['/entrar-adm'])
+    }
     window.scroll(0, 0)
   }
 
@@ -171,9 +173,27 @@ export class CadastraADMComponent implements OnInit {
       this.cepOk = false;
       this.alertaCep = 'cep inválido';
     } else {
-      this.cepOk = true;
       this.alertaCep = '';
+      this.pesquisarCep(this.cep);
     }
+  }
+
+  pesquisarCep(cep: string){
+    this.enderecoService.endereco(cep).subscribe((resp: any) => {
+      if(resp == ""){
+        alert('CEP não encontrado!')
+      } else {
+        this.rua = resp.logradouro
+        this.usuario.rua = this.rua
+        this.cidade = resp.localidade
+        this.usuario.cidade = this.cidade
+        this.estadoUsuario = resp.uf
+        this.usuario.estado = this.estadoUsuario
+        this.bairro = resp.bairro
+        this.usuario.bairro = this.bairro
+        this.cepOk = true;
+      }
+    })
   }
 
   validaCidade() {
@@ -329,11 +349,9 @@ export class CadastraADMComponent implements OnInit {
 
       this.resetValidação()
     }
-
-    if (this.usuario.senha != this.confirmSenha) {
+    else if (this.usuario.senha != this.confirmSenha) {
       alert('As senhas estão incorretas')
     }
-
     else {
       this.authService.cadastrar(this.usuario).subscribe((resp: Usuario) => {
         this.usuario = resp
@@ -342,5 +360,6 @@ export class CadastraADMComponent implements OnInit {
       })
     }
   }
+
 
 }

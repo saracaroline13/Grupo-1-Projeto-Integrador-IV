@@ -131,7 +131,7 @@
           <label for="cidade">Cidade</label>
 
           <input [(ngModel)]='cidade' [(ngModel)]='usuario.cidade' name="cidade" type="text" class="form-control"
-            id="cidade" placeholder="São Paulo" (keyup)="validaCidade()">
+            id="cidade" placeholder="São Paulo" (keyup)="validaCidade()" readonly>
           <div class="text-danger">{{ alertaCidade }}</div>
 
         </div>
@@ -139,7 +139,7 @@
           <label for="bairro">Bairro</label>
 
           <input [(ngModel)]='bairro' [(ngModel)]='usuario.bairro' name="bairro" type="text" class="form-control"
-            id="bairro" placeholder="Jardim Miranda" (keyup)="validaBairro()">
+            id="bairro" placeholder="Jardim Miranda" (keyup)="validaBairro()" readonly>
           <div class="text-danger">{{ alertaBairro }}</div>
 
         </div>
@@ -151,7 +151,7 @@
           <label for="rua">Rua</label>
 
           <input [(ngModel)]='rua' [(ngModel)]='usuario.rua' name="rua" type="text" class="form-control" id="rua"
-            placeholder="Rua Dois" (keyup)="validaRua()">
+            placeholder="Rua Dois" (keyup)="validaRua()" readonly>
           <div class="text-danger">{{ alertaRua }}</div>
 
         </div>
@@ -184,12 +184,12 @@
 
       </div>
     </form>
-    
+
   </div>
 
 
   <!-- Pedidos -->
-  
+
 
 </div>
 <!-- Modal -->

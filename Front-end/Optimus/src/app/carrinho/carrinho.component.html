@@ -3,7 +3,7 @@
 </h3>
 <h3 class="text-danger text-center" *ngIf="!logado()">Por favor efetuar o login, para finalizar a compra!</h3>
 <div class="container-fluid">
-    
+
 
     <!--Informações de entrega-->
     <div class="row d-flex justify-content-center mt-5">
@@ -107,7 +107,7 @@
                                         <p class="m-0">R${{ contadorProduto(produto) * produto.valor | currency:'BRL'}}</p>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                         <h4 class="text-center mb-3">Frete</h4>
                         <label for="cep" class="sr-only">CEP</label>
                                 <input name="cep" [(ngModel)]="cep" type="text" class="form-control" id="cep"
-                                    placeholder="Insira o CEP" readonly /> 
+                                    placeholder="Insira o CEP" readonly />
                           <div class="form-check">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="opcao1" (click)="mudafrete(10)">
                             <label class="form-check-label" for="exampleRadios1">
@@ -142,7 +142,7 @@
                             </label>
                           </div>
                         <div class="text-center">{{ valorFrete }}</div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </div>
@@ -156,7 +156,7 @@
                 </div>
             </div>
         </div>
-    
+
         <div class="col-md-12" *ngIf="logado()">
             <h4 class="text-center mt-3 mb-5">PAGAMENTO</h4>
             <div class="row d-flex justify-content-center">
@@ -215,7 +215,7 @@
                                             <div class="col-md-5">
                                                 <label for="cpf">CPF</label>
                                                 <input [(ngModel)]="cpf" type="text" name="cpf" id="cpf"
-                                                    class="form-control" placeholder="CPF do titular">
+                                                    class="form-control" placeholder="CPF do titular" (keyup)="validaCpf()">
                                             </div>
 
                                         </div>
@@ -308,6 +308,7 @@
                 </table>
 
                 <h3>Dados do pagamento</h3>
+                <p><b>Forma de Pagamento: </b> Cartão de Crédito</p>
                 <table class="table table-striped table-dark">
                     <tbody>
                         <tr>
@@ -370,6 +371,7 @@
                 </table>
 
                 <h3>Dados do pagamento</h3>
+                <p><b>Forma de Pagamento: </b> Boleto</p>
                 <table class="table table-striped table-dark">
                     <tbody>
                         <tr>

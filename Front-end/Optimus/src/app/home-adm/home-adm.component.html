@@ -1,8 +1,8 @@
 <div class="container d-flex justify-content-around mt-4">
-  <button class="btn btn-primary" routerLink="/gestao-usuario">Gestão de Usuario</button>
+  <button class="btn btn-primary" routerLink="/gestao-usuario" *ngIf="logado()">Gestão de Usuario</button>
   <button class="btn btn-primary" routerLink="/listaProdutos">Gestão de produto</button>
   <button class="btn btn-primary" routerLink="/produto">Listar Produto</button>
-  <button class="btn btn-primary" routerLink="/cadastrar-adm">Cadastrar Funcionario</button>
+  <button class="btn btn-primary" routerLink="/cadastrar-adm" *ngIf="logado()">Cadastrar Funcionario</button>
   <button class="btn btn-primary" routerLink="/cadastrarProduto">Cadastrar Produto</button>
   <button class="btn btn-primary" routerLink="/pedidos-adm">Pedidos Usuários</button>
 </div>

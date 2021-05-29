@@ -13,5 +13,6 @@ export class Pedido{
     public cep: string;
     public cidade: string;
     public frete: number;
+    public tipoPagamento: string;
     public itens: Itens[]
   }

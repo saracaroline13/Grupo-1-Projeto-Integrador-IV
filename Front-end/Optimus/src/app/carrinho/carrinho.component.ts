@@ -40,7 +40,10 @@ export class CarrinhoComponent implements OnInit {
   nomeCartao: string
   cvv: string
   validade: string
-  cpf: string
+  cpf: any
+  cpfOk: boolean
+ alertaCpf:String
+  tipoPagamento: string
 
   idUser: number;
 
@@ -64,7 +67,8 @@ export class CarrinhoComponent implements OnInit {
     this.idUser = environment.id
     this.UsuarioPeloId()
     this.findAllEnderecos()
-  } 
+  }
+
 
   addToCarrinho(produto: Produto) {
     this.carrinhoService.addToCarrinho(produto)
@@ -144,7 +148,7 @@ export class CarrinhoComponent implements OnInit {
       else {
         this.valorFrete = "Valor R$ 30,00"
       }
-    }    
+    }
   }
 
   // limparListaCarrinho(produto: Produto){
@@ -159,6 +163,75 @@ export class CarrinhoComponent implements OnInit {
     this.cidade = this.usuario.cidade
   }
 
+
+  validaCpf() {
+    if(typeof this.cpf === 'undefined'){
+      this.cpfOk = false;
+      this.alertaCpf = 'cpf inválido';
+    }
+    else if (this.cpf.length < 11 || this.cpf.length > 11) {
+      this.cpfOk = false;
+      this.alertaCpf = 'CPF inválido';
+    } else {
+      this.cpfOk = true;
+      this.alertaCpf = '';
+
+
+      if (this.cpf.length == 11) {
+
+        var v1 = 0;
+        var v2 = 0;
+        var aux = false;
+
+        for (let i = 1; this.cpf.length > i; i++) {
+          if (this.cpf[i - 1] != this.cpf[i]) {
+            aux = true;
+          }
+        }
+
+        if (aux == false) {
+          this.alertaCpf = 'CPF inválido';
+          this.cpfOk = false;
+          return false;
+        }
+
+        for (let i = 0, p = 10; (this.cpf.length - 2) > i; i++, p--) {
+          v1 = v1 + this.cpf[i] * p;
+        }
+
+        v1 = ((v1 * 10) % 11);
+
+        if (v1 == 10) {
+          v1 = 0;
+        }
+
+        if (v1 != this.cpf[9]) {
+          this.alertaCpf = 'CPF inválido';
+          this.cpfOk = false;
+          return false;
+        }
+
+        for (var i = 0, p = 11; (this.cpf.length - 1) > i; i++, p--) {
+          v2 += this.cpf[i] * p;
+        }
+
+        v2 = ((v2 * 10) % 11);
+
+        if (v2 == 10) {
+          v2 = 0;
+        }
+
+        if (v2 != this.cpf[10]) {
+          this.alertaCpf = 'CPF inválido';
+          this.cpfOk = false;
+          return false;
+        } else {
+          return true;
+        }
+      }
+    }
+  }
+
   finalizarCompra() {
 
     if (environment.token == "")
@@ -169,24 +242,29 @@ export class CarrinhoComponent implements OnInit {
     else if (this.produto.length <= 0){
         alert("Você não possui itens no carrinho!")
       }
-    else if (this.numeroCartao == null || this.nomeCartao == null || this.cvv == null || this.validade == null || this.cpf == null) {
+    else if (this.numeroCartao == null || this.numeroCartao.length < 16  || this.numeroCartao.length < 19  ||
+      this.nomeCartao == null || this.nomeCartao.length <5 ||
+      this.cvv == null || this.cvv.length != 3 ||
+      this.validade == null || this.validade.length != 5 ||
+      this.cpfOk == false || this.cpf == null) {
 
             alert("Por favor, preencha corretamente os dados do cartão")
 
     }
     else if(this.frete == 0 || this.frete == undefined) {
-      alert("Insira opção do frete")      
+      alert("Insira opção do frete")
     }
       else{
         this.pedido.frete = this.frete
         this.pedido.usuario = this.usuario
-        this.pedido.status = "Pedido Realizado com sucesso"
+        this.pedido.status = "Aguardando pagamento"
         this.pedido.valor = this.calculaTotal()
         this.pedido.rua = this.rua
         this.pedido.numero = this.numero
         this.pedido.bairro = this.bairro
         this.pedido.cidade = this.cidade
         this.pedido.cep = this.cep
+        this.pedido.tipoPagamento = "Cartão de Credito"
 
         this.pedidoService.post(this.pedido).subscribe((resp:Pedido)=>{
           this.pedido=resp
@@ -221,9 +299,10 @@ export class CarrinhoComponent implements OnInit {
     return this.carrinhoService.calculaTotal()
   }
 
+
   finalizarCompraBoleto()
   {
-    if (environment.token == "") 
+    if (environment.token == "")
     {
       alert("Logue para finalizar a compra")
     }
@@ -232,15 +311,19 @@ export class CarrinhoComponent implements OnInit {
         alert("Você não possui itens no carrinho!")
       }
       else {
+
         alert("Compra finalizada com sucesso! Para acompanhar vá até a tela de gestão de perfil! o boleto será mandado para o email cadastrado!")
+        console.log(this.idUser)
+
         this.pedido.usuario = this.usuario
-        this.pedido.status = "Pedido Realizado com sucesso"
+        this.pedido.status = "Aguardando pagamento"
         this.pedido.valor = this.calculaTotal()
         this.pedido.rua = this.rua
         this.pedido.numero = this.numero
         this.pedido.bairro = this.bairro
         this.pedido.cidade = this.cidade
         this.pedido.cep = this.cep
+        this.pedido.tipoPagamento = "Boleto"
 
         this.pedidoService.post(this.pedido).subscribe((resp:Pedido)=>{
           this.pedido=resp
@@ -253,9 +336,11 @@ export class CarrinhoComponent implements OnInit {
               this.item=resp
             })
             this.item = new Itens()
+            console.log(this.idUser)
 
           }
           this.limparCarrinho()
+
         })
 
 

@@ -15,37 +15,8 @@
 
         <div class="form-group col-md-4">
           <label for="inputEstado">Estado</label>
-          <select id="inputEstado" name="estado" class="form-control" (change)="selectEstado($event)">
-            <option selected value="NADA">Selecione o Estado</option>
-            <option value="AC">Acre</option>
-            <option value="AL">Alagoas</option>
-            <option value="AP">Amapá</option>
-            <option value="AM">Amazonas</option>
-            <option value="BA">Bahia</option>
-            <option value="CE">Ceará</option>
-            <option value="DF">Distrito Federal</option>
-            <option value="ES">Espírito Santo</option>
-            <option value="GO">Goiás</option>
-            <option value="MA">Maranhão</option>
-            <option value="MT">Mato Grosso</option>
-            <option value="MS">Mato Grosso do Sul</option>
-            <option value="MG">Minas Gerais</option>
-            <option value="PA">Pará</option>
-            <option value="PB">Paraíba</option>
-            <option value="PR">Paraná</option>
-            <option value="PE">Pernambuco</option>
-            <option value="PI">Piauí</option>
-            <option value="RJ">Rio de Janeiro</option>
-            <option value="RN">Rio Grande do Norte</option>
-            <option value="RS">Rio Grande do Sul</option>
-            <option value="RO">Rondônia</option>
-            <option value="RR">Roraima</option>
-            <option value="SC">Santa Catarina</option>
-            <option value="SP">São Paulo</option>
-            <option value="SE">Sergipe</option>
-            <option value="TO">Tocantins</option>
-            <option value="EX">Estrangeiro</option>
-          </select>
+          <input [(ngModel)]='estado' [(ngModel)]='endereco.estado' name="estado" type="text" class="form-control" id="estado"
+            placeholder="UF" readonly>
         </div>
 
 
@@ -54,7 +25,7 @@
           <label for="cidade">Cidade</label>
 
           <input [(ngModel)]='cidade' [(ngModel)]='endereco.cidade' name="cidade" type="text" class="form-control"
-            id="cidade" placeholder="São Paulo" (keyup)="validaCidade()">
+            id="cidade" placeholder="São Paulo" (keyup)="validaCidade()" readonly>
           <div class="text-danger">{{ alertaCidade }}</div>
 
         </div>
@@ -65,7 +36,7 @@
           <label for="rua">Rua</label>
 
           <input [(ngModel)]='rua' [(ngModel)]='endereco.rua' name="rua" type="text" class="form-control" id="rua"
-            placeholder="Rua Dois" (keyup)="validaRua()">
+            placeholder="Rua Dois" (keyup)="validaRua()" readonly>
           <div class="text-danger">{{ alertaRua }}</div>
 
         </div>
@@ -74,7 +45,7 @@
           <label for="numero">Número</label>
 
           <input [(ngModel)]='numero' [(ngModel)]='endereco.numero' name="numero" type="text" class="form-control"
-            id="numero" placeholder="321" (keyup)="validaNumero()">
+            id="numero" placeholder="0000" (keyup)="validaNumero()">
           <div class="text-danger">{{ alertaNumero }}</div>
 
         </div>
@@ -83,11 +54,11 @@
           <label for="bairro">Bairro</label>
 
           <input [(ngModel)]='bairro' [(ngModel)]='endereco.bairro' name="bairro" type="text" class="form-control"
-            id="bairro" placeholder="Jardim Miranda" (keyup)="validaBairro()">
+            id="bairro" placeholder="Jardim Miranda" (keyup)="validaBairro()" readonly>
           <div class="text-danger">{{ alertaBairro }}</div>
 
         </div>
-        
+
         <button type="submit" class="btn btn-success mr-4" (click)="validar()">Cadastrar endereço</button>
         <button type="submit" class="btn btn-secondary" [routerLink]="['/alterar-usuario', idUser]">Cancelar</button>
       </div>

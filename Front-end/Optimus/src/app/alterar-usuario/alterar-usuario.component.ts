@@ -80,6 +80,7 @@ export class AlterarUsuarioComponent implements OnInit {
 
 
   ngOnInit() {
+    this.logado()
     this.idUser=this.route.snapshot.params['id'];
     this.findById(this.idUser)
     this.telefoneOk = true
@@ -87,6 +88,14 @@ export class AlterarUsuarioComponent implements OnInit {
     this.sobrenomeOk = true
     this.telefoneOk = true
     this.findAllEnderecos(this.idUser)
+
+  }
+
+  logado(){
+    if(environment.token==""){
+      this.router.navigate(['/produtoCliente'])
+      alert("LOGUE!")
+    }
   }
 
   findAllEnderecos(id:number) {

@@ -43,6 +43,23 @@ public class Pedido {
 	
 	@Column
     private String frete;
+	
+	@Column
+	private String tipoPagamento;
+	
+
+	@Column
+    private String numero;
+
+    @Column
+    private String bairro;
+
+    @Column
+    private String cep;
+
+    @Column
+    private String cidade;
+
 
     public String getFrete() {
 		return frete;
@@ -92,18 +109,6 @@ public class Pedido {
 		this.cidade = cidade;
 	}
 
-	@Column
-    private String numero;
-
-    @Column
-    private String bairro;
-
-    @Column
-    private String cep;
-
-    @Column
-    private String cidade;
-
 	public Long getId() {
 		return id;
 	}
@@ -151,6 +156,13 @@ public class Pedido {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	
+
+	public String getTipoPagamento() {
+		return tipoPagamento;
+	}
+
+	public void setTipoPagamento(String tipoPagamento) {
+		this.tipoPagamento = tipoPagamento;
+	}
 	
 }
