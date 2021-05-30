@@ -32,7 +32,7 @@ export class AlterarUsuarioComponent implements OnInit {
   nome: string;
   sobrenome: string;
   rg: string;
-  telefone: string = this.usuario.telefone
+  telefone: string
   nascimento: string;
   cidade: string;
   cpf: any;
@@ -41,6 +41,7 @@ export class AlterarUsuarioComponent implements OnInit {
   bairro: string;
   cep: string;
   email:string;
+  senha:string;
 
   nomeOk: boolean = false;
   sobrenomeOk: boolean = false;
@@ -86,8 +87,8 @@ export class AlterarUsuarioComponent implements OnInit {
     this.telefoneOk = true
     this.nomeOk = true
     this.sobrenomeOk = true
-    this.telefoneOk = true
     this.findAllEnderecos(this.idUser)
+    console.log(this.listaCamposInvalidos)
 
   }
 
@@ -120,6 +121,7 @@ export class AlterarUsuarioComponent implements OnInit {
       this.sobrenome = this.usuario.sobrenome
       this.rg = this.usuario.rg
       this.cpf = this.usuario.cpf
+      this.telefone = this.usuario.telefone
       this.email =this.usuario.email
     })
   }
@@ -236,7 +238,11 @@ export class AlterarUsuarioComponent implements OnInit {
   }
 
   validaTelefone() {
-    if (this.telefone.length < 11 || this.telefone.length > 11) {
+    if (typeof this.telefone === 'undefined') {
+      this.telefoneOk = false;
+      this.alertaTelefone = 'telefone inválido';
+  }
+    else if (this.telefone.length < 11 || this.telefone.length > 11) {
       this.telefoneOk = false;
       this.alertaTelefone = 'telefone inválido';
     } else {
@@ -291,6 +297,7 @@ export class AlterarUsuarioComponent implements OnInit {
     this.usuario.email = ""
 
     console.log(this.usuario)
+    console.log(this.listaCamposInvalidos)
 
     this.validaVariaveisOk()
 
@@ -300,18 +307,24 @@ export class AlterarUsuarioComponent implements OnInit {
 
       this.resetValidação()
     }
-    else if (this.usuario.senha != this.confirmSenha) {
+    else if (this.senha != this.confirmSenha) {
       alert('As senhas estão incorretas')
     }
     else {
+      this.usuario.senha = this.senha
       this.authService.cadastrar(this.usuario).subscribe((resp: Usuario) => {
         this.usuario = resp
 
         this.router.navigate(['/entrar'])
+        environment.id=0
+        environment.token=""
+        environment.nome=""
+        environment.email=""
+        environment.tipo=""
+        environment.status=0
         alert('Usuário atualizado com sucesso com sucesso')
       })
     }
-    console.log(this.usuario.senha)
   }
 
   deletarEndereco(id:number){

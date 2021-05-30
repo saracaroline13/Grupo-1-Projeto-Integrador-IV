@@ -16,7 +16,7 @@ export class UsuarioService {
   token = { headers: new HttpHeaders().set('Authorization',environment.token)}
 
   getAll():Observable<Usuario[]> {
-    return this.http.get<Usuario[]>("http://localhost:8080/usuario",this.token)
+    return this.http.get<Usuario[]>("http://localhost:8080/usuario")
   }
 
   getById(id:number):Observable<Usuario> {
