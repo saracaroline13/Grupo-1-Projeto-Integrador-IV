@@ -21,6 +21,9 @@ export class PedidosComponent implements OnInit {
   ngOnInit() {
     this.idPedido = this.router.snapshot.params['id'];
     this.findByIdPedido()
+    window.scroll({
+      top: 0,
+    })
   }
 
   findByIdPedido(){

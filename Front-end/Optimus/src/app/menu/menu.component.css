@@ -20,6 +20,16 @@
     color: #ebe017;
 }
 
+.carrinho{
+  color: #0f2058;
+  transition: all .2s;
+}
+
+.carrinho:hover{
+  color: #ebe017;
+  transition: all .2s;
+  transform: scale(0.95);
+}
 
 .fa-user-circle-o {
     margin-right: 4%;

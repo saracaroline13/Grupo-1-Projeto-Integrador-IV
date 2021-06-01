@@ -7,8 +7,15 @@
 
     <!--Informações de entrega-->
     <div class="row d-flex justify-content-center mt-5">
-        <div class="col-md-6"  *ngIf="logado()">
-            <h4 class="text-center mb-5">ENDEREÇO DE ENTREGA</h4>
+        <div class="col-md-6" *ngIf="logado()">
+
+          <div class="row d-flex justify-content-center align-items-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill mr-2" viewBox="0 0 16 16">
+              <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+            </svg>
+            <b style="font-size: 20px;">ENDEREÇO DE ENTREGA</b>
+          </div>
+
             <div class="form">
                 <div class="form-row d-flex justify-content-center mb-3 fc-verde font-weight-bold">
                     <div class="col-md-6">
@@ -70,7 +77,7 @@
                     </div>
                 </div>
             </div>
-            <a class="d-flex justify-content-center" [routerLink]="['/endereco-adicional', idUser]">
+            <a class="d-flex justify-content-center" [routerLink]="['/endereco-adicional', idUser]" style="text-decoration: none;">
                 <button type="submit" class="btn btn-info mb-4" *ngIf="logado()">Adicionar outro endereço</button>
             </a>
         </div>
@@ -79,7 +86,13 @@
         <!--Itens do carrinho-->
 
         <div class="col-md-6">
-            <h4 class="text-center mb-5">CARRINHO</h4>
+          <div class="row d-flex justify-content-center align-items-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart-check mr-2" viewBox="0 0 16 16">
+              <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+              <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+            </svg>
+            <b style="font-size: 20px;">CARRINHO</b>
+          </div>
             <div class="row d-flex justify-content-center mt-5">
                 <div style="width: 600px; height: 260px; overflow-y: scroll;">
                     <div *ngFor="let produto of produto" class="card mb-3 mt-1" style="max-width: 540px; border-color: #0f20587e;">
@@ -129,9 +142,15 @@
                 <div class="col-md-12 d-flex justify-content-center flex-row">
                     <div class="col-md-4 mb-4 mt-4">
 
-                        <h4 class="text-center mb-3">Frete</h4>
+                      <div class="row d-flex justify-content-center align-items-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-truck mr-2" viewBox="0 0 16 16">
+                          <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                        </svg>
+                        <b style="font-size: 20px;">FRETE</b>
+                      </div>
+
                         <label for="cep" class="sr-only">CEP</label>
-                                <input name="cep" [(ngModel)]="cep" type="text" class="form-control" id="cep"
+                                <input name="cep" [(ngModel)]="cep" type="text" class="form-control mb-2" id="cep"
                                     placeholder="Insira o CEP" readonly />
                           <div class="form-check">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="opcao1" (click)="mudafrete(10)">
@@ -151,7 +170,7 @@
                               Entrega amanhã
                             </label>
                           </div>
-                        <div class="text-center">{{ valorFrete }}</div>
+                        <div class="text-center mt-2">{{ valorFrete }}</div>
                     </div>
                 </div>
             </div>
@@ -159,16 +178,22 @@
 
         <!--/Itens do carrinho-->
         <!--Informações de pagamento-->
-        <div class="container-fluid" *ngIf="logado()">
+        <div class="container-fluid mt-2" *ngIf="logado()">
             <div class="row justify-content-center">
                 <div class="col-md-11">
-                    <hr class="mt-5" style="border-top: 1px solid #3AF0A8;">
+                    <hr class="" style="border-top: 1px solid #3AF0A8;">
                 </div>
             </div>
         </div>
 
         <div class="col-md-12" *ngIf="logado()">
-            <h4 class="text-center mt-3 mb-5">PAGAMENTO</h4>
+          <div class="row d-flex justify-content-center align-items-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-credit-card mr-2" viewBox="0 0 16 16">
+              <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
+              <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
+            </svg>
+            <b style="font-size: 20px;">PAGAMENTO</b>
+          </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-md-6">
                     <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
