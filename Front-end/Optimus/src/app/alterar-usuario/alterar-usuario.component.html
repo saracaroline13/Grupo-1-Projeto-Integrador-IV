@@ -1,219 +1,229 @@
-<div class="container col-md-12 d-flex justify-content-center bg-img">
+<div class="container col-md-12">
 
-  <div class="form-container col-md-7 mt-4 mb-4 p-4">
-    <h3 class="mb-3 border-l">Alterar</h3>
-    <form>
-
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="nome">Nome</label>
-
-          <input [(ngModel)]='nome' [(ngModel)]="usuario.nome" name="nome" type="text" class="form-control" id="nome"
-            placeholder="Digite seu nome" (keyup)="validaNome()">
-          <div class="mt-2 text-danger">{{ alertaNome }}</div>
-
-        </div>
-
-        <div class="form-group col-md-6">
-          <label for="sobrenome">Sobrenome</label>
-
-          <input [(ngModel)]='sobrenome' [(ngModel)]='usuario.sobrenome' name="sobrenome" type="text"
-            class="form-control" id="sobrenome" placeholder="Digite seu sobrenome" (keyup)="validaSobrenome()">
-          <div class="text-danger">{{ alertaSobrenome }}</div>
-
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="rg">RG</label>
-
-          <input [(ngModel)]='rg' [(ngModel)]='usuario.rg' name="rg" type="text" class="form-control" id="rg"
-            placeholder="Digite seu RG" (keyup)="validaRg()">
-          <div class="text-danger">{{ alertaRg }}</div>
-
-        </div>
-
-        <div class="form-group col-md-4">
-          <label for="cpf">CPF</label>
-
-          <input [(ngModel)]='cpf' [(ngModel)]='usuario.cpf' name="cpf" type="text" class="form-control" id="cpf"
-            placeholder="Digite seu CPF" readonly>
-
-        </div>
-
-        <div class="form-group col-md-4">
-          <label for="telefone">Telefone</label>
-
-          <input [(ngModel)]='telefone' [(ngModel)]='usuario.telefone' name="telefone" type="text" class="form-control"
-            id="telefone" placeholder="(99) 9 99999-9999">
-          <div class="text-danger">{{ alertaTelefone }}</div>
-
-        </div>
-      </div>
+  <nav class="mt-5">
+    <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Minha Conta</a>
+      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Meus pedidos</a>
+    </div>
+  </nav>
 
 
-      <div class="form-row">
+  <div class="tab-content" id="nav-tabContent">
 
-        <div class="form-group col-md-5">
-          <label for="nascimento">Nascimento</label>
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <!-- Alteração de user principal -->
+      <div class="container col-md-12 d-flex justify-content-center">
+        <div class="row mt-3">
 
-          <input [(ngModel)]='nascimento' [(ngModel)]='usuario.datanasc' name="nascimento" type="text"
-            class="form-control" id="nascimento" placeholder="dd/mm/aaaa">
-          <div class="text-danger">{{ alertaNascimento }}</div>
+          <div class="col-md-7">
+              <!-- Alterar user -->
+              <h3 class="mb-3 border-l">Alterar</h3>
+              <form>
 
-        </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="nome">Nome</label>
 
-        <div class="form-group col-md-7">
-          <label for="email">E-mail pessoal</label>
-          <input [(ngModel)]='email' [(ngModel)]='usuario.emailPessoal' name="email" type="email" class="form-control" id="email"
-            placeholder="Digite seu e-mail" readonly>
-        </div>
-      </div>
+                    <input [(ngModel)]='nome' [(ngModel)]="usuario.nome" name="nome" type="text" class="form-control" id="nome"
+                      placeholder="Digite seu nome" (keyup)="validaNome()">
+                    <div class="mt-2 text-danger">{{ alertaNome }}</div>
 
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="senha">Senha</label>
+                  </div>
 
-          <input type="password" class="form-control" id="senha" placeholder="Digite uma senha"
-            (input)="confirmarSenha($event)">
+                  <div class="form-group col-md-6">
+                    <label for="sobrenome">Sobrenome</label>
 
-        </div>
+                    <input [(ngModel)]='sobrenome' [(ngModel)]='usuario.sobrenome' name="sobrenome" type="text"
+                      class="form-control" id="sobrenome" placeholder="Digite seu sobrenome" (keyup)="validaSobrenome()">
+                    <div class="text-danger">{{ alertaSobrenome }}</div>
 
-        <div class="form-group col-md-6">
-          <label for="senhaConfirm">Confirmar Senha</label>
+                  </div>
+                </div>
 
-          <input [(ngModel)]='senha' name="senha" type="password" class="form-control" id="senhaConfirm"
-            placeholder="Confirme a senha">
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="rg">RG</label>
 
-        </div>
-      </div>
+                    <input [(ngModel)]='rg' [(ngModel)]='usuario.rg' name="rg" type="text" class="form-control" id="rg"
+                      placeholder="Digite seu RG" (keyup)="validaRg()">
+                    <div class="text-danger">{{ alertaRg }}</div>
 
-      <div class="mt-2 ml-2">
-        <button type="submit" class="btn btn-success bg-optimus mr-4" (click)="atualizar()">Atualizar</button>
-        <button type="submit" class="btn btn-secondary" routerLink="/produtoCliente">Cancelar</button>
-      </div>
-    </form>
-    <hr>
-      <h2 class="bg-secondary w-100 align-item-center">Pedidos</h2>
-      <div class="row col-md-12">
-        <div class="mr-3" *ngFor='let pedido of usuario.pedidos  | orderBy : key : reverse'>
-          <a [routerLink]="['/pedidos', pedido.id]" style="text-decoration: none; color: black;">
-          <div class="card">
-            <div class="card-body ">
-              <h5 class="card-title">Id: {{ pedido.id }}</h5>
-              <p class="text-muted m-0">Status: {{ pedido.status }}</p>
-              <p class="text-muted">Data: {{ pedido.data | date: 'dd/MM/yyyy'}}</p>
-              <p class="m-0">Valor: {{ pedido.valor  | currency:'BRL'}} </p>
-            </div>
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <label for="cpf">CPF</label>
+
+                    <input [(ngModel)]='cpf' [(ngModel)]='usuario.cpf' name="cpf" type="text" class="form-control" id="cpf"
+                      placeholder="Digite seu CPF" readonly>
+
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <label for="telefone">Telefone</label>
+
+                    <input [(ngModel)]='telefone' [(ngModel)]='usuario.telefone' name="telefone" type="text" class="form-control"
+                      id="telefone" placeholder="(99) 9 99999-9999">
+                    <div class="text-danger">{{ alertaTelefone }}</div>
+
+                  </div>
+                </div>
+
+
+                <div class="form-row">
+
+                  <div class="form-group col-md-5">
+                    <label for="nascimento">Nascimento</label>
+
+                    <input [(ngModel)]='nascimento' [(ngModel)]='usuario.datanasc' name="nascimento" type="text"
+                      class="form-control" id="nascimento" placeholder="dd/mm/aaaa">
+                    <div class="text-danger">{{ alertaNascimento }}</div>
+
+                  </div>
+
+                  <div class="form-group col-md-7">
+                    <label for="email">E-mail pessoal</label>
+                    <input [(ngModel)]='email' [(ngModel)]='usuario.emailPessoal' name="email" type="email" class="form-control" id="email"
+                      placeholder="Digite seu e-mail" readonly>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="senha">Senha</label>
+
+                    <input type="password" class="form-control" id="senha" placeholder="Digite uma senha"
+                      (input)="confirmarSenha($event)">
+
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="senhaConfirm">Confirmar Senha</label>
+
+                    <input [(ngModel)]='senha' name="senha" type="password" class="form-control" id="senhaConfirm"
+                      placeholder="Confirme a senha">
+
+                  </div>
+                </div>
+
+              </form>
+              <!-- /Alterar user -->
           </div>
-        </a>
-        </div>
-      </div>
-  </div>
 
-  <div class="form-container col-md-5 mt-4 mb-4 p-4">
-    <h3 class="mb-3">Endereço</h3>
-    <form style="height: 100%">
+          <div class="col-md-5">
+            <!-- Endereço Adicional -->
+            <h3 class="mb-3">Endereço</h3>
+            <form style="height: 100%">
 
-      <div class="form-row">
+              <div class="form-row">
 
-        <div class="form-group col-md-4">
-          <label for="cep">CEP</label>
+                <div class="form-group col-md-4">
+                  <label for="cep">CEP</label>
 
-          <input [(ngModel)]='cep' [(ngModel)]='usuario.cep' name="cep" type="text" class="form-control" id="cep"
-            placeholder="00000-000" (keyup)="validaCep()">
-          <div class="text-danger">{{ alertaCep }}</div>
+                  <input [(ngModel)]='cep' [(ngModel)]='usuario.cep' name="cep" type="text" class="form-control" id="cep"
+                    placeholder="00000-000" (keyup)="validaCep()">
+                  <div class="text-danger">{{ alertaCep }}</div>
 
-        </div>
+                </div>
 
-        <div class="form-group col-md-4">
-          <label for="cidade">Cidade</label>
+                <div class="form-group col-md-4">
+                  <label for="cidade">Cidade</label>
 
-          <input [(ngModel)]='cidade' [(ngModel)]='usuario.cidade' name="cidade" type="text" class="form-control"
-            id="cidade" placeholder="São Paulo" (keyup)="validaCidade()" readonly>
-          <div class="text-danger">{{ alertaCidade }}</div>
+                  <input [(ngModel)]='cidade' [(ngModel)]='usuario.cidade' name="cidade" type="text" class="form-control"
+                    id="cidade" placeholder="São Paulo" (keyup)="validaCidade()" readonly>
+                  <div class="text-danger">{{ alertaCidade }}</div>
 
-        </div>
-        <div class="form-group col-md-4">
-          <label for="bairro">Bairro</label>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="bairro">Bairro</label>
 
-          <input [(ngModel)]='bairro' [(ngModel)]='usuario.bairro' name="bairro" type="text" class="form-control"
-            id="bairro" placeholder="Jardim Miranda" (keyup)="validaBairro()" readonly>
-          <div class="text-danger">{{ alertaBairro }}</div>
+                  <input [(ngModel)]='bairro' [(ngModel)]='usuario.bairro' name="bairro" type="text" class="form-control"
+                    id="bairro" placeholder="Jardim Miranda" (keyup)="validaBairro()" readonly>
+                  <div class="text-danger">{{ alertaBairro }}</div>
 
-        </div>
-      </div>
-
-
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="rua">Rua</label>
-
-          <input [(ngModel)]='rua' [(ngModel)]='usuario.rua' name="rua" type="text" class="form-control" id="rua"
-            placeholder="Rua Dois" (keyup)="validaRua()" readonly>
-          <div class="text-danger">{{ alertaRua }}</div>
-
-        </div>
-
-        <div class="form-group col-md-2">
-          <label for="numero">Número</label>
-
-          <input [(ngModel)]='numero' [(ngModel)]='usuario.numero' name="numero" type="text" class="form-control"
-            id="numero" placeholder="321" (keyup)="validaNumero()">
-          <div class="text-danger">{{ alertaNumero }}</div>
-
-        </div>
-
-        <div class="row w-100 mb-4 ml-1">
-          <a [routerLink]="['/endereco-adicional', idUser]">
-            <button type="submit" class="btn btn-info">Adicionar outro endereço</button>
-          </a>
-        </div>
-
-        <div class="row col-md-7 mb-3 ml-1">
-          <div class="mr-3" *ngFor='let endereco of listaEnderecos'>
-            <div class="card" *ngIf="enderecoAdicional(endereco.id_cliente)">
-              <div class="card-body ">
-                <h5 class="card-title">{{ endereco.rua }},{{ endereco.numero }} - {{ endereco.cidade}} </h5>
-                <button type="submit" class="btn btn-danger" (click)="deletarEndereco(endereco.id_endereco)">Desativar</button>
+                </div>
               </div>
-            </div>
+
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="rua">Rua</label>
+
+                  <input [(ngModel)]='rua' [(ngModel)]='usuario.rua' name="rua" type="text" class="form-control" id="rua"
+                    placeholder="Rua Dois" (keyup)="validaRua()" readonly>
+                  <div class="text-danger">{{ alertaRua }}</div>
+
+                </div>
+
+                <div class="form-group col-md-2">
+                  <label for="numero">Número</label>
+
+                  <input [(ngModel)]='numero' [(ngModel)]='usuario.numero' name="numero" type="text" class="form-control"
+                    id="numero" placeholder="321" (keyup)="validaNumero()">
+                  <div class="text-danger">{{ alertaNumero }}</div>
+
+                </div>
+
+                <div class="row w-100 mb-4 ml-1">
+                  <a [routerLink]="['/endereco-adicional', idUser]">
+                    <button type="submit" class="btn btn-info">Adicionar outro endereço</button>
+                  </a>
+                </div>
+
+                <div class="row col-md-7 mb-3 ml-1">
+                  <div class="mr-3" *ngFor='let endereco of listaEnderecos'>
+                    <div class="card" *ngIf="enderecoAdicional(endereco.id_cliente)">
+                      <div class="card-body ">
+                        <h5 class="card-title">{{ endereco.rua }},{{ endereco.numero }} - {{ endereco.cidade}} </h5>
+                        <button type="submit" class="btn btn-danger" (click)="deletarEndereco(endereco.id_endereco)">Desativar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+            <!-- /Endereço Adicional -->
           </div>
+
+          <div class="mt-2 ml-3">
+            <button type="submit" class="btn btn-success bg-optimus mr-4" (click)="atualizar()">Atualizar</button>
+            <button type="submit" class="btn btn-secondary" routerLink="/produtoCliente">Cancelar</button>
+          </div>
+
         </div>
-
       </div>
-    </form>
+      <!-- /Alteração de user principal -->
+    </div>
 
-  </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 
-
-  <!-- Pedidos -->
-
-
-</div>
-<!-- Modal -->
-<div class="modal fade" id="termosCondicoes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Termos e Condições Livraria Optimus</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div class="row " style="background-color:#0f2058 ;">
+        <div class="col-md-12 d-flex justify-content-center py-3">
+          <h2 style="color: #f9f9f9">ACOMPANHE SEUS PEDIDOS POR AQUI</h2>
+        </div>
       </div>
-      <div class="modal-body">
-        Condordo em ser um bom leitor e ser um cliente fiel, realizando as compras dos meus livros apenas com a
-        Livraria Optimus.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 
+      <div class="container mt-3 d-flex  flex-wrap justify-content-center">
+            <!-- Pedidos -->
+
+              <div class="mr-3 col-md-3 mt-3" *ngFor='let pedido of usuario.pedidos  | orderBy : key : reverse'>
+                <a [routerLink]="['/pedidos', pedido.id]" style="text-decoration: none; color: black;">
+                <div class="card col-12 pedido">
+                  <div class="card-body ">
+                    <h5 class="card-title">Pedido #{{ pedido.id }}</h5>
+                    <p class="text-muted m-0">Status: {{ pedido.status }}</p>
+                    <p class="text-muted">Data: {{ pedido.data | date: 'dd/MM/yyyy'}}</p>
+                    <p class="m-0">Valor: {{ pedido.valor  | currency:'BRL'}} </p>
+                  </div>
+                </div>
+              </a>
+              </div>
+
+            <!-- /Pedidos -->
       </div>
+
     </div>
   </div>
+
+
 </div>
-<!-- /Modal -->
-
-

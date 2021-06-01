@@ -1,6 +1,5 @@
-.navbar {
+ .navbar {
     background-color: #3AF0A8;
-    height: 120px;
 }
 
 .nav-link{
@@ -21,30 +20,16 @@
     color: #ebe017;
 }
 
-.navbar-text {
-    margin-right: 17%;
-}
-
-.fa-cart-plus {
-    margin-right: 4%;
-}
 
 .fa-user-circle-o {
     margin-right: 4%;
 }
 
-.link-entre {
-    margin-left: 7%;
-}
 
 .form-control {
     margin-left: 4%;
     height: 30%;
-    width: 30%;
-}
-
-.fa-search {
-    font-size: 125%;
+    width: 100%;
 }
 
 

@@ -286,6 +286,7 @@ export class CarrinhoComponent implements OnInit {
         this.router.navigate(['/produtoCliente'])
         this.item = new Itens()
         this.pedido = new Pedido()
+        this.frete = 0
 
 
       }
@@ -310,11 +311,15 @@ export class CarrinhoComponent implements OnInit {
       if (this.produto.length <= 0) {
         alert("Você não possui itens no carrinho!")
       }
+      else if(this.frete == 0 || this.frete == undefined) {
+        alert("Insira opção do frete")
+      }
       else {
 
         alert("Compra finalizada com sucesso! Para acompanhar vá até a tela de gestão de perfil! o boleto será mandado para o email cadastrado!")
         console.log(this.idUser)
 
+        this.pedido.frete = this.frete
         this.pedido.usuario = this.usuario
         this.pedido.status = "Aguardando pagamento"
         this.pedido.valor = this.calculaTotal()
@@ -347,6 +352,7 @@ export class CarrinhoComponent implements OnInit {
         this.router.navigate(['/produtoCliente'])
         this.item = new Itens()
         this.pedido = new Pedido()
+        this.frete = 0
       }
     }
   }

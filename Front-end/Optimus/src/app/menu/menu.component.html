@@ -5,53 +5,45 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <input [(ngModel)]='pesquisa' class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-    <i class="fa fa-search fa-1x" aria-hidden="true" type="submit" (click)='pesquisar()'></i>
-
-
-
     <div class="collapse navbar-collapse" id="textoNavbar">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">     <span class="sr-only">(Página atual)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">    </a>
-        </li>
-      </ul>
 
-      <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
+      <div class="d-flex justify-content-center align-items-center" style="width: 60%">
+        <input [(ngModel)]='pesquisa' class="form-control" type="search" placeholder="Pesquisar" aria-label="Pesquisar" style="width:150%">
+        <i class="fa fa-search fa-1x ml-2" aria-hidden="true" type="submit" (click)='pesquisar()'></i>
+      </div>
 
-      <span class="navbar-text" *ngIf='!logado()'>
+
+      <i class="fa fa-user-circle-o fa-2x ml-5" aria-hidden="true">
+        <span class="navbar-text ml-2" *ngIf='!logado()' style="font-size: 16px;">
         Olá, seja bem vindo(a)!<br/>
         <a class="link-entre" routerLink="/entrar">Entre</a>
         ou <a class="link-cadastre" routerLink="/cadastrar">cadastre-se</a>
       </span>
 
-      <span class="navbar-text" *ngIf='logado()'>
-        Olá, 
+      <span class="navbar-text ml-2" *ngIf='logado()' style="font-size: 16px;">
+        Olá,
         <a [routerLink]="['/alterar-usuario', id]">
           {{nome}}
         </a> <br/>
         <a class="link-entre" (click)='sair()'>Sair</a>
-
       </span>
 
+    </i>
+
+      <a routerLink="/carrinho">
+        <i class="fa fa-cart-plus fa-3x" aria-hidden="true"></i>
+      </a>
+
     </div>
-
-    <a routerLink="/carrinho">
-      <i class="fa fa-cart-plus fa-3x" aria-hidden="true"></i>
-    </a>
-
   </nav>
 
 <nav class="d-flex justify-content-center" style="background-color: #3AF0A8;">
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link" routerLink="/produtoCliente">Produto Cliente</a>
-    </li>
-    <li class="nav-item">
       <a class="nav-link" routerLink="/entrar-adm">Entra Adm</a>
+    </li>
+    <li class="nav-item" *ngIf="homeadm()">
+      <a class="nav-link" routerLink="/home-adm">Home Funcionários</a>
     </li>
   </ul>
 </nav>

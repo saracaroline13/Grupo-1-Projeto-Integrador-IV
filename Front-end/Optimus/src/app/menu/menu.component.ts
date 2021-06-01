@@ -23,6 +23,14 @@ export class MenuComponent implements OnInit {
     this.logado()
   }
 
+  homeadm(){
+    let ok: boolean = false
+    if(environment.tipo=="adm"){
+      ok=true
+    }
+    return ok
+  }
+
   pesquisar() {
     this.router.navigate(['pesquisa', this.pesquisa])
   }
@@ -44,7 +52,7 @@ export class MenuComponent implements OnInit {
       ok = true
       this.nome = environment.nome
       this.id = environment.id
-      
+
     }
 
     return ok
