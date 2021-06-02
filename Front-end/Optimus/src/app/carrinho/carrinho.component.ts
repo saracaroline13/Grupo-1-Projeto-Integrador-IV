@@ -317,7 +317,6 @@ export class CarrinhoComponent implements OnInit {
       else {
 
         alert("Compra finalizada com sucesso! Para acompanhar vá até a tela de gestão de perfil! o boleto será mandado para o email cadastrado!")
-        console.log(this.idUser)
 
         this.pedido.frete = this.frete
         this.pedido.usuario = this.usuario
@@ -341,7 +340,6 @@ export class CarrinhoComponent implements OnInit {
               this.item=resp
             })
             this.item = new Itens()
-            console.log(this.idUser)
 
           }
           this.limparCarrinho()

@@ -40,8 +40,10 @@ export class AlterarProdutoComponent implements OnInit {
   fotoOk: boolean = false;
   link1Ok: boolean = false;
   link2Ok: boolean = false;
+  estrelasOk: boolean = false;
 
   alertaTitulo: string;
+  alertaEstrela: string;
   alertaAutor: string;
   alertaEditora: string;
   alertaDescribe: string;
@@ -91,6 +93,7 @@ export class AlterarProdutoComponent implements OnInit {
       this.describeOk == true &&
       this.valorOk == true &&
       this.estoqueOk == true &&
+      this.estrelasOk == true &&
       this.fotoOk == true &&
       this.link1Ok == true &&
       this.link2Ok == true
@@ -271,6 +274,17 @@ export class AlterarProdutoComponent implements OnInit {
     } else {
       this.link2Ok = true;
       this.alertaLink2 = '';
+    }
+  }
+
+  validaEstrelas(){
+    if(this.qntEstrelas < 1 || this.qntEstrelas > 5) {
+      this.estrelasOk = false;
+      this.alertaEstrela = 'Número Inválido';
+    }
+    else {
+      this.estrelasOk = true;
+      this.alertaEstrela = '';
     }
   }
 

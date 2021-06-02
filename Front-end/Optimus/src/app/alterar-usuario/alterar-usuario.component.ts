@@ -88,7 +88,6 @@ export class AlterarUsuarioComponent implements OnInit {
     this.nomeOk = true
     this.sobrenomeOk = true
     this.findAllEnderecos(this.idUser)
-    console.log(this.listaCamposInvalidos)
 
   }
 
@@ -295,9 +294,6 @@ export class AlterarUsuarioComponent implements OnInit {
     this.usuario.status = 1
     this.usuario.cargo = ""
     this.usuario.email = ""
-
-    console.log(this.usuario)
-    console.log(this.listaCamposInvalidos)
 
     this.validaVariaveisOk()
 

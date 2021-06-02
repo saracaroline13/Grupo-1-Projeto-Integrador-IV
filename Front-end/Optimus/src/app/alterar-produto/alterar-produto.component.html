@@ -27,17 +27,8 @@
 
         <div class="form-group col-md-2">
           <label for="inputEstado">Estrelas*</label>
-          <select id="inputEstrelas" class="form-control" (change)='estrelas($event)'>
-            <option selected value=0>Estrelas</option>
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3
-            </option>
-            <option value=4>4
-            </option>
-            <option value=5>5
-            </option>
-          </select>
+          <input [(ngModel)]='qntEstrelas' [(ngModel)]='produto.estrelas' name="estrelas" type="estrelas" class="form-control" id="estrelas" placeholder="000" value="{{ qntEstrelas }}" (keyup)="validaEstrelas()">
+          <div class="text-danger">{{ alertaEstrela }}</div>
         </div>
       </div>
       <div class="form-group">

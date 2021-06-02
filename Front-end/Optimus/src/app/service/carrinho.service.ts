@@ -44,7 +44,6 @@ export class CarrinhoService {
       this.listaPrint.push(produto)
     }
 
-
     this.total = this.total + produto.valor
 
     this.messageSource.next(this.produto.length)
@@ -63,7 +62,6 @@ export class CarrinhoService {
   }
 
   apagarItem(produto: Produto) {
-    console.log(this.contadorProduto(produto))
     const index: number = this.produto.indexOf(produto)
     if (index !== -1) {
       this.produto.splice(index, 1)
@@ -74,7 +72,6 @@ export class CarrinhoService {
 
 
     let quantidade = this.contadorProduto(produto)
-    console.log(quantidade)
 
     if(quantidade == 0) {
       const indexPrint: number = this.listaPrint.indexOf(produto)
@@ -83,8 +80,6 @@ export class CarrinhoService {
       }
       this.messageSource.next(this.listaPrint.length)
       alert("Item removido do carrinho")
-      console.log(this.listaPrint)
-      console.log(this.produto)
     }
 
     this.contadorProduto(produto)
@@ -110,27 +105,7 @@ export class CarrinhoService {
   calculaFrete(frete: number){
     this.total = this.total - this.frete
     this.frete = frete
-    console.log(this.total)
     this.total = this.total + this.frete
-    console.log(this.frete)
-    console.log(this.total)
   }
-
-  // removerItem(produto: Produto){
-  //   this.total = this.total - (produto.valor * this.contadorProduto(produto))
-  //   console.log(this.contadorProduto(produto))
-  //   const index: number = this.produto.indexOf(produto)
-  //   if (index !== -1) {
-  //     const indexPrint: number = this.listaPrint.indexOf(produto)
-  //     this.produto.splice(index, this.contadorProduto(produto))
-  //     this.listaPrint.splice(indexPrint, this.contadorProduto(produto))
-  //     if (indexPrint !== -1) {
-  //       this.listaPrint.splice(indexPrint, this.contadorProduto(produto))
-  //     }
-  //     this.messageSource.next(this.listaPrint.length)
-  //     alert("Item removido do carrinho")
-  //   }  
-    
-  // }
 
 }

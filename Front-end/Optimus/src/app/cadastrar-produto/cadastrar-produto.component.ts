@@ -48,6 +48,7 @@ export class CadastrarProdutoComponent implements OnInit {
   fotoOk: boolean = false;
   link1Ok: boolean = false;
   link2Ok: boolean = false;
+  estrelasOk: boolean = false;
 
   alertaTitulo: string;
   alertaAutor: string;
@@ -58,6 +59,7 @@ export class CadastrarProdutoComponent implements OnInit {
   alertaFoto: string;
   alertaLink1: string;
   alertaLink2: string;
+  alertaEstrela: string;
 
   constructor(
     private produtoService: ProdutoService,
@@ -78,7 +80,6 @@ export class CadastrarProdutoComponent implements OnInit {
 
   // Parte para subir a imagem
   onUpload() {
-    console.log(this.selectedFile);
     
     const uploadImageData = new FormData();
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
@@ -268,5 +269,15 @@ export class CadastrarProdutoComponent implements OnInit {
     }
   }
 
+  validaEstrelas(){
+    if(this.qntEstrelas < 1 || this.qntEstrelas > 5) {
+      this.estrelasOk = false;
+      this.alertaEstrela = 'Número Inválido';
+    }
+    else {
+      this.estrelasOk = true;
+      this.alertaEstrela = '';
+    }
+  }
 
 }

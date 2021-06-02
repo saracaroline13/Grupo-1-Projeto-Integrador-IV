@@ -54,7 +54,7 @@ export class ListaProdutoComponent implements OnInit {
       this.produto= resp
       this.produto.status=0
       alert("Produto desativado com sucesso!")
-      this.putProduto(this.produto)
+      this.putProduto()
    
     })
 
@@ -65,17 +65,14 @@ habilitarStatus(id:number) {
     this.produto= resp
     this.produto.status=1
     alert("Produto ativado com sucesso!")
-    this.putProduto(this.produto)
+    this.putProduto()
  
   })
 }
 
-  putProduto(produto: Produto) {
-    
-    this.produtoService.putProduto(produto).subscribe((resp: Produto)=>{
-
-      this.produto= resp
-      
+  putProduto() { 
+    this.produtoService.putProduto(this.produto).subscribe((resp: Produto)=>{
+      this.produto= resp      
       this.findAll()
     })
   }

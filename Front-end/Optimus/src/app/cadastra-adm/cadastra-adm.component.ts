@@ -23,7 +23,7 @@ export class CadastraADMComponent implements OnInit {
   nome: string;
   sobrenome: string;
   rg: string;
-  cpf: string;
+  cpf: any;
   telefone: string;
   rua: string;
   numero: string;

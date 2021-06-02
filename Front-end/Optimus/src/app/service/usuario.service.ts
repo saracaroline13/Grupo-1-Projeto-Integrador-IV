@@ -24,19 +24,19 @@ export class UsuarioService {
   }
 
   getByEmail(email:string):Observable<Usuario> {
-    return this.http.get<Usuario>(`http://localhost:8080/usuario/${email}`, this.token)
+    return this.http.get<Usuario>(`http://localhost:8080/usuario/${email}`)
   }
 
   postUsuario(usuario: Usuario):Observable<Usuario> {
-    return this.http.post<Usuario>("http://localhost:8080/usuario",usuario, this.token)
+    return this.http.post<Usuario>("http://localhost:8080/usuario",usuario)
   }
 
   putUsuario(usuario: Usuario):Observable<Usuario> {
-    return this.http.put<Usuario>("http://localhost:8080/usuario",usuario, this.token)
+    return this.http.put<Usuario>("http://localhost:8080/usuario",usuario)
   }
 
   deleteUsuario(id:number){
-    return this.http.delete(`http://localhost:8080/usuario/${id}`,this.token)
+    return this.http.delete(`http://localhost:8080/usuario/${id}`)
   }
 
 }

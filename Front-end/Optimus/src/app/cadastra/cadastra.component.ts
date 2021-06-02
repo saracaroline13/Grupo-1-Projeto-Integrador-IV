@@ -376,7 +376,6 @@ export class CadastraComponent implements OnInit {
 
 
   cpfExistente() {
-    console.log("oi")
     for (let usuario of this.listaUsuario) {
       if (usuario.cpf == this.usuario.cpf) {
         this.alertaCpf = 'cpf já existente';

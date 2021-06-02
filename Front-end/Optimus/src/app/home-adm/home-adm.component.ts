@@ -24,7 +24,6 @@ export class HomeAdmComponent implements OnInit {
   }
 
   logado(){
-    console.log(environment.tipo)
     let ok: boolean = false
 
     if(environment.tipo == "adm"){
