@@ -25,7 +25,7 @@ export class MenuComponent implements OnInit {
 
   homeadm(){
     let ok: boolean = false
-    if(environment.tipo=="adm"){
+    if(environment.tipo=="adm" || environment.tipo == "Vendedor" || environment.tipo == "Estoquista"){
       ok=true
     }
     return ok
